@@ -1,0 +1,19 @@
+{
+  "name": "angular-animations",
+  "version": "0.0.0",
+  "description": "Angular Animations Utilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipows/angular-animations.git"
+  },
+  "author": "Chris Filipowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/filipows/angular-animations/issues"
+  },
+  "homepage": "https://github.com/filipows/angular-animations#readme"
+}
