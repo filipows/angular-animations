@@ -2,23 +2,39 @@
   "name": "angular-animations",
   "version": "0.0.0",
   "description": "Angular Animations Utilities",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "npm run demo-app",
     "demo-app": "cd demo-app && ng serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc",
+    "prepublish": "npm test && npm run build",
+    "release": "np",
+    "test": "npx tsc --noEmit"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/filipows/angular-animations.git"
   },
+  "keywords": [
+    "angular",
+    "animations",
+    "library",
+    "untility",
+    "animate"
+  ],
   "author": "Chris Filipowski",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/filipows/angular-animations/issues"
   },
   "homepage": "https://github.com/filipows/angular-animations#readme",
   "devDependencies": {
-    "@angular/animations": "^6.1.10"
+    "@angular/animations": "^6.0.0",
+    "np": "^3.0.4",
+    "typescript": "^3.1.3"
+  },
+  "peerDependencies": {
+    "@angular/animations": "^6.0.0"
   }
 }
