@@ -4,6 +4,8 @@
   "description": "Angular Animations Utilities",
   "main": "index.js",
   "scripts": {
+    "start": "npm run demo-app",
+    "demo-app": "cd demo-app && ng serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/filipows/angular-animations/issues"
   },
-  "homepage": "https://github.com/filipows/angular-animations#readme"
+  "homepage": "https://github.com/filipows/angular-animations#readme",
+  "devDependencies": {
+    "@angular/animations": "^6.1.10"
+  }
 }

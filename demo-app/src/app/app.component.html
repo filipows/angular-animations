@@ -1,0 +1,28 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to Angular Animations Demo!
+  </h1>
+
+  <br />
+
+  <h2>{{animation}}:</h2>
+  <div [ngSwitch]="animation">
+      <app-angular-img *ngSwitchCase="'bounce'"  [@bounce]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'flash'"  [@pulse]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'pulse'"  [@pulse]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'rubberBand'"  [@rubberBand]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'shake'"  [@shake]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'swing'"  [@swing]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'tada'"  [@tada]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'wobble'"  [@wobble]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'jello'"  [@jello]="animationState"></app-angular-img>
+      <div *ngSwitchDefault>Select animaion</div>
+  </div>  
+
+  <select [(ngModel)]="animation" (change)="animateAfterChange()">
+      <option *ngFor="let option of animations" [value]="option">{{option}}</option>
+  </select>
+  <button (click)="animate()">Animate it</button>
+
+</div>
