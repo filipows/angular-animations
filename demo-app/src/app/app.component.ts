@@ -10,7 +10,8 @@ import {
   tadaAnimation,
   wobbleAnimation,
   jelloAnimation,
-  bounceInAnimation
+  bounceInAnimation,
+  bounceInDownAnimation
 } from '../../../lib/';
 
 @Component({
@@ -27,7 +28,8 @@ import {
     tadaAnimation(),
     wobbleAnimation(),
     jelloAnimation(),
-    bounceInAnimation()
+    bounceInAnimation(),
+    bounceInDownAnimation()
   ]
 })
 export class AppComponent {
@@ -41,7 +43,8 @@ export class AppComponent {
     'tada',
     'wobble',
     'jello',
-    'bounceIn'
+    'bounceIn',
+    'bounceInDown'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
