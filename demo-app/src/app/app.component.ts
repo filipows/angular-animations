@@ -11,7 +11,8 @@ import {
   wobbleAnimation,
   jelloAnimation,
   bounceInAnimation,
-  bounceInDownAnimation
+  bounceInDownAnimation,
+  bounceInLeftAnimation
 } from '../../../lib/';
 
 @Component({
@@ -29,7 +30,8 @@ import {
     wobbleAnimation(),
     jelloAnimation(),
     bounceInAnimation(),
-    bounceInDownAnimation()
+    bounceInDownAnimation(),
+    bounceInLeftAnimation()
   ]
 })
 export class AppComponent {
@@ -44,7 +46,8 @@ export class AppComponent {
     'wobble',
     'jello',
     'bounceIn',
-    'bounceInDown'
+    'bounceInDown',
+    'bounceInLeft'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
