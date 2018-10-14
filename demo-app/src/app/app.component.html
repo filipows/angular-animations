@@ -1,4 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Welcome to Angular Animations Demo!
@@ -17,6 +16,12 @@
       <app-angular-img *ngSwitchCase="'tada'"  [@tada]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'wobble'"  [@wobble]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'jello'"  [@jello]="animationState"></app-angular-img>
+
+      <app-angular-img *ngSwitchCase="'bounceIn'"  [@bounceIn]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'bounceInDown'"  [@bounceInDown]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'bounceInLeft'"  [@bounceInLeft]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'bounceInRight'"  [@bounceInRight]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'bounceInUp'"  [@bounceInUp]="animationState"></app-angular-img>
       <div *ngSwitchDefault>Select animaion</div>
   </div>  
 
