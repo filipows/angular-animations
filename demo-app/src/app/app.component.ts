@@ -12,7 +12,8 @@ import {
   jelloAnimation,
   bounceInAnimation,
   bounceInDownAnimation,
-  bounceInLeftAnimation
+  bounceInLeftAnimation,
+  bounceInRightAnimation
 } from '../../../lib/';
 
 @Component({
@@ -31,7 +32,8 @@ import {
     jelloAnimation(),
     bounceInAnimation(),
     bounceInDownAnimation(),
-    bounceInLeftAnimation()
+    bounceInLeftAnimation(),
+    bounceInRightAnimation()
   ]
 })
 export class AppComponent {
@@ -47,7 +49,8 @@ export class AppComponent {
     'jello',
     'bounceIn',
     'bounceInDown',
-    'bounceInLeft'
+    'bounceInLeft',
+    'bounceInRight'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
