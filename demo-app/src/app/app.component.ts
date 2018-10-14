@@ -17,7 +17,8 @@ import {
   bounceInUpAnimation,
   bounceOutAnimation,
   bounceOutDownAnimation,
-  bounceOutLeftAnimation
+  bounceOutLeftAnimation,
+  bounceOutRightAnimation
 } from '../../../lib/';
 
 @Component({
@@ -41,7 +42,8 @@ import {
     bounceInUpAnimation(),
     bounceOutAnimation(),
     bounceOutDownAnimation(),
-    bounceOutLeftAnimation()
+    bounceOutLeftAnimation(),
+    bounceOutRightAnimation()
   ]
 })
 export class AppComponent {
@@ -62,7 +64,8 @@ export class AppComponent {
     'bounceInUp',
     'bounceOut',
     'bounceOutDown',
-    'bounceOutLeft'
+    'bounceOutLeft',
+    'bounceOutRight',
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
