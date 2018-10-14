@@ -1,20 +1,9 @@
 import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation, group } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces'
+import { bounceInOpacity } from './utils';
 
-const bounceInLeftOpacity = animation([
-  animate(
-    '{{duration}}ms',
-    keyframes([
-      style({opacity: 0, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0  }),
-      style({opacity: 1, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.6  }),
-      style({opacity: 1, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 1  }),
-    ])
-  )
-]);
-
-
-const bounceInLeftScale = animation([
+const bounceInLeftTransition = animation([
   animate(
     '{{duration}}ms',
     keyframes([
@@ -35,8 +24,8 @@ export function bounceInLeftAnimation(options?: IAnimationOptions): AnimationTri
       '0 <=> 1',
       [
         group([
-          useAnimation(bounceInLeftScale),
-          useAnimation(bounceInLeftOpacity)
+          useAnimation(bounceInLeftTransition),
+          useAnimation(bounceInOpacity)
         ], {
             params: {
               duration: (options && options.duration) || DEFAULT_DURATION
