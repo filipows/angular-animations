@@ -24,7 +24,9 @@ import {
   fadeInDownAnimation,
   fadeInDownBigAnimation,
   fadeInLeftAnimation,
-  fadeInLeftBigAnimation
+  fadeInLeftBigAnimation,
+  fadeInRightAnimation,
+  fadeInRightBigAnimation
 } from '../../../lib/';
 
 @Component({
@@ -55,7 +57,9 @@ import {
     fadeInDownAnimation(),
     fadeInDownBigAnimation(),
     fadeInLeftAnimation(),
-    fadeInLeftBigAnimation()
+    fadeInLeftBigAnimation(),
+    fadeInRightAnimation(),
+    fadeInRightBigAnimation()
   ]
 })
 export class AppComponent {
@@ -83,7 +87,9 @@ export class AppComponent {
     'fadeInDown',
     'fadeInDownBig',
     'fadeInLeft',
-    'fadeInLeftBig'
+    'fadeInLeftBig',
+    'fadeInRight',
+    'fadeInRightBig'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
