@@ -7,6 +7,7 @@
 
   <h2>{{animation}}:</h2>
   <div [ngSwitch]="animation">
+      <!-- Attention seekers -->
       <app-angular-img *ngSwitchCase="'bounce'"  [@bounce]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'flash'"  [@pulse]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'pulse'"  [@pulse]="animationState"></app-angular-img>
@@ -16,19 +17,19 @@
       <app-angular-img *ngSwitchCase="'tada'"  [@tada]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'wobble'"  [@wobble]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'jello'"  [@jello]="animationState"></app-angular-img>
-
+      <!-- Bouncing entrances -->
       <app-angular-img *ngSwitchCase="'bounceIn'"  [@bounceIn]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'bounceInDown'"  [@bounceInDown]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'bounceInLeft'"  [@bounceInLeft]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'bounceInRight'"  [@bounceInRight]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'bounceInUp'"  [@bounceInUp]="animationState"></app-angular-img>
-      
+      <!-- Bouncing exits -->
       <app-angular-img *ngSwitchCase="'bounceOut'"  [@bounceOut]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'bounceOutDown'"  [@bounceOutDown]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'bounceOutLeft'"  [@bounceOutLeft]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'bounceOutRight'"  [@bounceOutRight]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'bounceOutUp'"  [@bounceOutUp]="animationState"></app-angular-img>
-      
+      <!-- Fading entrances -->
       <app-angular-img *ngSwitchCase="'fadeIn'"  [@fadeIn]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'fadeInDown'"  [@fadeInDown]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'fadeInDownBig'"  [@fadeInDownBig]="animationState"></app-angular-img>
@@ -38,7 +39,7 @@
       <app-angular-img *ngSwitchCase="'fadeInRightBig'"  [@fadeInRightBig]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'fadeInUp'"  [@fadeInUp]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'fadeInUpBig'"  [@fadeInUpBig]="animationState"></app-angular-img>
-
+      <!-- Fading exits -->
       <app-angular-img *ngSwitchCase="'fadeOut'"  [@fadeOut]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'fadeOutDown'"  [@fadeOutDown]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'fadeOutDownBig'"  [@fadeOutDownBig]="animationState"></app-angular-img>
@@ -48,6 +49,8 @@
       <app-angular-img *ngSwitchCase="'fadeOutRightBig'"  [@fadeOutRightBig]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'fadeOutUp'"  [@fadeOutUp]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'fadeOutUpBig'"  [@fadeOutUpBig]="animationState"></app-angular-img>
+      <!-- Flippers -->
+      <app-angular-img *ngSwitchCase="'flip'"  [@flip]="animationState"></app-angular-img>
       <div *ngSwitchDefault>Select animaion</div>
   </div>  
 
