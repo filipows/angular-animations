@@ -58,6 +58,12 @@
       <!-- Light speed -->
       <app-angular-img *ngSwitchCase="'lightSpeedIn'"  [@lightSpeedIn]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'lightSpeedOut'"  [@lightSpeedOut]="animationState"></app-angular-img>
+      <!-- Rotating entrances -->
+      <app-angular-img *ngSwitchCase="'rotateIn'"  [@rotateIn]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'rotateInDownLeft'"  [@rotateInDownLeft]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'rotateInDownRight'"  [@rotateInDownRight]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'rotateInUpLeft'"  [@rotateInUpLeft]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'rotateInUpRight'"  [@rotateInUpRight]="animationState"></app-angular-img>
       <div *ngSwitchDefault>Select animaion</div>
   </div>  
 

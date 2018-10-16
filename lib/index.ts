@@ -5,3 +5,4 @@ export * from './fading-entrances';
 export * from './fading-exits';
 export * from './flippers';
 export * from './light-speed';
+export * from './rotating-entrances';

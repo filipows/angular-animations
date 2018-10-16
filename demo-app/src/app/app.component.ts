@@ -44,7 +44,12 @@ import {
   flipOutXAnimation,
   flipOutYAnimation,
   lightSpeedInAnimation,
-  lightSpeedOutAnimation
+  lightSpeedOutAnimation,
+  rotateInAnimation,
+  rotateInDownLeftAnimation,
+  rotateInDownRightAnimation,
+  rotateInUpLeftAnimation,
+  rotateInUpRightAnimation
 } from '../../../lib/';
 
 @Component({
@@ -95,7 +100,12 @@ import {
     flipOutXAnimation(),
     flipOutYAnimation(),
     lightSpeedInAnimation(),
-    lightSpeedOutAnimation()
+    lightSpeedOutAnimation(),
+    rotateInAnimation(),
+    rotateInDownLeftAnimation(),
+    rotateInDownRightAnimation(),
+    rotateInUpLeftAnimation(),
+    rotateInUpRightAnimation()
   ]
 })
 export class AppComponent {
@@ -143,7 +153,12 @@ export class AppComponent {
     'flipOutX',
     'flipOutY',
     'lightSpeedIn',
-    'lightSpeedOut'
+    'lightSpeedOut',
+    'rotateIn',
+    'rotateInDownLeft',
+    'rotateInDownRight',
+    'rotateInUpLeft',
+    'rotateInUpRight'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
