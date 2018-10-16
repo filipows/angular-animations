@@ -40,7 +40,9 @@ import {
   fadeOutUpBigAnimation,
   flipAnimation,
   flipInXAnimation,
-  flipInYAnimation
+  flipInYAnimation,
+  flipOutXAnimation,
+  flipOutYAnimation
 } from '../../../lib/';
 
 @Component({
@@ -87,7 +89,9 @@ import {
     fadeOutUpBigAnimation(),
     flipAnimation(),
     flipInXAnimation(),
-    flipInYAnimation()
+    flipInYAnimation(),
+    flipOutXAnimation(),
+    flipOutYAnimation()
   ]
 })
 export class AppComponent {
@@ -131,7 +135,9 @@ export class AppComponent {
     'fadeOutUpBig',
     'flip',
     'flipInX',
-    'flipInY'
+    'flipInY',
+    'flipOutX',
+    'flipOutY'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
