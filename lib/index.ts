@@ -8,3 +8,4 @@ export * from './light-speed';
 export * from './rotating-entrances';
 export * from './rotating-exits';
 export * from './sliding-entrances';
+export * from './sliding-exits';

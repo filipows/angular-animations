@@ -58,7 +58,11 @@ import {
   slideInDownAnimation,
   slideInLeftAnimation,
   slideInRightAnimation,
-  slideInUpAnimation
+  slideInUpAnimation,
+  slideOutDownAnimation,
+  slideOutLeftAnimation,
+  slideOutRightAnimation,
+  slideOutUpAnimation
 } from '../../../lib/';
 
 @Component({
@@ -123,7 +127,11 @@ import {
     slideInDownAnimation(),
     slideInLeftAnimation(),
     slideInRightAnimation(),
-    slideInUpAnimation()
+    slideInUpAnimation(),
+    slideOutDownAnimation(),
+    slideOutLeftAnimation(),
+    slideOutRightAnimation(),
+    slideOutUpAnimation()
   ]
 })
 export class AppComponent {
@@ -185,7 +193,11 @@ export class AppComponent {
     'slideInUp',
     'slideInDown',
     'slideInLeft',
-    'slideInRight'
+    'slideInRight',
+    'slideOutUp',
+    'slideOutDown',
+    'slideOutLeft',
+    'slideOutRight',
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
