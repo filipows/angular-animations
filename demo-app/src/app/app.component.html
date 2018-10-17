@@ -64,6 +64,12 @@
       <app-angular-img *ngSwitchCase="'rotateInDownRight'"  [@rotateInDownRight]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'rotateInUpLeft'"  [@rotateInUpLeft]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'rotateInUpRight'"  [@rotateInUpRight]="animationState"></app-angular-img>
+       <!--Rotating exits  -->
+      <app-angular-img *ngSwitchCase="'rotateOut'"  [@rotateOut]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'rotateOutDownLeft'"  [@rotateOutDownLeft]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'rotateOutDownRight'"  [@rotateOutDownRight]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'rotateOutUpLeft'"  [@rotateOutUpLeft]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'rotateOutUpRight'"  [@rotateOutUpRight]="animationState"></app-angular-img>
       <div *ngSwitchDefault>Select animaion</div>
   </div>  
 
