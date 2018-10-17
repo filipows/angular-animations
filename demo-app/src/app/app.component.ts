@@ -54,7 +54,11 @@ import {
   rotateOutDownLeftAnimation,
   rotateOutDownRightAnimation,
   rotateOutUpLeftAnimation,
-  rotateOutUpRightAnimation
+  rotateOutUpRightAnimation,
+  slideInDownAnimation,
+  slideInLeftAnimation,
+  slideInRightAnimation,
+  slideInUpAnimation
 } from '../../../lib/';
 
 @Component({
@@ -115,7 +119,11 @@ import {
     rotateOutDownLeftAnimation(),
     rotateOutDownRightAnimation(),
     rotateOutUpLeftAnimation(),
-    rotateOutUpRightAnimation()
+    rotateOutUpRightAnimation(),
+    slideInDownAnimation(),
+    slideInLeftAnimation(),
+    slideInRightAnimation(),
+    slideInUpAnimation()
   ]
 })
 export class AppComponent {
@@ -173,7 +181,11 @@ export class AppComponent {
     'rotateOutDownLeft',
     'rotateOutDownRight',
     'rotateOutUpLeft',
-    'rotateOutUpRight'
+    'rotateOutUpRight',
+    'slideInUp',
+    'slideInDown',
+    'slideInLeft',
+    'slideInRight'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
