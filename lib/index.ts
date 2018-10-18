@@ -9,3 +9,4 @@ export * from './rotating-entrances';
 export * from './rotating-exits';
 export * from './sliding-entrances';
 export * from './sliding-exits';
+export * from './zooming-entrances';
