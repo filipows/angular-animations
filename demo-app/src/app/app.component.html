@@ -80,6 +80,12 @@
       <app-angular-img *ngSwitchCase="'slideOutDown'"  [@slideOutDown]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'slideOutLeft'"  [@slideOutLeft]="animationState"></app-angular-img>
       <app-angular-img *ngSwitchCase="'slideOutRight'"  [@slideOutRight]="animationState"></app-angular-img>
+      <!-- Zooming entrances -->
+      <app-angular-img *ngSwitchCase="'zoomIn'"  [@zoomIn]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'zoomInDown'"  [@zoomInDown]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'zoomInLeft'"  [@zoomInLeft]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'zoomInRight'"  [@zoomInRight]="animationState"></app-angular-img>
+      <app-angular-img *ngSwitchCase="'zoomInUp'"  [@zoomInUp]="animationState"></app-angular-img>
       <div *ngSwitchDefault>Select animaion</div>
   </div>  
 
