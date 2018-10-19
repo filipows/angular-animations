@@ -72,7 +72,11 @@ import {
   zoomOutDownAnimation,
   zoomOutLeftAnimation,
   zoomOutRightAnimation,
-  zoomOutUpAnimation
+  zoomOutUpAnimation,
+  hingeAnimation,
+  jackInTheBoxAnimation,
+  rollInAnimation,
+  rollOutAnimation
 } from '../../../lib/';
 
 @Component({
@@ -151,7 +155,11 @@ import {
     zoomOutDownAnimation(),
     zoomOutLeftAnimation(),
     zoomOutRightAnimation(),
-    zoomOutUpAnimation()
+    zoomOutUpAnimation(),
+    hingeAnimation(),
+    jackInTheBoxAnimation(),
+    rollInAnimation(),
+    rollOutAnimation()
   ]
 })
 export class AppComponent {
@@ -227,7 +235,11 @@ export class AppComponent {
     'zoomOutDown',
     'zoomOutLeft',
     'zoomOutRight',
-    'zoomOutUp'
+    'zoomOutUp',
+    'hinge',
+    'jackInTheBox',
+    'rollIn',
+    'rollOut'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
