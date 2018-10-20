@@ -29,3 +29,18 @@ export function fadeOutDownBigAnimation(options?: IAnimationOptions): AnimationT
     )
   ]);
 }
+
+export function fadeOutDownBigOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'fadeOutDownBigOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(fadeOutDownBig, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

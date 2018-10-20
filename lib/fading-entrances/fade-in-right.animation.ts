@@ -29,3 +29,18 @@ export function fadeInRightAnimation(options?: IAnimationOptions): AnimationTrig
     )
   ]);
 }
+
+export function fadeInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'fadeInRightOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(fadeInRight, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

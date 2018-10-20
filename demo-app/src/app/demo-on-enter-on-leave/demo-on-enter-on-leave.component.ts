@@ -10,7 +10,25 @@ import {
   bounceInLeftOnEnterAnimation,
   bounceInRightOnEnterAnimation,
   bounceOutLeftOnLeaveAnimation,
-  bounceOutRightOnLeaveAnimation
+  bounceOutRightOnLeaveAnimation,
+  fadeInOnEnterAnimation,
+  fadeInUpOnEnterAnimation,
+  fadeInDownOnEnterAnimation,
+  fadeInLeftOnEnterAnimation,
+  fadeInRightOnEnterAnimation,
+  fadeInUpBigOnEnterAnimation,
+  fadeInDownBigOnEnterAnimation,
+  fadeInLeftBigOnEnterAnimation,
+  fadeInRightBigOnEnterAnimation,
+  fadeOutOnLeaveAnimation,
+  fadeOutUpOnLeaveAnimation,
+  fadeOutDownOnLeaveAnimation,
+  fadeOutLeftOnLeaveAnimation,
+  fadeOutRightOnLeaveAnimation,
+  fadeOutUpBigOnLeaveAnimation,
+  fadeOutDownBigOnLeaveAnimation,
+  fadeOutLeftBigOnLeaveAnimation,
+  fadeOutRightBigOnLeaveAnimation
 } from '../../../../lib';
 
 @Component({
@@ -27,9 +45,25 @@ import {
     bounceInLeftOnEnterAnimation(),
     bounceInRightOnEnterAnimation(),
     bounceOutLeftOnLeaveAnimation(),
-    bounceOutRightOnLeaveAnimation()
-  
-  ]
+    bounceOutRightOnLeaveAnimation(),
+    fadeInOnEnterAnimation(),
+    fadeInUpOnEnterAnimation(),
+    fadeInDownOnEnterAnimation(),
+    fadeInLeftOnEnterAnimation(),
+    fadeInRightOnEnterAnimation(),
+    fadeInUpBigOnEnterAnimation(),
+    fadeInDownBigOnEnterAnimation(),
+    fadeInLeftBigOnEnterAnimation(),
+    fadeInRightBigOnEnterAnimation(),
+    fadeOutOnLeaveAnimation(),
+    fadeOutUpOnLeaveAnimation(),
+    fadeOutDownOnLeaveAnimation(),
+    fadeOutLeftOnLeaveAnimation(),
+    fadeOutRightOnLeaveAnimation(),
+    fadeOutUpBigOnLeaveAnimation(),
+    fadeOutDownBigOnLeaveAnimation(),
+    fadeOutLeftBigOnLeaveAnimation(),
+    fadeOutRightBigOnLeaveAnimation()  ]
 })
 export class DemoOnEnterOnLeaveComponent {
   animations = [
@@ -37,7 +71,16 @@ export class DemoOnEnterOnLeaveComponent {
     'bounceInUp',
     'bounceInDown',
     'bounceInLeft',
-    'bounceInRight'
+    'bounceInRight',
+    'fadeInOut',
+    'fadeInUpOutUp',
+    'fadeInDownOutDown',
+    'fadeInLeftOutRight',
+    'fadeInRightOutLeft',
+    'fadeInUpBigOutUpBig',
+    'fadeInDownBigOutDownBig',
+    'fadeInLeftBigOutRightBig',
+    'fadeInRightBigOutLeftBig'
   ];
   animation = this.animations[0];
 

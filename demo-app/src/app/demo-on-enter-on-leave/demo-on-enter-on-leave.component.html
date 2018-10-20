@@ -6,6 +6,12 @@
   <br />
 
   <h2>{{animation}}:</h2>
+
+  <select [(ngModel)]="animation">
+      <option *ngFor="let option of animations" [value]="option">{{option}}</option>
+  </select>
+  <button (click)="toggleState()">Toggle `*ngIf`</button>
+
   <div [ngSwitch]="animation">
       <!-- Bouncing -->
       <ng-container *ngSwitchCase="'bounceIn'">
@@ -23,12 +29,35 @@
       <ng-container *ngSwitchCase="'bounceInRight'">
         <app-angular-img  *ngIf="state"  [@bounceInRightOnEnter] [@bounceOutLeftOnLeave]></app-angular-img>
       </ng-container>
+      <!-- Fading -->
+      <ng-container *ngSwitchCase="'fadeInOut'">
+        <app-angular-img  *ngIf="state"  [@fadeInOnEnter] [@fadeOutOnLeave]></app-angular-img>
+      </ng-container>
+      <ng-container *ngSwitchCase="'fadeInUpOutUp'">
+        <app-angular-img  *ngIf="state"  [@fadeInUpOnEnter] [@fadeOutUpOnLeave]></app-angular-img>
+      </ng-container>
+      <ng-container *ngSwitchCase="'fadeInDownOutDown'">
+        <app-angular-img  *ngIf="state"  [@fadeInDownOnEnter] [@fadeOutDownOnLeave]></app-angular-img>
+      </ng-container>
+      <ng-container *ngSwitchCase="'fadeInLeftOutRight'">
+        <app-angular-img  *ngIf="state"  [@fadeInLeftOnEnter] [@fadeOutRightOnLeave]></app-angular-img>
+      </ng-container>
+      <ng-container *ngSwitchCase="'fadeInRightOutLeft'">
+        <app-angular-img  *ngIf="state"  [@fadeInRightOnEnter] [@fadeOutLeftOnLeave]></app-angular-img>
+      </ng-container>      
+      <ng-container *ngSwitchCase="'fadeInUpBigOutUpBig'">
+        <app-angular-img  *ngIf="state"  [@fadeInUpBigOnEnter] [@fadeOutUpBigOnLeave]></app-angular-img>
+      </ng-container>      
+      <ng-container *ngSwitchCase="'fadeInDownBigOutDownBig'">
+        <app-angular-img  *ngIf="state"  [@fadeInDownBigOnEnter] [@fadeOutDownBigOnLeave]></app-angular-img>
+      </ng-container>      
+      <ng-container *ngSwitchCase="'fadeInLeftBigOutRightBig'">
+        <app-angular-img  *ngIf="state"  [@fadeInLeftBigOnEnter] [@fadeOutRightBigOnLeave]></app-angular-img>
+      </ng-container>      
+      <ng-container *ngSwitchCase="'fadeInRightBigOutLeftBig'">
+        <app-angular-img  *ngIf="state"  [@fadeInRightBigOnEnter] [@fadeOutLeftBigOnLeave]></app-angular-img>
+      </ng-container>      
       <div *ngSwitchDefault>Select animaion</div>
   </div>  
-
-  <select [(ngModel)]="animation">
-      <option *ngFor="let option of animations" [value]="option">{{option}}</option>
-  </select>
-  <button (click)="toggleState()">Toggle `*ngIf`</button>
 
 </div>

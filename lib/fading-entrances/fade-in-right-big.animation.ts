@@ -29,3 +29,18 @@ export function fadeInRightBigAnimation(options?: IAnimationOptions): AnimationT
     )
   ]);
 }
+
+export function fadeInRightBigOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'fadeInRightBigOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(fadeInRightBig, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

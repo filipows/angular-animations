@@ -29,3 +29,18 @@ export function fadeInLeftBigAnimation(options?: IAnimationOptions): AnimationTr
     )
   ]);
 }
+
+export function fadeInLeftBigOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'fadeInLeftBigOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(fadeInLeftBig, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

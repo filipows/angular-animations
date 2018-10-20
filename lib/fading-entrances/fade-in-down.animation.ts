@@ -29,3 +29,18 @@ export function fadeInDownAnimation(options?: IAnimationOptions): AnimationTrigg
     )
   ]);
 }
+
+export function fadeInDownOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'fadeInDownOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(fadeInDown, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

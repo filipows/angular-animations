@@ -29,3 +29,18 @@ export function fadeInUpBigAnimation(options?: IAnimationOptions): AnimationTrig
     )
   ]);
 }
+
+export function fadeInUpBigOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'fadeInUpBigOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(fadeInUpBig, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}
