@@ -29,3 +29,18 @@ export function zoomInUpAnimation(options?: IAnimationOptions): AnimationTrigger
     )
   ]);
 }
+
+export function zoomInUpOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'zoomInUpOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(zoomInUp, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

@@ -32,3 +32,18 @@ export function hingeAnimation(options?: IAnimationOptions): AnimationTriggerMet
     )
   ]);
 }
+
+export function hingeOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'hingeOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(hinge, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

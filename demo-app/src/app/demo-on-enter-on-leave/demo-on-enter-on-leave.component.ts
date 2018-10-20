@@ -44,7 +44,29 @@ import {
   rotateOutUpLeftOnLeaveAnimation,
   rotateOutUpRightOnLeaveAnimation,
   rotateOutDownLeftOnLeaveAnimation,
-  rotateOutDownRightOnLeaveAnimation
+  rotateOutDownRightOnLeaveAnimation,
+  slideInRightOnEnterAnimation,
+  slideInUpOnEnterAnimation,
+  slideInDownOnEnterAnimation,
+  slideInLeftOnEnterAnimation,
+  slideOutUpOnLeaveAnimation,
+  slideOutDownOnLeaveAnimation,
+  slideOutLeftOnLeaveAnimation,
+  slideOutRightOnLeaveAnimation,
+  zoomInOnEnterAnimation,
+  zoomInUpOnEnterAnimation,
+  zoomInDownOnEnterAnimation,
+  zoomInLeftOnEnterAnimation,
+  zoomInRightOnEnterAnimation,
+  zoomOutOnLeaveAnimation,
+  zoomOutUpOnLeaveAnimation,
+  zoomOutDownOnLeaveAnimation,
+  zoomOutLeftOnLeaveAnimation,
+  zoomOutRightOnLeaveAnimation,
+  hingeOnLeaveAnimation,
+  jackInTheBoxOnEnterAnimation,
+  rollInOnEnterAnimation,
+  rollOutOnLeaveAnimation
 } from '../../../../lib';
 
 @Component({
@@ -95,7 +117,29 @@ import {
     rotateOutUpLeftOnLeaveAnimation(),
     rotateOutUpRightOnLeaveAnimation(),
     rotateOutDownLeftOnLeaveAnimation(),
-    rotateOutDownRightOnLeaveAnimation() 
+    rotateOutDownRightOnLeaveAnimation(),
+    slideInRightOnEnterAnimation(),
+    slideInUpOnEnterAnimation(),
+    slideInDownOnEnterAnimation(),
+    slideInLeftOnEnterAnimation(),
+    slideOutUpOnLeaveAnimation(),
+    slideOutDownOnLeaveAnimation(),
+    slideOutLeftOnLeaveAnimation(),
+    slideOutRightOnLeaveAnimation(),
+    zoomInOnEnterAnimation(),
+    zoomInUpOnEnterAnimation(),
+    zoomInDownOnEnterAnimation(),
+    zoomInLeftOnEnterAnimation(),
+    zoomInRightOnEnterAnimation(),
+    zoomOutOnLeaveAnimation(),
+    zoomOutUpOnLeaveAnimation(),
+    zoomOutDownOnLeaveAnimation(),
+    zoomOutLeftOnLeaveAnimation(),
+    zoomOutRightOnLeaveAnimation(),
+    hingeOnLeaveAnimation(),
+    jackInTheBoxOnEnterAnimation(),
+    rollInOnEnterAnimation(),
+    rollOutOnLeaveAnimation()
   ]
 })
 export class DemoOnEnterOnLeaveComponent {
@@ -122,6 +166,17 @@ export class DemoOnEnterOnLeaveComponent {
     'rotateInOutDownRight',
     'rotateInOutUpLeft',
     'rotateInOutUpRight',
+    'slideInUpOutUp',
+    'slideInDownOutDown',
+    'slideInLeftOutRight',
+    'slideInRightOutLeft',
+    'zoomInOut',
+    'zoomInUpOutUp',
+    'zoomInDownOutDown',
+    'zoomInLeftOutRight',
+    'zoomInRightOutLeft',
+    'jackInTheBoxOnEnterHingeOnLeave',
+    'rollInOut'
   ];
   animation = this.animations[0];
 

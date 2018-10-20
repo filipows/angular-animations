@@ -29,3 +29,18 @@ export function zoomInRightAnimation(options?: IAnimationOptions): AnimationTrig
     )
   ]);
 }
+
+export function zoomInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'zoomInRightOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(zoomInRight, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

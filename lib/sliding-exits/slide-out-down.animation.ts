@@ -28,3 +28,18 @@ export function slideOutDownAnimation(options?: IAnimationOptions): AnimationTri
     )
   ]);
 }
+
+export function slideOutDownOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'slideOutDownOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(slideOutDown, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

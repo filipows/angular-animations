@@ -29,3 +29,19 @@ export function slideInRightAnimation(options?: IAnimationOptions): AnimationTri
     )
   ]);
 }
+
+export function slideInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'slideInRightOnEnter', [
+    transition(':enter',
+      [
+        style({  'visibility': 'visible' }),
+        useAnimation(slideInRight, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

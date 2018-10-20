@@ -28,3 +28,18 @@ export function slideOutUpAnimation(options?: IAnimationOptions): AnimationTrigg
     )
   ]);
 }
+
+export function slideOutUpOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'slideOutUpOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(slideOutUp, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

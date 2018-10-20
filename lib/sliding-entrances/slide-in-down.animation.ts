@@ -29,3 +29,19 @@ export function slideInDownAnimation(options?: IAnimationOptions): AnimationTrig
     )
   ]);
 }
+
+export function slideInDownOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'slideInDownOnEnter', [
+    transition(':enter',
+      [
+        style({  'visibility': 'visible' }),
+        useAnimation(slideInDown, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

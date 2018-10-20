@@ -29,3 +29,19 @@ export function slideInUpAnimation(options?: IAnimationOptions): AnimationTrigge
     )
   ]);
 }
+
+export function slideInUpOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'slideInUpOnEnter', [
+    transition(':enter',
+      [
+        style({  'visibility': 'visible' }),
+        useAnimation(slideInUp, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

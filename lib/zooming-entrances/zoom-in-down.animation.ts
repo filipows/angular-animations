@@ -29,3 +29,18 @@ export function zoomInDownAnimation(options?: IAnimationOptions): AnimationTrigg
     )
   ]);
 }
+
+export function zoomInDownOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'zoomInDownOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(zoomInDown, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

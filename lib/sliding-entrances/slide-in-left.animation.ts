@@ -29,3 +29,19 @@ export function slideInLeftAnimation(options?: IAnimationOptions): AnimationTrig
     )
   ]);
 }
+
+export function slideInLeftOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'slideInLeftOnEnter', [
+    transition(':enter',
+      [
+        style({  'visibility': 'visible' }),
+        useAnimation(slideInLeft, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}
