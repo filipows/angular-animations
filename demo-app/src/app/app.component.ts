@@ -78,7 +78,8 @@ import {
   rollInAnimation,
   rollOutAnimation,
   // other
-  collapseAnimation
+  collapseAnimation,
+  rotateAnimation
 } from '../../../lib/';
 
 @Component({
@@ -163,7 +164,9 @@ import {
     rollInAnimation(),
     rollOutAnimation(),
     // other
-    collapseAnimation()
+    collapseAnimation(),
+    rotateAnimation(),
+    rotateAnimation({anchor: 'rotate90', degrees: 90}),
   ]
 })
 export class AppComponent {
@@ -245,7 +248,9 @@ export class AppComponent {
     'rollIn',
     'rollOut',
     // Other
-    'collapse'
+    'collapse',
+    'rotate',
+    'rotate90',
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
