@@ -1,12 +1,9 @@
 <div style="text-align:center">
-  <h1>
-    Welcome to Angular Animations Demo!
+  <h1 [@enter1]>
+    Angular Animations Demo!
   </h1>
 
-  <br />
-
-  <h2>{{animation}}:</h2>
-  <div [ngSwitch]="animation">
+  <div [ngSwitch]="animation" [@enter2]>
     <!-- Attention seekers -->
     <app-angular-img *ngSwitchCase="'bounce'" [@bounce]="animationState"></app-angular-img>
     <app-angular-img *ngSwitchCase="'flash'" [@pulse]="animationState"></app-angular-img>
@@ -104,11 +101,12 @@
     <div *ngSwitchDefault>Select animaion</div>
   </div>
 
-  <select [(ngModel)]="animation" (change)="animateAfterChange()">
-    <optgroup *ngFor="let option of options" [label]="option.label">
-      <option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</option>
-    </optgroup>
-  </select>
-  <button (click)="animate()">Animate it</button>
-
+  <div [@enter3]>
+    <select [(ngModel)]="animation" (change)="animateAfterChange()">
+      <optgroup *ngFor="let option of options" [label]="option.label">
+        <option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</option>
+      </optgroup>
+    </select>
+    <button (click)="animate()">Animate it</button>
+  </div>
 </div>

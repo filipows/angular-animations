@@ -79,7 +79,8 @@ import {
   rollOutAnimation,
   // other
   collapseAnimation,
-  rotateAnimation
+  rotateAnimation,
+  bounceInUpOnEnterAnimation
 } from '../../../../lib/';
 
 @Component({
@@ -87,6 +88,9 @@ import {
   templateUrl: './demo-main.component.html',
   styleUrls: ['./demo-main.component.scss'],
   animations: [
+    bounceInUpOnEnterAnimation({ anchor: 'enter1' }),
+    bounceInUpOnEnterAnimation({ anchor: 'enter2', delay: 100 }),
+    bounceInUpOnEnterAnimation({ anchor: 'enter3', delay: 200 }),
     bounceAnimation(),
     flashAnimation(),
     pulseAnimation({ anchor: 'pulse' }),
@@ -256,7 +260,6 @@ export class DemoMainComponent {
   animationState = false;
 
   animate() {
-    console.log('animating');
     this.animationState = !this.animationState;
   }
 

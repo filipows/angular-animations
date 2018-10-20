@@ -1,20 +1,21 @@
 <div style="text-align:center">
-  <h1>
+  <h1 [@enter1]>
     Animations `onEnter` / `onLeave`.
   </h1>
 
   <br />
 
-  <h2>{{animation}}:</h2>
+  <div [@enter2]>
+    <h2>{{animation}}:</h2>
+    <select [(ngModel)]="animation">
+      <optgroup *ngFor="let option of options" [label]="option.label">
+        <option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</option>
+      </optgroup>
+    </select>
+    <button (click)="toggleState()">Toggle `*ngIf`</button>
+  </div>
 
-  <select [(ngModel)]="animation">
-    <optgroup *ngFor="let option of options" [label]="option.label">
-      <option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</option>
-    </optgroup>
-  </select>
-  <button (click)="toggleState()">Toggle `*ngIf`</button>
-
-  <div [ngSwitch]="animation">
+  <div [ngSwitch]="animation" [@enter3]>
     <!-- Bouncing -->
     <ng-container *ngSwitchCase="'bounceIn'">
       <app-angular-img *ngIf="state" [@bounceInOnEnter] [@bounceOutOnLeave]></app-angular-img>
