@@ -64,7 +64,11 @@
       <ng-container *ngSwitchCase="'flipY'">
         <app-angular-img  *ngIf="state"  [@flipInYOnEnter] [@flipOutYOnLeave]></app-angular-img>
       </ng-container>      
-
+      <!-- LightSpeed -->
+      <ng-container *ngSwitchCase="'lightSpeed'">
+        <app-angular-img  *ngIf="state"  [@lightSpeedInOnEnter] [@lightSpeedOutOnLeave]></app-angular-img>
+      </ng-container>      
+      
       <div *ngSwitchDefault>Select animaion</div>
   </div>  
 

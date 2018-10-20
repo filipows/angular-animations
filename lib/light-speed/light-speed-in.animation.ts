@@ -31,3 +31,19 @@ export function lightSpeedInAnimation(options?: IAnimationOptions): AnimationTri
     )
   ]);
 }
+
+export function lightSpeedInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'lightSpeedInOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(lightSpeedIn, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}
+
