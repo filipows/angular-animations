@@ -57,6 +57,14 @@
       <ng-container *ngSwitchCase="'fadeInRightBigOutLeftBig'">
         <app-angular-img  *ngIf="state"  [@fadeInRightBigOnEnter] [@fadeOutLeftBigOnLeave]></app-angular-img>
       </ng-container>      
+      <!-- Flip -->
+      <ng-container *ngSwitchCase="'flipX'">
+        <app-angular-img  *ngIf="state"  [@flipInXOnEnter] [@flipOutXOnLeave]></app-angular-img>
+      </ng-container>      
+      <ng-container *ngSwitchCase="'flipY'">
+        <app-angular-img  *ngIf="state"  [@flipInYOnEnter] [@flipOutYOnLeave]></app-angular-img>
+      </ng-container>      
+
       <div *ngSwitchDefault>Select animaion</div>
   </div>  
 

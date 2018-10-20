@@ -28,7 +28,11 @@ import {
   fadeOutUpBigOnLeaveAnimation,
   fadeOutDownBigOnLeaveAnimation,
   fadeOutLeftBigOnLeaveAnimation,
-  fadeOutRightBigOnLeaveAnimation
+  fadeOutRightBigOnLeaveAnimation,
+  flipInXOnEnterAnimation,
+  flipInYOnEnterAnimation,
+  flipOutXOnLeaveAnimation,
+  flipOutYOnLeaveAnimation
 } from '../../../../lib';
 
 @Component({
@@ -63,7 +67,12 @@ import {
     fadeOutUpBigOnLeaveAnimation(),
     fadeOutDownBigOnLeaveAnimation(),
     fadeOutLeftBigOnLeaveAnimation(),
-    fadeOutRightBigOnLeaveAnimation()  ]
+    fadeOutRightBigOnLeaveAnimation(),
+    flipInXOnEnterAnimation(),
+    flipInYOnEnterAnimation(),
+    flipOutXOnLeaveAnimation(),
+    flipOutYOnLeaveAnimation()
+  ]
 })
 export class DemoOnEnterOnLeaveComponent {
   animations = [
@@ -80,7 +89,9 @@ export class DemoOnEnterOnLeaveComponent {
     'fadeInUpBigOutUpBig',
     'fadeInDownBigOutDownBig',
     'fadeInLeftBigOutRightBig',
-    'fadeInRightBigOutLeftBig'
+    'fadeInRightBigOutLeftBig',
+    'flipX',
+    'flipY'
   ];
   animation = this.animations[0];
 

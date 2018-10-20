@@ -30,3 +30,18 @@ export function flipOutYAnimation(options?: IAnimationOptions): AnimationTrigger
     )
   ]);
 }
+
+export function flipOutYOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'flipOutYOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(flipOutY, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

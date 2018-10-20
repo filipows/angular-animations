@@ -32,3 +32,18 @@ export function flipInYAnimation(options?: IAnimationOptions): AnimationTriggerM
     )
   ]);
 }
+
+export function flipInYOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'flipInYOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(flipInY, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}
