@@ -1,13 +1,23 @@
-import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation, group } from '@angular/animations';
+import {
+  animate,
+  animation,
+  AnimationTriggerMetadata,
+  group,
+  keyframes,
+  style,
+  transition,
+  trigger,
+  useAnimation
+} from '@angular/animations';
 
-import { IAnimationOptions } from '../common/interfaces'
+import { IAnimationOptions } from '../common/interfaces';
 
 const rollIn = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({opacity: 0, transform: 'translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg)', easing: 'ease', offset: 0 }),
-      style({opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 }),
+      style({ opacity: 0, transform: 'translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg)', easing: 'ease', offset: 0 }),
+      style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
 ]);
@@ -15,31 +25,27 @@ const rollIn = animation([
 const DEFAULT_DURATION = 1000;
 
 export function rollInAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
-  return trigger(options && options.anchor || 'rollIn', [
-    transition(
-      '0 <=> 1',
-      [
-        useAnimation(rollIn, {
+  return trigger((options && options.anchor) || 'rollIn', [
+    transition('0 <=> 1', [
+      useAnimation(rollIn, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,
           delay: (options && options.delay) || 0
         }
-      })]
-    )
+      })
+    ])
   ]);
 }
 
 export function rollInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
-  return trigger(options && options.anchor || 'rollInOnEnter', [
-    transition(':enter',
-      [
-        useAnimation(rollIn, {
-          params: {
-            duration: (options && options.duration) || DEFAULT_DURATION,
-            delay: (options && options.delay) || 0
-          }
-        })
-      ]
-    )
+  return trigger((options && options.anchor) || 'rollInOnEnter', [
+    transition(':enter', [
+      useAnimation(rollIn, {
+        params: {
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
+        }
+      })
+    ])
   ]);
 }

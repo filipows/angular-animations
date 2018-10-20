@@ -6,11 +6,11 @@ const flash = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({opacity: 1, easing: 'ease', offset: 0  }),
-      style({opacity: 0, easing: 'ease', offset: 0.25  }),
-      style({opacity: 1, easing: 'ease', offset: 0.5 }),
-      style({opacity: 0, easing: 'ease', offset: 0.75  }),
-      style({opacity: 1, easing: 'ease', offset: 1  }),
+      style({ opacity: 1, easing: 'ease', offset: 0 }),
+      style({ opacity: 0, easing: 'ease', offset: 0.25 }),
+      style({ opacity: 1, easing: 'ease', offset: 0.5 }),
+      style({ opacity: 0, easing: 'ease', offset: 0.75 }),
+      style({ opacity: 1, easing: 'ease', offset: 1 })
     ])
   )
 ]);
@@ -18,16 +18,14 @@ const flash = animation([
 const DEFAULT_DURATION = 1000;
 
 export function flashAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
-  return trigger(options && options.anchor || 'flash', [
-    transition(
-      '0 <=> 1',
-      [
-        useAnimation(flash, {
+  return trigger((options && options.anchor) || 'flash', [
+    transition('0 <=> 1', [
+      useAnimation(flash, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,
           delay: (options && options.delay) || 0
         }
-      })]
-    )
+      })
+    ])
   ]);
 }

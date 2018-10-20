@@ -166,7 +166,7 @@ import {
     // other
     collapseAnimation(),
     rotateAnimation(),
-    rotateAnimation({anchor: 'rotate90', degrees: 90}),
+    rotateAnimation({ anchor: 'rotate90', degrees: 90 })
   ]
 })
 export class DemoMainComponent {
@@ -250,7 +250,7 @@ export class DemoMainComponent {
     // Other
     'collapse',
     'rotate',
-    'rotate90',
+    'rotate90'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;

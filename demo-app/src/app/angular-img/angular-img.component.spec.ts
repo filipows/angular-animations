@@ -8,9 +8,8 @@ describe('AngularImgComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AngularImgComponent ]
-    })
-    .compileComponents();
+      declarations: [AngularImgComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
