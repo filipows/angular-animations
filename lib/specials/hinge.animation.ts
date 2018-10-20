@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const hinge = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 1, 'transform-origin': 'top left', transform: 'translate3d(0, 0, 0)', easing: 'ease-in-out', offset: 0 }),
       style({opacity: 1, 'transform-origin': 'top left', transform: 'rotate3d(0, 0, 1, 80deg)', easing: 'ease-in-out', offset: 0.2 }),
@@ -25,7 +25,8 @@ export function hingeAnimation(options?: IAnimationOptions): AnimationTriggerMet
       [
         useAnimation(hinge, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

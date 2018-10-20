@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const fadeIn = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 0, easing: 'ease', offset: 0  }),
       style({opacity: 1, easing: 'ease', offset: 1  })
@@ -21,7 +21,8 @@ export function fadeInAnimation(options?: IAnimationOptions): AnimationTriggerMe
       [
           useAnimation(fadeIn, {
             params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
+              duration: (options && options.duration) || DEFAULT_DURATION,
+              delay: (options && options.delay) || 0
             }
           }),
       ]

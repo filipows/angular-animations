@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const rotateOut = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 1, easing: 'ease', offset: 0 }),
       style({opacity: 0, transform: 'rotate(200deg)', easing: 'ease', offset: 1 }),
@@ -22,7 +22,8 @@ export function rotateOutAnimation(options?: IAnimationOptions): AnimationTrigge
         style({  'transform-origin': 'center' }),
         useAnimation(rotateOut, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

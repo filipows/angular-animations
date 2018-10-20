@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces';
 
 const wobble = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0  }),
       style({transform: 'translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg)', easing: 'ease', offset: 0.15  }),
@@ -26,7 +26,8 @@ export function wobbleAnimation(options?: IAnimationOptions): AnimationTriggerMe
       [
         useAnimation(wobble, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

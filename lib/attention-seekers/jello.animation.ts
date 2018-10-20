@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces';
 
 const jello = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0  }),
       style({transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0.111  }),
@@ -30,7 +30,8 @@ export function jelloAnimation(options?: IAnimationOptions): AnimationTriggerMet
         style({  'transform-origin': 'center' }),
         useAnimation(jello, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const fadeInUp = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 0, transform: 'translate3d(0, 100%, 0)', easing: 'ease', offset: 0  }),
       style({opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1  })
@@ -21,7 +21,8 @@ export function fadeInUpAnimation(options?: IAnimationOptions): AnimationTrigger
       [
           useAnimation(fadeInUp, {
             params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
+              duration: (options && options.duration) || DEFAULT_DURATION,
+              delay: (options && options.delay) || 0
             }
           }),
       ]

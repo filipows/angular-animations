@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const slideInDown = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'translate3d(0, -100%, 0)', easing: 'ease', offset: 0 }),
       style({transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 }),
@@ -22,7 +22,8 @@ export function slideInDownAnimation(options?: IAnimationOptions): AnimationTrig
         style({  'visibility': 'visible' }),
         useAnimation(slideInDown, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

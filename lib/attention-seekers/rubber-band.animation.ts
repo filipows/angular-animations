@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces';
 
 const rubberBand = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0  }),
       style({transform: 'scale3d(1.25, 0.75, 1)', easing: 'ease', offset: 0.3  }),
@@ -26,7 +26,8 @@ export function rubberBandAnimation(options?: IAnimationOptions): AnimationTrigg
       [
         useAnimation(rubberBand, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

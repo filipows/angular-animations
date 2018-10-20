@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const fadeInLeftBig = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 0, transform: 'translate3d(-2000px, 0, 0)', easing: 'ease', offset: 0  }),
       style({opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1  })
@@ -21,7 +21,8 @@ export function fadeInLeftBigAnimation(options?: IAnimationOptions): AnimationTr
       [
           useAnimation(fadeInLeftBig, {
             params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
+              duration: (options && options.duration) || DEFAULT_DURATION,
+              delay: (options && options.delay) || 0
             }
           }),
       ]

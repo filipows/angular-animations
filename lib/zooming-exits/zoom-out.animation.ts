@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const zoomOut = animation(group([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 1, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
       style({opacity: 0, transform: 'scale3d(0.3, 0.3, 0.3)', easing: 'ease', offset: 0.5 }),
@@ -12,7 +12,7 @@ const zoomOut = animation(group([
     ])
   ),
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
       style({transform: 'scale3d(0.3, 0.3, 0.3)', easing: 'ease', offset: 0.5 }),
@@ -29,7 +29,8 @@ export function zoomOutAnimation(options?: IAnimationOptions): AnimationTriggerM
       [
         useAnimation(zoomOut, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

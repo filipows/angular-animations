@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces';
 
 const shake = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0  }),
       style({transform: 'translate3d(-10px, 0, 0)', easing: 'ease', offset: 0.1  }),
@@ -30,7 +30,8 @@ export function shakeAnimation(options?: IAnimationOptions): AnimationTriggerMet
       [
         useAnimation(shake, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const flipOutX = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'perspective(400px)', opacity: 1, easing: 'ease', offset: 0  }),
       style({transform: 'perspective(400px) rotate3d(1, 0, 0, -20deg)', opacity: 1, easing: 'ease', offset: 0.3  }),
@@ -23,7 +23,8 @@ export function flipOutXAnimation(options?: IAnimationOptions): AnimationTrigger
         style({  'backface-visibility': 'visible' }),
         useAnimation(flipOutX, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces';
 
 const pulse = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0  }),
       style({transform: 'scale3d(1.05, 1.05, 1.05)', easing: 'ease', offset: 0.5  }),
@@ -22,7 +22,8 @@ export function pulseAnimation(options?: IAnimationOptions): AnimationTriggerMet
       [
         useAnimation(pulse, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )
