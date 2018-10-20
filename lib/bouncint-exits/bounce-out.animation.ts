@@ -39,3 +39,19 @@ export function bounceOutAnimation(options?: IAnimationOptions): AnimationTrigge
     )
   ]);
 }
+
+
+export function bounceOutOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'bounceOutOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(bounceOut, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

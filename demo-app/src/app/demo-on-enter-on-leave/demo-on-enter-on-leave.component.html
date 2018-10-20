@@ -1,0 +1,22 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to Angular Animations Demo!
+  </h1>
+
+  <br />
+
+  <h2>{{animation}}:</h2>
+  <div [ngSwitch]="animation">
+      <!-- Bouncing -->
+      <ng-container *ngSwitchCase="'bounceInOut'">
+        <app-angular-img  *ngIf="state"  [@bounceInOnEnter] [@bounceOutOnLeave]></app-angular-img>
+      </ng-container>
+      <div *ngSwitchDefault>Select animaion</div>
+  </div>  
+
+  <select [(ngModel)]="animation">
+      <option *ngFor="let option of animations" [value]="option">{{option}}</option>
+  </select>
+  <button (click)="toggleState()">Toggle `*ngIf`</button>
+
+</div>
