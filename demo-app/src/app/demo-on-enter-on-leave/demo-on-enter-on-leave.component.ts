@@ -143,42 +143,51 @@ import {
   ]
 })
 export class DemoOnEnterOnLeaveComponent {
-  animations = [
-    'bounceIn',
-    'bounceInUp',
-    'bounceInDown',
-    'bounceInLeft',
-    'bounceInRight',
-    'fadeInOut',
-    'fadeInUpOutUp',
-    'fadeInDownOutDown',
-    'fadeInLeftOutRight',
-    'fadeInRightOutLeft',
-    'fadeInUpBigOutUpBig',
-    'fadeInDownBigOutDownBig',
-    'fadeInLeftBigOutRightBig',
-    'fadeInRightBigOutLeftBig',
-    'flipX',
-    'flipY',
-    'lightSpeed',
-    'rotateInOut',
-    'rotateInOutDownLeft',
-    'rotateInOutDownRight',
-    'rotateInOutUpLeft',
-    'rotateInOutUpRight',
-    'slideInUpOutUp',
-    'slideInDownOutDown',
-    'slideInLeftOutRight',
-    'slideInRightOutLeft',
-    'zoomInOut',
-    'zoomInUpOutUp',
-    'zoomInDownOutDown',
-    'zoomInLeftOutRight',
-    'zoomInRightOutLeft',
-    'jackInTheBoxOnEnterHingeOnLeave',
-    'rollInOut'
+  options = [
+    {
+      label: 'Bouncing',
+      animations: ['bounceIn', 'bounceInUp', 'bounceInDown', 'bounceInLeft', 'bounceInRight']
+    },
+    {
+      label: 'Fading',
+      animations: [
+        'fadeInOut',
+        'fadeInUpOutUp',
+        'fadeInDownOutDown',
+        'fadeInLeftOutRight',
+        'fadeInRightOutLeft',
+        'fadeInUpBigOutUpBig',
+        'fadeInDownBigOutDownBig',
+        'fadeInLeftBigOutRightBig',
+        'fadeInRightBigOutLeftBig'
+      ]
+    },
+    {
+      label: 'Flippers',
+      animations: ['flipX', 'flipY']
+    },
+    {
+      label: 'LightSpeed',
+      animations: ['lightSpeed']
+    },
+    {
+      label: 'Rotating',
+      animations: ['rotateInOut', 'rotateInOutDownLeft', 'rotateInOutDownRight', 'rotateInOutUpLeft', 'rotateInOutUpRight']
+    },
+    {
+      label: 'Sliding',
+      animations: ['slideInUpOutUp', 'slideInDownOutDown', 'slideInLeftOutRight', 'slideInRightOutLeft']
+    },
+    {
+      label: 'Zooming',
+      animations: ['zoomInOut', 'zoomInUpOutUp', 'zoomInDownOutDown', 'zoomInLeftOutRight', 'zoomInRightOutLeft']
+    },
+    {
+      label: 'Specials',
+      animations: ['jackInTheBoxOnEnterHingeOnLeave', 'rollInOut']
+    }
   ];
-  animation = this.animations[0];
+  animation = this.options[0].animations[0];
 
   state = true;
 

@@ -170,89 +170,89 @@ import {
   ]
 })
 export class DemoMainComponent {
-  animations = [
-    'bounce',
-    'flash',
-    'pulse',
-    'rubberBand',
-    'shake',
-    'swing',
-    'tada',
-    'wobble',
-    'jello',
-    'bounceIn',
-    'bounceInDown',
-    'bounceInLeft',
-    'bounceInRight',
-    'bounceInUp',
-    'bounceOut',
-    'bounceOutDown',
-    'bounceOutLeft',
-    'bounceOutRight',
-    'bounceOutUp',
-    'fadeIn',
-    'fadeInDown',
-    'fadeInDownBig',
-    'fadeInLeft',
-    'fadeInLeftBig',
-    'fadeInRight',
-    'fadeInRightBig',
-    'fadeInUp',
-    'fadeInUpBig',
-    'fadeOut',
-    'fadeOutDown',
-    'fadeOutDownBig',
-    'fadeOutLeft',
-    'fadeOutLeftBig',
-    'fadeOutRight',
-    'fadeOutRightBig',
-    'fadeOutUp',
-    'fadeOutUpBig',
-    'flip',
-    'flipInX',
-    'flipInY',
-    'flipOutX',
-    'flipOutY',
-    'lightSpeedIn',
-    'lightSpeedOut',
-    'rotateIn',
-    'rotateInDownLeft',
-    'rotateInDownRight',
-    'rotateInUpLeft',
-    'rotateInUpRight',
-    'rotateOut',
-    'rotateOutDownLeft',
-    'rotateOutDownRight',
-    'rotateOutUpLeft',
-    'rotateOutUpRight',
-    'slideInUp',
-    'slideInDown',
-    'slideInLeft',
-    'slideInRight',
-    'slideOutUp',
-    'slideOutDown',
-    'slideOutLeft',
-    'slideOutRight',
-    'zoomIn',
-    'zoomInDown',
-    'zoomInLeft',
-    'zoomInRight',
-    'zoomInUp',
-    'zoomOut',
-    'zoomOutDown',
-    'zoomOutLeft',
-    'zoomOutRight',
-    'zoomOutUp',
-    'hinge',
-    'jackInTheBox',
-    'rollIn',
-    'rollOut',
-    // Other
-    'collapse',
-    'rotate',
-    'rotate90'
+  options = [
+    {
+      label: 'Attention Seekers',
+      animations: ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'jello']
+    },
+    {
+      label: 'Bouncing Entrances',
+      animations: ['bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp']
+    },
+    {
+      label: 'Bouncing Exits',
+      animations: ['bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp']
+    },
+    {
+      label: 'Fading Entrances',
+      animations: [
+        'fadeIn',
+        'fadeInDown',
+        'fadeInDownBig',
+        'fadeInLeft',
+        'fadeInLeftBig',
+        'fadeInRight',
+        'fadeInRightBig',
+        'fadeInUp',
+        'fadeInUpBig'
+      ]
+    },
+    {
+      label: 'Fading Exits',
+      animations: [
+        'fadeOut',
+        'fadeOutDown',
+        'fadeOutDownBig',
+        'fadeOutLeft',
+        'fadeOutLeftBig',
+        'fadeOutRight',
+        'fadeOutRightBig',
+        'fadeOutUp',
+        'fadeOutUpBig'
+      ]
+    },
+    {
+      label: 'Flippers',
+      animations: ['flip', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY']
+    },
+    {
+      label: 'Lightspeed',
+      animations: ['lightSpeedIn', 'lightSpeedOut']
+    },
+    {
+      label: 'Rotating Entrances',
+      animations: ['rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight']
+    },
+    {
+      label: 'Rotating Exits',
+      animations: ['rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight']
+    },
+    {
+      label: 'Sliding Entrances',
+      animations: ['slideInUp', 'slideInDown', 'slideInLeft', 'slideInRight']
+    },
+    {
+      label: 'Sliding Exits',
+      animations: ['slideOutUp', 'slideOutDown', 'slideOutLeft', 'slideOutRight']
+    },
+    {
+      label: 'Zoom Entrances',
+      animations: ['zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp']
+    },
+    {
+      label: 'Zoom Exits',
+      animations: ['zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp']
+    },
+    {
+      label: 'Specials',
+      animations: ['hinge', 'jackInTheBox', 'rollIn', 'rollOut']
+    },
+    {
+      label: 'Other',
+      animations: ['collapse', 'rotate', 'rotate90']
+    }
   ];
-  animation = this.animations[0];
+  animation = this.options[0].animations[0];
   animationState = false;
 
   animate() {
