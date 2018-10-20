@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const fadeInLeft = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 0, transform: 'translate3d(-100%, 0, 0)', easing: 'ease', offset: 0  }),
       style({opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1  })
@@ -21,7 +21,8 @@ export function fadeInLeftAnimation(options?: IAnimationOptions): AnimationTrigg
       [
           useAnimation(fadeInLeft, {
             params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
+              duration: (options && options.duration) || DEFAULT_DURATION,
+              delay: (options && options.delay) || 0
             }
           }),
       ]

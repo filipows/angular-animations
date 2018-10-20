@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const slideInUp = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'translate3d(0, 100%, 0)', easing: 'ease', offset: 0 }),
       style({transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 }),
@@ -22,7 +22,8 @@ export function slideInUpAnimation(options?: IAnimationOptions): AnimationTrigge
         style({  'visibility': 'visible' }),
         useAnimation(slideInUp, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

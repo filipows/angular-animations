@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces';
 
 const flash = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 1, easing: 'ease', offset: 0  }),
       style({opacity: 0, easing: 'ease', offset: 0.25  }),
@@ -24,7 +24,8 @@ export function flashAnimation(options?: IAnimationOptions): AnimationTriggerMet
       [
         useAnimation(flash, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

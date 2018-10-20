@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const bounce = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0  }),
       style({transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.2  }),
@@ -29,7 +29,8 @@ export function bounceAnimation(options?: IAnimationOptions): AnimationTriggerMe
         style({  'transform-origin': 'center bottom' }),
         useAnimation(bounce, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

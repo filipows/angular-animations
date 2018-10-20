@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces';
 
 const swing = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'rotate3d(0, 0, 1, 0deg)', easing: 'ease', offset: 0  }),
       style({transform: 'rotate3d(0, 0, 1, 15deg)', easing: 'ease', offset: 0.2  }),
@@ -26,7 +26,8 @@ export function swingAnimation(options?: IAnimationOptions): AnimationTriggerMet
         style({  'transform-origin': 'top center' }),
         useAnimation(swing, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

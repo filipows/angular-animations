@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const jackInTheBox = animation(group([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({ 'transform-origin': 'center bottom', transform: 'scale(0.1) rotate(30deg)', easing: 'ease', offset: 0 }),
       style({ 'transform-origin': 'center bottom', transform: 'rotate(-10deg)', easing: 'ease', offset: 0.5 }),
@@ -13,7 +13,7 @@ const jackInTheBox = animation(group([
     ])
   ),
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({ opacity: 0, offset: 0 }),
       style({ opacity: 1, offset: 1 }),
@@ -30,7 +30,8 @@ export function jackInTheBoxAnimation(options?: IAnimationOptions): AnimationTri
       [
         useAnimation(jackInTheBox, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

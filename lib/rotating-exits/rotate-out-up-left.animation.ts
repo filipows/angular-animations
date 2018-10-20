@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const rotateOutUpLeft = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 1, easing: 'ease', offset: 0 }),
       style({opacity: 0, transform: 'rotate3d(0, 0, 1, -45deg)', easing: 'ease', offset: 1 }),
@@ -22,7 +22,8 @@ export function rotateOutUpLeftAnimation(options?: IAnimationOptions): Animation
         style({  'transform-origin': 'left bottom' }),
         useAnimation(rotateOutUpLeft, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

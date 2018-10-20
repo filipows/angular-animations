@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const slideOutUp = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
       style({transform: 'translate3d(0, -100%, 0)', visibility: 'hidden', easing: 'ease', offset: 1 }),
@@ -21,7 +21,8 @@ export function slideOutUpAnimation(options?: IAnimationOptions): AnimationTrigg
       [
         useAnimation(slideOutUp, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

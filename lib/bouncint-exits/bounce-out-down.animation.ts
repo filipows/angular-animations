@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 export const bounceOutDownOpacity = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 1, easing: 'ease', offset: 0  }),
       style({opacity: 1, easing: 'ease', offset: 0.45  }),
@@ -16,7 +16,7 @@ export const bounceOutDownOpacity = animation([
 
 const bounceOutDownTransition = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0  }),
       style({transform: 'translate3d(0, 10px, 0)', easing: 'ease', offset: 0.2  }),
@@ -39,7 +39,8 @@ export function bounceOutDownAnimation(options?: IAnimationOptions): AnimationTr
           useAnimation(bounceOutDownOpacity)
         ], {
             params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
+              duration: (options && options.duration) || DEFAULT_DURATION,
+              delay: (options && options.delay) || 0
             }
         })
       ]

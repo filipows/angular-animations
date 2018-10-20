@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces';
 
 const tada = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0  }),
       style({transform: 'scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg)', easing: 'ease', offset: 0.1  }),
@@ -30,7 +30,8 @@ export function tadaAnimation(options?: IAnimationOptions): AnimationTriggerMeta
       [
         useAnimation(tada, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

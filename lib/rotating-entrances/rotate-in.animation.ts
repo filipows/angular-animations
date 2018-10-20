@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const rotateIn = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 0, transform: 'rotate(-200deg)', easing: 'ease', offset: 0 }),
       style({opacity: 1, transform: 'rotate(0deg)', easing: 'ease', offset: 1 }),
@@ -22,7 +22,8 @@ export function rotateInAnimation(options?: IAnimationOptions): AnimationTrigger
         style({  'transform-origin': 'center' }),
         useAnimation(rotateIn, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

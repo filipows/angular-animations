@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const lightSpeedIn = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 0, transform: 'translate3d(100%, 0, 0) skewX(-30deg)', easing: 'ease-out', offset: 0  }),
       style({opacity: 1, transform: 'skewX(20deg)', easing: 'ease-out', offset: 0.6  }),
@@ -23,7 +23,8 @@ export function lightSpeedInAnimation(options?: IAnimationOptions): AnimationTri
       [
           useAnimation(lightSpeedIn, {
             params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
+              duration: (options && options.duration) || DEFAULT_DURATION,
+              delay: (options && options.delay) || 0
             }
           }),
       ]

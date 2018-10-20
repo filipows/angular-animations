@@ -1,11 +1,10 @@
 import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation, group } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces'
-import { bounceInOpacity } from './utils';
 
-const bounceInScale = animation([
+const bounceIn = animation(group([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'scale3d(0.3, 0.3, 0.3)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0  }),
       style({transform: 'scale3d(1.1, 1.1, 1.1)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.2  }),
@@ -14,8 +13,17 @@ const bounceInScale = animation([
       style({transform: 'scale3d(0.97, 0.97, 0.97)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.8  }),
       style({transform: 'scale3d(1, 1, 1)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 1  }),
     ])
+  ),
+  animate(
+    '{{duration}}ms {{delay}}ms',
+    keyframes([
+      style({opacity: 0, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0  }),
+      style({opacity: 1, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.6  }),
+      style({opacity: 1, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 1  }),
+    ])
   )
-]);
+]));
+
 
 const DEFAULT_DURATION = 750;
 
@@ -24,13 +32,11 @@ export function bounceInAnimation(options?: IAnimationOptions): AnimationTrigger
     transition(
       '0 <=> 1',
       [
-        group([
-          useAnimation(bounceInScale),
-          useAnimation(bounceInOpacity)
-        ], {
-            params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
-            }
+        useAnimation(bounceIn, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
         })
       ]
     )

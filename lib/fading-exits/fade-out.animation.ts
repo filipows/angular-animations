@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const fadeOut = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 1, easing: 'ease', offset: 0  }),
       style({opacity: 0, easing: 'ease', offset: 1  })
@@ -21,7 +21,8 @@ export function fadeOutAnimation(options?: IAnimationOptions): AnimationTriggerM
       [
           useAnimation(fadeOut, {
             params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
+              duration: (options && options.duration) || DEFAULT_DURATION,
+              delay: (options && options.delay) || 0
             }
           }),
       ]

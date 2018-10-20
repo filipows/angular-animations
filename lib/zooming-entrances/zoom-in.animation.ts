@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const zoomIn = animation(group([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 0, easing: 'ease', offset: 0 }),
       style({opacity: 1, easing: 'ease', offset: 0.5 }),
@@ -12,7 +12,7 @@ const zoomIn = animation(group([
     ])
   ),
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'scale3d(0.3, 0.3, 0.3)', easing: 'ease', offset: 0 }),
       style({transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1 }),
@@ -29,7 +29,8 @@ export function zoomInAnimation(options?: IAnimationOptions): AnimationTriggerMe
       [
         useAnimation(zoomIn, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )

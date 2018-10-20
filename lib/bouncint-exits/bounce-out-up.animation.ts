@@ -5,7 +5,7 @@ import { bounceOutDownOpacity } from './bounce-out-down.animation';
 
 const bounceOutUpTransition = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0  }),
       style({transform: 'translate3d(0, -10px, 0)', easing: 'ease', offset: 0.2  }),
@@ -28,7 +28,8 @@ export function bounceOutUpAnimation(options?: IAnimationOptions): AnimationTrig
           useAnimation(bounceOutDownOpacity)
         ], {
             params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
+              duration: (options && options.duration) || DEFAULT_DURATION,
+              delay: (options && options.delay) || 0
             }
         })
       ]

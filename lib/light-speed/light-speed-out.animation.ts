@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const lightSpeedOut = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({opacity: 1, easing: 'ease-in', offset: 0  }),
       style({opacity: 0, transform: 'translate3d(100%, 0, 0) skewX(30deg)', easing: 'ease-in', offset: 1  }),
@@ -21,7 +21,8 @@ export function lightSpeedOutAnimation(options?: IAnimationOptions): AnimationTr
       [
           useAnimation(lightSpeedOut, {
             params: {
-              duration: (options && options.duration) || DEFAULT_DURATION
+              duration: (options && options.duration) || DEFAULT_DURATION,
+              delay: (options && options.delay) || 0
             }
           }),
       ]

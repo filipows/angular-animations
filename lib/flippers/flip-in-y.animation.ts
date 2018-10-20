@@ -4,7 +4,7 @@ import { IAnimationOptions } from '../common/interfaces'
 
 const flipInY = animation([
   animate(
-    '{{duration}}ms',
+    '{{duration}}ms {{delay}}ms',
     keyframes([
       style({transform: 'perspective(400px) rotate3d(0, 1, 0, 90deg)', opacity: 0, easing: 'ease-in', offset: 0  }),
       style({transform: 'perspective(400px) rotate3d(0, 1, 0, -20deg)', opacity: 0.5, easing: 'ease-in', offset: 0.4  }),
@@ -25,7 +25,8 @@ export function flipInYAnimation(options?: IAnimationOptions): AnimationTriggerM
         style({  'backface-visibility': 'visible' }),
         useAnimation(flipInY, {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          delay: (options && options.delay) || 0
         }
       })]
     )
