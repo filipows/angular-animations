@@ -1,4 +1,4 @@
-import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation, group } from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces'
 
@@ -19,6 +19,22 @@ export function bounceOutRightAnimation(options?: IAnimationOptions): AnimationT
   return trigger(options && options.anchor || 'bounceOutRight', [
     transition(
       '0 <=> 1',
+      [
+        useAnimation(bounceOutRight, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}
+
+
+export function bounceOutRightOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'bounceOutRightOnLeave', [
+    transition(':leave',
       [
         useAnimation(bounceOutRight, {
           params: {

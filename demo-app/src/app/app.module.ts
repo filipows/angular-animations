@@ -5,18 +5,24 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AngularImgComponent } from './angular-img/angular-img.component';
+import { DemoOnEnterOnLeaveComponent } from './demo-on-enter-on-leave/demo-on-enter-on-leave.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DemoMainComponent } from './demo-main/demo-main.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    AngularImgComponent
+    AngularImgComponent,
+    DemoOnEnterOnLeaveComponent,
+    DemoMainComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

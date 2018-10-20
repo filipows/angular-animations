@@ -37,3 +37,18 @@ export function jackInTheBoxAnimation(options?: IAnimationOptions): AnimationTri
     )
   ]);
 }
+
+export function jackInTheBoxOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'jackInTheBoxOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(jackInTheBox, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

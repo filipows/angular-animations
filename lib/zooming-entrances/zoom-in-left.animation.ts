@@ -29,3 +29,18 @@ export function zoomInLeftAnimation(options?: IAnimationOptions): AnimationTrigg
     )
   ]);
 }
+
+export function zoomInLeftOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'zoomInLeftOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(zoomInLeft, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

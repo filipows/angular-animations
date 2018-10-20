@@ -28,3 +28,18 @@ export function rollInAnimation(options?: IAnimationOptions): AnimationTriggerMe
     )
   ]);
 }
+
+export function rollInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'rollInOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(rollIn, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

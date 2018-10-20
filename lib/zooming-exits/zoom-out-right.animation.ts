@@ -35,3 +35,18 @@ export function zoomOutRightAnimation(options?: IAnimationOptions): AnimationTri
     )
   ]);
 }
+
+export function zoomOutRightOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'zoomOutRightOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(zoomOutRight, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

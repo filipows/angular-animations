@@ -29,3 +29,18 @@ export function lightSpeedOutAnimation(options?: IAnimationOptions): AnimationTr
     )
   ]);
 }
+
+export function lightSpeedOutOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'lightSpeedOutOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(lightSpeedOut, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

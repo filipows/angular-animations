@@ -39,3 +39,18 @@ export function bounceInLeftAnimation(options?: IAnimationOptions): AnimationTri
     )
   ]);
 }
+
+export function bounceInLeftOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'bounceInLeftOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(bounceInLeft, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

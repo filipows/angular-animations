@@ -29,3 +29,20 @@ export function rotateInDownLeftAnimation(options?: IAnimationOptions): Animatio
     )
   ]);
 }
+
+export function rotateInDownLeftOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'rotateInDownLeftOnEnter', [
+    transition(':enter',
+      [
+        style({  'transform-origin': 'left bottom' }),
+        useAnimation(rotateInDownLeft, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}
+

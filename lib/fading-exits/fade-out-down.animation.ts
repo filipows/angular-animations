@@ -29,3 +29,18 @@ export function fadeOutDownAnimation(options?: IAnimationOptions): AnimationTrig
     )
   ]);
 }
+
+export function fadeOutDownOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'fadeOutDownOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(fadeOutDown, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

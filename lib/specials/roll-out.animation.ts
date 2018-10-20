@@ -28,3 +28,18 @@ export function rollOutAnimation(options?: IAnimationOptions): AnimationTriggerM
     )
   ]);
 }
+
+export function rollOutOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'rollOutOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(rollOut, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

@@ -1,20 +1,8 @@
-import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation, group } from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation, group} from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces'
 
-export const bounceOutDownOpacity = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({opacity: 1, easing: 'ease', offset: 0  }),
-      style({opacity: 1, easing: 'ease', offset: 0.45  }),
-      style({opacity: 0, easing: 'ease', offset: 1  }),
-    ])
-  )
-]);
-
-
-const bounceOutDownTransition = animation([
+export const bounceOutDown = animation(group([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
@@ -24,8 +12,17 @@ const bounceOutDownTransition = animation([
       style({transform: 'translate3d(0, -20px, 0)', easing: 'ease', offset: 0.45  }),
       style({transform: 'translate3d(0, 2000px, 0)', easing: 'ease', offset: 1  }),
     ])
+  ),
+  animate(
+    '{{duration}}ms {{delay}}ms',
+    keyframes([
+      style({opacity: 1, easing: 'ease', offset: 0  }),
+      style({opacity: 1, easing: 'ease', offset: 0.45  }),
+      style({opacity: 0, easing: 'ease', offset: 1  }),
+    ])
   )
-]);
+]));
+
 
 const DEFAULT_DURATION = 1000;
 
@@ -34,14 +31,26 @@ export function bounceOutDownAnimation(options?: IAnimationOptions): AnimationTr
     transition(
       '0 <=> 1',
       [
-        group([
-          useAnimation(bounceOutDownTransition),
-          useAnimation(bounceOutDownOpacity)
-        ], {
-            params: {
-              duration: (options && options.duration) || DEFAULT_DURATION,
-              delay: (options && options.delay) || 0
-            }
+        useAnimation(bounceOutDown, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}
+
+export function bounceOutDownOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'bounceOutDownOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(bounceOutDown, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
         })
       ]
     )

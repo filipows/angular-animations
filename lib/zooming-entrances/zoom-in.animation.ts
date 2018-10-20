@@ -36,3 +36,18 @@ export function zoomInAnimation(options?: IAnimationOptions): AnimationTriggerMe
     )
   ]);
 }
+
+export function zoomInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'zoomInOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(zoomIn, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

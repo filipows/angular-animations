@@ -28,3 +28,18 @@ export function zoomOutUpAnimation(options?: IAnimationOptions): AnimationTrigge
     )
   ]);
 }
+
+export function zoomOutUpOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'zoomOutUpOnLeave', [
+    transition(':leave',
+      [
+        useAnimation(zoomOutUp, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}
