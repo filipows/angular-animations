@@ -1,14 +1,4 @@
-import {
-  animate,
-  animation,
-  AnimationTriggerMetadata,
-  group,
-  keyframes,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
 
