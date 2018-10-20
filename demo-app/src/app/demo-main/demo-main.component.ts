@@ -80,7 +80,8 @@ import {
   // other
   collapseAnimation,
   rotateAnimation,
-  bounceInUpOnEnterAnimation
+  bounceInUpOnEnterAnimation,
+  hueRotateAnimation
 } from '../../../../lib/';
 
 @Component({
@@ -170,7 +171,8 @@ import {
     // other
     collapseAnimation(),
     rotateAnimation(),
-    rotateAnimation({ anchor: 'rotate90', degrees: 90 })
+    rotateAnimation({ anchor: 'rotate90', degrees: 90 }),
+    hueRotateAnimation()
   ]
 })
 export class DemoMainComponent {
@@ -253,10 +255,10 @@ export class DemoMainComponent {
     },
     {
       label: 'Other',
-      animations: ['collapse', 'rotate', 'rotate90']
+      animations: ['collapse', 'rotate', 'rotate90', 'hueRotate']
     }
   ];
-  animation = this.options[0].animations[0];
+  animation = 'rubberBand';
   animationState = false;
 
   animate() {

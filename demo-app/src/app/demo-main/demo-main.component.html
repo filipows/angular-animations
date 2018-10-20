@@ -6,7 +6,7 @@
   <div [ngSwitch]="animation" [@enter2]>
     <!-- Attention seekers -->
     <app-angular-img *ngSwitchCase="'bounce'" [@bounce]="animationState"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'flash'" [@pulse]="animationState"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'flash'" [@flash]="animationState"></app-angular-img>
     <app-angular-img *ngSwitchCase="'pulse'" [@pulse]="animationState"></app-angular-img>
     <app-angular-img *ngSwitchCase="'rubberBand'" [@rubberBand]="animationState"></app-angular-img>
     <app-angular-img *ngSwitchCase="'shake'" [@shake]="animationState"></app-angular-img>
@@ -98,10 +98,11 @@
     <app-angular-img *ngSwitchCase="'collapse'" [@collapse]="animationState"></app-angular-img>
     <app-angular-img *ngSwitchCase="'rotate'" [@rotate]="animationState"></app-angular-img>
     <app-angular-img *ngSwitchCase="'rotate90'" [@rotate90]="animationState"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'hueRotate'" [@hueRotate]="animationState"></app-angular-img>
     <div *ngSwitchDefault>Select animaion</div>
   </div>
 
-  <div [@enter3]>
+  <div [@enter3] (@enter3.done)="animationState = !animatinState">
     <select [(ngModel)]="animation" (change)="animateAfterChange()">
       <optgroup *ngFor="let option of options" [label]="option.label">
         <option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</option>

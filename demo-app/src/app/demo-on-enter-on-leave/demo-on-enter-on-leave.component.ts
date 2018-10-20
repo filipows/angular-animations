@@ -74,9 +74,9 @@ import {
   templateUrl: './demo-on-enter-on-leave.component.html',
   styleUrls: ['./demo-on-enter-on-leave.component.scss'],
   animations: [
-    bounceInUpOnEnterAnimation({ anchor: 'enter1' }),
-    bounceInUpOnEnterAnimation({ anchor: 'enter2', delay: 100 }),
-    bounceInUpOnEnterAnimation({ anchor: 'enter3', delay: 200 }),
+    bounceInRightOnEnterAnimation({ anchor: 'enter1' }),
+    bounceInRightOnEnterAnimation({ anchor: 'enter2', delay: 100 }),
+    bounceInRightOnEnterAnimation({ anchor: 'enter3', delay: 200 }),
     bounceInOnEnterAnimation(),
     bounceInUpOnEnterAnimation(),
     bounceOutOnLeaveAnimation(),
