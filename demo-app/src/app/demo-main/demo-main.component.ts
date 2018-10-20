@@ -252,7 +252,7 @@ export class DemoMainComponent {
     'rotate',
     'rotate90'
   ];
-  animation = this.animations[this.animations.length - 1];
+  animation = this.animations[0];
   animationState = false;
 
   animate() {
