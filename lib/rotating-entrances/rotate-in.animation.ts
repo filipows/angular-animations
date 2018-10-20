@@ -29,3 +29,20 @@ export function rotateInAnimation(options?: IAnimationOptions): AnimationTrigger
     )
   ]);
 }
+
+export function rotateInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'rotateInOnEnter', [
+    transition(':enter',
+      [
+        style({  'transform-origin': 'center' }),
+        useAnimation(rotateIn, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}
+

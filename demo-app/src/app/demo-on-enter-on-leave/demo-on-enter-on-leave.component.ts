@@ -34,7 +34,17 @@ import {
   flipOutXOnLeaveAnimation,
   flipOutYOnLeaveAnimation,
   lightSpeedInOnEnterAnimation,
-  lightSpeedOutOnLeaveAnimation
+  lightSpeedOutOnLeaveAnimation,
+  rotateInOnEnterAnimation,
+  rotateInUpLeftOnEnterAnimation,
+  rotateInUpRightOnEnterAnimation,
+  rotateInDownLeftOnEnterAnimation,
+  rotateInDownRightOnEnterAnimation,
+  rotateOutOnLeaveAnimation,
+  rotateOutUpLeftOnLeaveAnimation,
+  rotateOutUpRightOnLeaveAnimation,
+  rotateOutDownLeftOnLeaveAnimation,
+  rotateOutDownRightOnLeaveAnimation
 } from '../../../../lib';
 
 @Component({
@@ -75,7 +85,17 @@ import {
     flipOutXOnLeaveAnimation(),
     flipOutYOnLeaveAnimation(),
     lightSpeedInOnEnterAnimation(),
-    lightSpeedOutOnLeaveAnimation()
+    lightSpeedOutOnLeaveAnimation(),
+    rotateInOnEnterAnimation(),
+    rotateInUpLeftOnEnterAnimation(),
+    rotateInUpRightOnEnterAnimation(),
+    rotateInDownLeftOnEnterAnimation(),
+    rotateInDownRightOnEnterAnimation(),
+    rotateOutOnLeaveAnimation(),
+    rotateOutUpLeftOnLeaveAnimation(),
+    rotateOutUpRightOnLeaveAnimation(),
+    rotateOutDownLeftOnLeaveAnimation(),
+    rotateOutDownRightOnLeaveAnimation() 
   ]
 })
 export class DemoOnEnterOnLeaveComponent {
@@ -96,7 +116,12 @@ export class DemoOnEnterOnLeaveComponent {
     'fadeInRightBigOutLeftBig',
     'flipX',
     'flipY',
-    'lightSpeed'
+    'lightSpeed',
+    'rotateInOut',
+    'rotateInOutDownLeft',
+    'rotateInOutDownRight',
+    'rotateInOutUpLeft',
+    'rotateInOutUpRight',
   ];
   animation = this.animations[0];
 

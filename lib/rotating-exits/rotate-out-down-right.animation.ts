@@ -29,3 +29,19 @@ export function rotateOutDownRightAnimation(options?: IAnimationOptions): Animat
     )
   ]);
 }
+
+export function rotateOutDownRightOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'rotateOutDownRightOnLeave', [
+    transition(':leave',
+      [
+        style({  'transform-origin': 'right bottom' }),
+        useAnimation(rotateOutDownRight, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

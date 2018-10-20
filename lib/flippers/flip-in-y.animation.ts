@@ -37,6 +37,7 @@ export function flipInYOnEnterAnimation(options?: IAnimationOptions): AnimationT
   return trigger(options && options.anchor || 'flipInYOnEnter', [
     transition(':enter',
       [
+        style({  'backface-visibility': 'visible' }),
         useAnimation(flipInY, {
           params: {
             duration: (options && options.duration) || DEFAULT_DURATION,

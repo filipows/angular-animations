@@ -68,6 +68,22 @@
       <ng-container *ngSwitchCase="'lightSpeed'">
         <app-angular-img  *ngIf="state"  [@lightSpeedInOnEnter] [@lightSpeedOutOnLeave]></app-angular-img>
       </ng-container>      
+      <!-- Rotate -->
+      <ng-container *ngSwitchCase="'rotateInOut'">
+        <app-angular-img  *ngIf="state"  [@rotateInOnEnter] [@rotateOutOnLeave]></app-angular-img>
+      </ng-container>      
+      <ng-container *ngSwitchCase="'rotateInOutDownLeft'">
+        <app-angular-img  *ngIf="state"  [@rotateInDownLeftOnEnter] [@rotateOutDownLeftOnLeave]></app-angular-img>
+      </ng-container>      
+      <ng-container *ngSwitchCase="'rotateInOutDownRight'">
+        <app-angular-img  *ngIf="state"  [@rotateInDownRightOnEnter] [@rotateOutDownRightOnLeave]></app-angular-img>
+      </ng-container>      
+      <ng-container *ngSwitchCase="'rotateInOutUpLeft'">
+        <app-angular-img  *ngIf="state"  [@rotateInUpLeftOnEnter] [@rotateOutUpLeftOnLeave]></app-angular-img>
+      </ng-container>      
+      <ng-container *ngSwitchCase="'rotateInOutUpRight'">
+        <app-angular-img  *ngIf="state"  [@rotateInUpRightOnEnter] [@rotateOutUpRightOnLeave]></app-angular-img>
+      </ng-container>      
       
       <div *ngSwitchDefault>Select animaion</div>
   </div>  

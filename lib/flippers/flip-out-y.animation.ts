@@ -35,6 +35,7 @@ export function flipOutYOnLeaveAnimation(options?: IAnimationOptions): Animation
   return trigger(options && options.anchor || 'flipOutYOnLeave', [
     transition(':leave',
       [
+        style({  'backface-visibility': 'visible' }),
         useAnimation(flipOutY, {
           params: {
             duration: (options && options.duration) || DEFAULT_DURATION,
