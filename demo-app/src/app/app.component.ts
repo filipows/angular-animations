@@ -76,7 +76,9 @@ import {
   hingeAnimation,
   jackInTheBoxAnimation,
   rollInAnimation,
-  rollOutAnimation
+  rollOutAnimation,
+  // other
+  collapseAnimation
 } from '../../../lib/';
 
 @Component({
@@ -159,7 +161,9 @@ import {
     hingeAnimation(),
     jackInTheBoxAnimation(),
     rollInAnimation(),
-    rollOutAnimation()
+    rollOutAnimation(),
+    // other
+    collapseAnimation()
   ]
 })
 export class AppComponent {
@@ -239,7 +243,9 @@ export class AppComponent {
     'hinge',
     'jackInTheBox',
     'rollIn',
-    'rollOut'
+    'rollOut',
+    // Other
+    'collapse'
   ];
   animation = this.animations[this.animations.length - 1];
   animationState = false;
