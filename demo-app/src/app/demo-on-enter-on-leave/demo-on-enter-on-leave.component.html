@@ -8,8 +8,20 @@
   <h2>{{animation}}:</h2>
   <div [ngSwitch]="animation">
       <!-- Bouncing -->
-      <ng-container *ngSwitchCase="'bounceInOut'">
+      <ng-container *ngSwitchCase="'bounceIn'">
         <app-angular-img  *ngIf="state"  [@bounceInOnEnter] [@bounceOutOnLeave]></app-angular-img>
+      </ng-container>
+      <ng-container *ngSwitchCase="'bounceInUp'">
+        <app-angular-img  *ngIf="state"  [@bounceInUpOnEnter] [@bounceOutUpOnLeave]></app-angular-img>
+      </ng-container>
+      <ng-container *ngSwitchCase="'bounceInDown'">
+        <app-angular-img  *ngIf="state"  [@bounceInDownOnEnter] [@bounceOutDownOnLeave]></app-angular-img>
+      </ng-container>
+      <ng-container *ngSwitchCase="'bounceInLeft'">
+        <app-angular-img  *ngIf="state"  [@bounceInLeftOnEnter] [@bounceOutRightOnLeave]></app-angular-img>
+      </ng-container>
+      <ng-container *ngSwitchCase="'bounceInRight'">
+        <app-angular-img  *ngIf="state"  [@bounceInRightOnEnter] [@bounceOutLeftOnLeave]></app-angular-img>
       </ng-container>
       <div *ngSwitchDefault>Select animaion</div>
   </div>  

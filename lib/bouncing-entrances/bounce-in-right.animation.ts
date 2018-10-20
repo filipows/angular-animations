@@ -40,3 +40,18 @@ export function bounceInRightAnimation(options?: IAnimationOptions): AnimationTr
     )
   ]);
 }
+
+export function bounceInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'bounceInRightOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(bounceInRight, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

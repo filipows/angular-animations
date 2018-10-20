@@ -41,3 +41,18 @@ export function bounceInUpAnimation(options?: IAnimationOptions): AnimationTrigg
     )
   ]);
 }
+
+export function bounceInUpOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger(options && options.anchor || 'bounceInUpOnEnter', [
+    transition(':enter',
+      [
+        useAnimation(bounceInUp, {
+          params: {
+            duration: (options && options.duration) || DEFAULT_DURATION,
+            delay: (options && options.delay) || 0
+          }
+        })
+      ]
+    )
+  ]);
+}

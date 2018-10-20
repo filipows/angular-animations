@@ -1,6 +1,17 @@
 import { Component } from '@angular/core';
 
-import { bounceInOnEnterAnimation, bounceOutOnLeaveAnimation } from '../../../../lib';
+import {
+  bounceInOnEnterAnimation,
+  bounceOutOnLeaveAnimation,
+  bounceInUpOnEnterAnimation,
+  bounceOutDownOnLeaveAnimation,
+  bounceInDownOnEnterAnimation,
+  bounceOutUpOnLeaveAnimation,
+  bounceInLeftOnEnterAnimation,
+  bounceInRightOnEnterAnimation,
+  bounceOutLeftOnLeaveAnimation,
+  bounceOutRightOnLeaveAnimation
+} from '../../../../lib';
 
 @Component({
   selector: 'app-demo-on-enter-on-leave',
@@ -8,18 +19,29 @@ import { bounceInOnEnterAnimation, bounceOutOnLeaveAnimation } from '../../../..
   styleUrls: ['./demo-on-enter-on-leave.component.scss'],
   animations: [
     bounceInOnEnterAnimation(),
-    bounceOutOnLeaveAnimation()
+    bounceInUpOnEnterAnimation(),
+    bounceOutOnLeaveAnimation(),
+    bounceOutDownOnLeaveAnimation(),
+    bounceInDownOnEnterAnimation(),
+    bounceOutUpOnLeaveAnimation(),
+    bounceInLeftOnEnterAnimation(),
+    bounceInRightOnEnterAnimation(),
+    bounceOutLeftOnLeaveAnimation(),
+    bounceOutRightOnLeaveAnimation()
+  
   ]
 })
 export class DemoOnEnterOnLeaveComponent {
   animations = [
-    'bounceInOut',
+    'bounceIn',
+    'bounceInUp',
+    'bounceInDown',
+    'bounceInLeft',
+    'bounceInRight'
   ];
   animation = this.animations[0];
 
   state = true;
-
-  constructor() { }
 
   toggleState() {
     this.state = !this.state;
