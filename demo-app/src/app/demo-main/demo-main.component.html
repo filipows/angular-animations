@@ -104,7 +104,7 @@
 
 
 
-  <div [@enter3] (@enter3.done)="animationState = !animatinState">
+  <div [@enter3] (@enter3.done)="animationState = !animationState">
     <mat-form-field appearance="outline">
       <mat-select [(ngModel)]="animation" (ngModelChange)="animateAfterChange()">
         <mat-optgroup *ngFor="let option of options" [label]="option.label">
