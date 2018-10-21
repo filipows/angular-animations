@@ -102,12 +102,16 @@
     <div *ngSwitchDefault>Select animaion</div>
   </div>
 
+
+
   <div [@enter3] (@enter3.done)="animationState = !animatinState">
-    <select [(ngModel)]="animation" (change)="animateAfterChange()">
-      <optgroup *ngFor="let option of options" [label]="option.label">
-        <option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</option>
-      </optgroup>
-    </select>
-    <button (click)="animate()">Animate it</button>
+    <mat-form-field appearance="outline">
+      <mat-select [(ngModel)]="animation" (ngModelChange)="animateAfterChange()">
+        <mat-optgroup *ngFor="let option of options" [label]="option.label">
+          <mat-option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" class="animate-btn" (click)="animate()">Animate it</button>
   </div>
 </div>

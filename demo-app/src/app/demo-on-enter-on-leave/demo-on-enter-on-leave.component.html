@@ -3,16 +3,15 @@
     Animations `onEnter` / `onLeave`.
   </h1>
 
-  <br />
-
   <div [@enter2]>
-    <h2>{{animation}}:</h2>
-    <select [(ngModel)]="animation">
-      <optgroup *ngFor="let option of options" [label]="option.label">
-        <option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</option>
-      </optgroup>
-    </select>
-    <button (click)="toggleState()">Toggle `*ngIf`</button>
+    <mat-form-field appearance="outline">
+      <mat-select [(ngModel)]="animation" (ngModelChange)="state = false">
+        <mat-optgroup *ngFor="let option of options" [label]="option.label">
+          <mat-option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" class="animate-btn" (click)="toggleState()">Toggle *ngIf</button>
   </div>
 
   <div [ngSwitch]="animation" [@enter3]>

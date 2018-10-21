@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+// @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+// @import '~@angular/material/prebuilt-themes/purple-green.css';
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+h1,
+h2 {
+  font-weight: 100;
+}
+
+button.animate-btn {
+  height: 54px;
+  font-size: 1.3em;
+  font-weight: 400;
+  margin-left: 30px;
+  vertical-align: top;
+  margin-top: 6px;
+}
