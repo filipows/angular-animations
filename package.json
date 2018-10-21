@@ -18,7 +18,10 @@
     "tslint-demo-app": "cd demo-app && npm run lint",
     "tslint-demo-app-fix": "cd demo-app && npm run lint-fix",
     "lint-fix": "npm run tslint-fix && npm run prettier-fix",
-    "lint": "npm run tslint && npm run tslint-demo-app && npm run prettier"
+    "lint": "npm run tslint && npm run tslint-demo-app && npm run prettier",
+    "gh-pages:build": "cd demo-app && npm run build -- --prod --base-href \"https://filipows.github.io/angular-animations/\"",
+    "gh-pages:deploy": "ngh --dir=demo-app/dist/demo",
+    "gh-pages": "npm run gh-pages:build && npm run gh-pages:deploy"
   },
   "husky": {
     "hooks": {
@@ -45,6 +48,7 @@
   "homepage": "https://github.com/filipows/angular-animations#readme",
   "devDependencies": {
     "@angular/animations": "^6.0.0",
+    "angular-cli-ghpages": "^0.5.3",
     "husky": "^1.1.2",
     "np": "^3.0.4",
     "prettier": "1.14.3",
