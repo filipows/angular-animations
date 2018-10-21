@@ -6,7 +6,7 @@ const rotateInDownRight = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ opacity: 0, transform: 'rotate3d(0, 0, 1, 45deg)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', opacity: 0, transform: 'rotate3d(0, 0, 1, 45deg)', easing: 'ease', offset: 0 }),
       style({ opacity: 1, transform: 'rotate3d(0, 0, 1, 0deg)', easing: 'ease', offset: 1 })
     ])
   )
@@ -31,6 +31,7 @@ export function rotateInDownRightAnimation(options?: IAnimationOptions): Animati
 export function rotateInDownRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateInDownRightOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       style({ 'transform-origin': 'right bottom' }),
       useAnimation(rotateInDownRight, {
         params: {

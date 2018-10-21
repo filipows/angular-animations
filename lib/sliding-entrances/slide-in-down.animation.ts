@@ -6,7 +6,7 @@ const slideInDown = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ transform: 'translate3d(0, -100%, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', transform: 'translate3d(0, -100%, 0)', easing: 'ease', offset: 0 }),
       style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
@@ -31,7 +31,7 @@ export function slideInDownAnimation(options?: IAnimationOptions): AnimationTrig
 export function slideInDownOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideInDownOnEnter', [
     transition(':enter', [
-      style({ visibility: 'visible' }),
+      style({ visibility: 'hidden' }),
       useAnimation(slideInDown, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

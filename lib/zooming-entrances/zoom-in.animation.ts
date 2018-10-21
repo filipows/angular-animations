@@ -25,7 +25,7 @@ const zoomIn = animation(
     animate(
       '{{duration}}ms {{delay}}ms',
       keyframes([
-        style({ transform: 'scale3d(0.3, 0.3, 0.3)', easing: 'ease', offset: 0 }),
+        style({ visibility: 'visible', transform: 'scale3d(0.3, 0.3, 0.3)', easing: 'ease', offset: 0 }),
         style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1 })
       ])
     )
@@ -50,6 +50,7 @@ export function zoomInAnimation(options?: IAnimationOptions): AnimationTriggerMe
 export function zoomInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'zoomInOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       useAnimation(zoomIn, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

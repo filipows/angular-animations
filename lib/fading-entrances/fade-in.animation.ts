@@ -5,7 +5,7 @@ import { IAnimationOptions } from '../common/interfaces';
 const fadeIn = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
-    keyframes([style({ opacity: 0, easing: 'ease', offset: 0 }), style({ opacity: 1, easing: 'ease', offset: 1 })])
+    keyframes([style({ visibility: 'visible', opacity: 0, easing: 'ease', offset: 0 }), style({ opacity: 1, easing: 'ease', offset: 1 })])
   )
 ]);
 
@@ -27,6 +27,7 @@ export function fadeInAnimation(options?: IAnimationOptions): AnimationTriggerMe
 export function fadeInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       useAnimation(fadeIn, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

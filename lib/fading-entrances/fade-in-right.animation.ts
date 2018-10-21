@@ -6,7 +6,7 @@ const fadeInRight = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ opacity: 0, transform: 'translate3d(100%, 0, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', opacity: 0, transform: 'translate3d(100%, 0, 0)', easing: 'ease', offset: 0 }),
       style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
@@ -30,6 +30,7 @@ export function fadeInRightAnimation(options?: IAnimationOptions): AnimationTrig
 export function fadeInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInRightOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       useAnimation(fadeInRight, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

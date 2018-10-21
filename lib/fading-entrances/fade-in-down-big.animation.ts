@@ -6,7 +6,7 @@ const fadeInDownBig = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ opacity: 0, transform: 'translate3d(0, -2000px, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', opacity: 0, transform: 'translate3d(0, -2000px, 0)', easing: 'ease', offset: 0 }),
       style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
@@ -30,6 +30,7 @@ export function fadeInDownBigAnimation(options?: IAnimationOptions): AnimationTr
 export function fadeInDownBigOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInDownBigOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       useAnimation(fadeInDownBig, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

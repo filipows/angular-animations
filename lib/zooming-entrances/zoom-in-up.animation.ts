@@ -6,7 +6,13 @@ const zoomInUp = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ opacity: 0, transform: 'scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0)', easing: 'ease', offset: 0 }),
+      style({
+        visibility: 'visible',
+        opacity: 0,
+        transform: 'scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0)',
+        easing: 'ease',
+        offset: 0
+      }),
       style({
         opacity: 1,
         transform: 'scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0)',
@@ -36,6 +42,7 @@ export function zoomInUpAnimation(options?: IAnimationOptions): AnimationTrigger
 export function zoomInUpOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'zoomInUpOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       useAnimation(zoomInUp, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

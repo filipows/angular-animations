@@ -6,7 +6,7 @@ const slideInRight = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ transform: 'translate3d(100%, 0, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', transform: 'translate3d(100%, 0, 0)', easing: 'ease', offset: 0 }),
       style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
@@ -31,7 +31,7 @@ export function slideInRightAnimation(options?: IAnimationOptions): AnimationTri
 export function slideInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideInRightOnEnter', [
     transition(':enter', [
-      style({ visibility: 'visible' }),
+      style({ visibility: 'hidden' }),
       useAnimation(slideInRight, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

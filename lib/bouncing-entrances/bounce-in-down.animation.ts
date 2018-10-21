@@ -27,7 +27,7 @@ const bounceInDown = animation(
     animate(
       '{{duration}}ms {{delay}}ms',
       keyframes([
-        style({ opacity: 0, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
+        style({ visibility: 'visible', opacity: 0, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
         style({ opacity: 1, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.6 }),
         style({ opacity: 1, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 1 })
       ])
@@ -53,6 +53,7 @@ export function bounceInDownAnimation(options?: IAnimationOptions): AnimationTri
 export function bounceInDownOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceInDownOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       useAnimation(bounceInDown, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

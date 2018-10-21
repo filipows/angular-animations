@@ -23,7 +23,10 @@ const jackInTheBox = animation(
         style({ 'transform-origin': 'center bottom', transform: 'scale(1)', easing: 'ease', offset: 1 })
       ])
     ),
-    animate('{{duration}}ms {{delay}}ms', keyframes([style({ opacity: 0, offset: 0 }), style({ opacity: 1, offset: 1 })]))
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([style({ visibility: 'visible', opacity: 0, offset: 0 }), style({ opacity: 1, offset: 1 })])
+    )
   ])
 );
 
@@ -45,6 +48,8 @@ export function jackInTheBoxAnimation(options?: IAnimationOptions): AnimationTri
 export function jackInTheBoxOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'jackInTheBoxOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
+
       useAnimation(jackInTheBox, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

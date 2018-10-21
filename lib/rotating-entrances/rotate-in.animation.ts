@@ -6,7 +6,7 @@ const rotateIn = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ opacity: 0, transform: 'rotate(-200deg)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', opacity: 0, transform: 'rotate(-200deg)', easing: 'ease', offset: 0 }),
       style({ opacity: 1, transform: 'rotate(0deg)', easing: 'ease', offset: 1 })
     ])
   )
@@ -31,6 +31,7 @@ export function rotateInAnimation(options?: IAnimationOptions): AnimationTrigger
 export function rotateInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateInOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       style({ 'transform-origin': 'center' }),
       useAnimation(rotateIn, {
         params: {

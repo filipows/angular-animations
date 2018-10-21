@@ -6,7 +6,7 @@ const fadeInUp = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ opacity: 0, transform: 'translate3d(0, 100%, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', opacity: 0, transform: 'translate3d(0, 100%, 0)', easing: 'ease', offset: 0 }),
       style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
@@ -30,6 +30,7 @@ export function fadeInUpAnimation(options?: IAnimationOptions): AnimationTrigger
 export function fadeInUpOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInUpOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       useAnimation(fadeInUp, {
         params: {
           duration: (options && options.duration) || DEFAULT_DURATION,

@@ -6,7 +6,7 @@ const flipInY = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ transform: 'perspective(400px) rotate3d(0, 1, 0, 90deg)', opacity: 0, easing: 'ease-in', offset: 0 }),
+      style({ visibility: 'visible', transform: 'perspective(400px) rotate3d(0, 1, 0, 90deg)', opacity: 0, easing: 'ease-in', offset: 0 }),
       style({ transform: 'perspective(400px) rotate3d(0, 1, 0, -20deg)', opacity: 0.5, easing: 'ease-in', offset: 0.4 }),
       style({ transform: 'perspective(400px) rotate3d(0, 1, 0, 10deg)', opacity: 1, easing: 'ease-in', offset: 0.6 }),
       style({ transform: 'perspective(400px) rotate3d(0, 1, 0, -5deg)', easing: 'ease', offset: 0.8 }),
@@ -34,6 +34,7 @@ export function flipInYAnimation(options?: IAnimationOptions): AnimationTriggerM
 export function flipInYOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipInYOnEnter', [
     transition(':enter', [
+      style({ visibility: 'hidden' }),
       style({ 'backface-visibility': 'visible' }),
       useAnimation(flipInY, {
         params: {
