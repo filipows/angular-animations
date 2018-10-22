@@ -255,7 +255,7 @@ export class DemoMainComponent {
     },
     {
       label: 'Other',
-      animations: ['collapse', 'rotate', 'rotate90', 'hueRotate']
+      animations: ['collapse', 'rotate', 'rotate90', 'rotate720', 'hueRotate']
     }
   ];
   animation = 'rubberBand';
