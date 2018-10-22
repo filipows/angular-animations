@@ -36,26 +36,44 @@ const DEFAULT_DURATION = 1000;
 
 export function zoomOutAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'zoomOut', [
-    transition('0 <=> 1', [
-      useAnimation(zoomOut, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(zoomOut, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function zoomOutOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'zoomOutOnLeave', [
-    transition(':leave', [
-      useAnimation(zoomOut, {
+    transition(
+      ':leave',
+      [
+        useAnimation(zoomOut, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

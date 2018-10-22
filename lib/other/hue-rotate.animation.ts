@@ -31,11 +31,17 @@ export function hueRotateAnimation(options?: IAnimationOptions): AnimationTrigge
         query('@*', animateChild(), { optional: true }),
         useAnimation(hueRotate, {
           params: {
-            duration: (options && options.duration) || DEFAULT_DURATION,
-            delay: (options && options.delay) || 0
+            duration: '{{duration}}',
+            delay: '{{delay}}'
           }
         })
-      ])
+      ]),
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
     )
   ]);
 }

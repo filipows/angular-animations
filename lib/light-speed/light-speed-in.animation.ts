@@ -18,27 +18,45 @@ const DEFAULT_DURATION = 1000;
 
 export function lightSpeedInAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'lightSpeedIn', [
-    transition('0 <=> 1', [
-      useAnimation(lightSpeedIn, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(lightSpeedIn, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function lightSpeedInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'lightSpeedInOnEnter', [
-    transition(':enter', [
-      style({ visibility: 'hidden' }),
-      useAnimation(lightSpeedIn, {
+    transition(
+      ':enter',
+      [
+        style({ visibility: 'hidden' }),
+        useAnimation(lightSpeedIn, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

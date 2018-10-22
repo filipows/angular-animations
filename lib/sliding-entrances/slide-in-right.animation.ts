@@ -16,28 +16,46 @@ const DEFAULT_DURATION = 1000;
 
 export function slideInRightAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideInRight', [
-    transition('0 <=> 1', [
-      style({ visibility: 'visible' }),
-      useAnimation(slideInRight, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ visibility: 'visible' }),
+        useAnimation(slideInRight, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function slideInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideInRightOnEnter', [
-    transition(':enter', [
-      style({ visibility: 'hidden' }),
-      useAnimation(slideInRight, {
+    transition(
+      ':enter',
+      [
+        style({ visibility: 'hidden' }),
+        useAnimation(slideInRight, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

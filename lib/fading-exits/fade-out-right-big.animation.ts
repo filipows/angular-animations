@@ -16,26 +16,44 @@ const DEFAULT_DURATION = 1000;
 
 export function fadeOutRightBigAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeOutRightBig', [
-    transition('0 <=> 1', [
-      useAnimation(fadeOutRightBig, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(fadeOutRightBig, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function fadeOutRightBigOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeOutRightBigOnLeave', [
-    transition(':leave', [
-      useAnimation(fadeOutRightBig, {
+    transition(
+      ':leave',
+      [
+        useAnimation(fadeOutRightBig, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

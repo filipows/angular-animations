@@ -16,26 +16,44 @@ const DEFAULT_DURATION = 1000;
 
 export function lightSpeedOutAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'lightSpeedOut', [
-    transition('0 <=> 1', [
-      useAnimation(lightSpeedOut, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(lightSpeedOut, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function lightSpeedOutOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'lightSpeedOutOnLeave', [
-    transition(':leave', [
-      useAnimation(lightSpeedOut, {
+    transition(
+      ':leave',
+      [
+        useAnimation(lightSpeedOut, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

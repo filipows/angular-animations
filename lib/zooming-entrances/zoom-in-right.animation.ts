@@ -28,27 +28,45 @@ const DEFAULT_DURATION = 1000;
 
 export function zoomInRightAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'zoomInRight', [
-    transition('0 <=> 1', [
-      useAnimation(zoomInRight, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(zoomInRight, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function zoomInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'zoomInRightOnEnter', [
-    transition(':enter', [
-      style({ visibility: 'hidden' }),
-      useAnimation(zoomInRight, {
+    transition(
+      ':enter',
+      [
+        style({ visibility: 'hidden' }),
+        useAnimation(zoomInRight, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

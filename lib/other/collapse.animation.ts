@@ -33,17 +33,25 @@ export function collapseAnimation(options?: IAnimationOptions): AnimationTrigger
         overflow: 'hidden'
       })
     ),
-    transition('0 => 1', [
-      group([
-        query('@*', animateChild(), { optional: true }),
-        animate(((options && options.duration) || DEFAULT_DURATION) + 'ms ' + ((options && options.delay) || 0) + 'ms ' + 'ease-in')
-      ])
-    ]),
-    transition('1 => 0', [
-      group([
-        query('@*', animateChild(), { optional: true }),
-        animate(((options && options.duration) || DEFAULT_DURATION) + 'ms ' + ((options && options.delay) || 0) + 'ms ' + 'ease-out')
-      ])
-    ])
+    transition(
+      '0 => 1',
+      [group([query('@*', animateChild(), { optional: true }), animate('{{duration}}' + 'ms ' + '{{delay}}' + 'ms ' + 'ease-in')])],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    ),
+    transition(
+      '1 => 0',
+      [group([query('@*', animateChild(), { optional: true }), animate('{{duration}}' + 'ms ' + '{{delay}}' + 'ms ' + 'ease-out')])],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    )
   ]);
 }

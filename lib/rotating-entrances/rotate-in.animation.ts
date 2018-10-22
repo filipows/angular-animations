@@ -16,29 +16,47 @@ const DEFAULT_DURATION = 1000;
 
 export function rotateInAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateIn', [
-    transition('0 <=> 1', [
-      style({ 'transform-origin': 'center' }),
-      useAnimation(rotateIn, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ 'transform-origin': 'center' }),
+        useAnimation(rotateIn, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function rotateInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateInOnEnter', [
-    transition(':enter', [
-      style({ visibility: 'hidden' }),
-      style({ 'transform-origin': 'center' }),
-      useAnimation(rotateIn, {
+    transition(
+      ':enter',
+      [
+        style({ visibility: 'hidden' }),
+        style({ 'transform-origin': 'center' }),
+        useAnimation(rotateIn, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

@@ -39,27 +39,45 @@ const DEFAULT_DURATION = 1000;
 
 export function bounceInDownAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceInDown', [
-    transition('0 <=> 1', [
-      useAnimation(bounceInDown, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(bounceInDown, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function bounceInDownOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceInDownOnEnter', [
-    transition(':enter', [
-      style({ visibility: 'hidden' }),
-      useAnimation(bounceInDown, {
+    transition(
+      ':enter',
+      [
+        style({ visibility: 'hidden' }),
+        useAnimation(bounceInDown, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

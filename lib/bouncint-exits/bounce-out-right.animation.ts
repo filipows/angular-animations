@@ -17,26 +17,44 @@ const DEFAULT_DURATION = 1000;
 
 export function bounceOutRightAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceOutRight', [
-    transition('0 <=> 1', [
-      useAnimation(bounceOutRight, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(bounceOutRight, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function bounceOutRightOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceOutRightOnLeave', [
-    transition(':leave', [
-      useAnimation(bounceOutRight, {
+    transition(
+      ':leave',
+      [
+        useAnimation(bounceOutRight, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

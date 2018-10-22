@@ -16,27 +16,45 @@ const DEFAULT_DURATION = 1000;
 
 export function fadeInRightBigAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInRightBig', [
-    transition('0 <=> 1', [
-      useAnimation(fadeInRightBig, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(fadeInRightBig, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function fadeInRightBigOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInRightBigOnEnter', [
-    transition(':enter', [
-      style({ visibility: 'hidden' }),
-      useAnimation(fadeInRightBig, {
+    transition(
+      ':enter',
+      [
+        style({ visibility: 'hidden' }),
+        useAnimation(fadeInRightBig, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

@@ -19,29 +19,47 @@ const DEFAULT_DURATION = 1000;
 
 export function flipInYAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipInY', [
-    transition('0 <=> 1', [
-      style({ 'backface-visibility': 'visible' }),
-      useAnimation(flipInY, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ 'backface-visibility': 'visible' }),
+        useAnimation(flipInY, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function flipInYOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipInYOnEnter', [
-    transition(':enter', [
-      style({ visibility: 'hidden' }),
-      style({ 'backface-visibility': 'visible' }),
-      useAnimation(flipInY, {
+    transition(
+      ':enter',
+      [
+        style({ visibility: 'hidden' }),
+        style({ 'backface-visibility': 'visible' }),
+        useAnimation(flipInY, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

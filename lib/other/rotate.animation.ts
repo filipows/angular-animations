@@ -22,20 +22,33 @@ export function rotateAnimation(options?: IRotateAnimationOptions): AnimationTri
     state(
       '1',
       style({
-        transform: 'rotate(' + ((options && options.degrees) || 180) + 'deg)'
-      })
+        transform: 'rotate(' + '{{degrees}}' + 'deg)'
+      }),
+      {
+        params: {
+          degrees: (options && options.degrees) || 180
+        }
+      }
     ),
-    transition('0 => 1', [
-      group([
-        query('@*', animateChild(), { optional: true }),
-        animate(((options && options.duration) || DEFAULT_DURATION) + 'ms ' + ((options && options.delay) || 0) + 'ms ' + 'ease')
-      ])
-    ]),
-    transition('1 => 0', [
-      group([
-        query('@*', animateChild(), { optional: true }),
-        animate(((options && options.duration) || DEFAULT_DURATION) + 'ms ' + ((options && options.delay) || 0) + 'ms ' + 'ease')
-      ])
-    ])
+    transition(
+      '0 => 1',
+      [group([query('@*', animateChild(), { optional: true }), animate('{{duration}}' + 'ms ' + '{{delay}}' + 'ms ' + 'ease')])],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    ),
+    transition(
+      '1 => 0',
+      [group([query('@*', animateChild(), { optional: true }), animate('{{duration}}' + 'ms ' + '{{delay}}' + 'ms ' + 'ease')])],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    )
   ]);
 }

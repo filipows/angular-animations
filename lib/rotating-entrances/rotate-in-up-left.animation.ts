@@ -16,29 +16,47 @@ const DEFAULT_DURATION = 1000;
 
 export function rotateInUpLeftAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateInUpLeft', [
-    transition('0 <=> 1', [
-      style({ 'transform-origin': 'left bottom' }),
-      useAnimation(rotateInUpLeft, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ 'transform-origin': 'left bottom' }),
+        useAnimation(rotateInUpLeft, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function rotateInUpLeftOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateInUpLeftOnEnter', [
-    transition(':enter', [
-      style({ visibility: 'hidden' }),
-      style({ 'transform-origin': 'left bottom' }),
-      useAnimation(rotateInUpLeft, {
+    transition(
+      ':enter',
+      [
+        style({ visibility: 'hidden' }),
+        style({ 'transform-origin': 'left bottom' }),
+        useAnimation(rotateInUpLeft, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

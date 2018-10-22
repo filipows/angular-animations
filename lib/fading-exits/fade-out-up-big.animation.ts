@@ -16,26 +16,44 @@ const DEFAULT_DURATION = 1000;
 
 export function fadeOutUpBigAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeOutUpBig', [
-    transition('0 <=> 1', [
-      useAnimation(fadeOutUpBig, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(fadeOutUpBig, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function fadeOutUpBigOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeOutUpBigOnLeave', [
-    transition(':leave', [
-      useAnimation(fadeOutUpBig, {
+    transition(
+      ':leave',
+      [
+        useAnimation(fadeOutUpBig, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

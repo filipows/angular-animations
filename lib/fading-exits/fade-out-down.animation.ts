@@ -16,26 +16,44 @@ const DEFAULT_DURATION = 1000;
 
 export function fadeOutDownAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeOutDown', [
-    transition('0 <=> 1', [
-      useAnimation(fadeOutDown, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(fadeOutDown, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function fadeOutDownOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeOutDownOnLeave', [
-    transition(':leave', [
-      useAnimation(fadeOutDown, {
+    transition(
+      ':leave',
+      [
+        useAnimation(fadeOutDown, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

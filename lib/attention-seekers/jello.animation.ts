@@ -24,14 +24,23 @@ const DEFAULT_DURATION = 1000;
 
 export function jelloAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'jello', [
-    transition('0 <=> 1', [
-      style({ 'transform-origin': 'center' }),
-      useAnimation(jello, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ 'transform-origin': 'center' }),
+        useAnimation(jello, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

@@ -17,28 +17,46 @@ const DEFAULT_DURATION = 750;
 
 export function flipOutXAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipOutX', [
-    transition('0 <=> 1', [
-      style({ 'backface-visibility': 'visible' }),
-      useAnimation(flipOutX, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ 'backface-visibility': 'visible' }),
+        useAnimation(flipOutX, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function flipOutXOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipOutXOnLeave', [
-    transition(':leave', [
-      style({ 'backface-visibility': 'visible' }),
-      useAnimation(flipOutX, {
+    transition(
+      ':leave',
+      [
+        style({ 'backface-visibility': 'visible' }),
+        useAnimation(flipOutX, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

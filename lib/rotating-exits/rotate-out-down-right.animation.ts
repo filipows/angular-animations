@@ -16,28 +16,46 @@ const DEFAULT_DURATION = 1000;
 
 export function rotateOutDownRightAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOutDownRight', [
-    transition('0 <=> 1', [
-      style({ 'transform-origin': 'right bottom' }),
-      useAnimation(rotateOutDownRight, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ 'transform-origin': 'right bottom' }),
+        useAnimation(rotateOutDownRight, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function rotateOutDownRightOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOutDownRightOnLeave', [
-    transition(':leave', [
-      style({ 'transform-origin': 'right bottom' }),
-      useAnimation(rotateOutDownRight, {
+    transition(
+      ':leave',
+      [
+        style({ 'transform-origin': 'right bottom' }),
+        useAnimation(rotateOutDownRight, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

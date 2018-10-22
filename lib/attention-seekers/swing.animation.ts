@@ -20,14 +20,23 @@ const DEFAULT_DURATION = 1000;
 
 export function swingAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'swing', [
-    transition('0 <=> 1', [
-      style({ 'transform-origin': 'top center' }),
-      useAnimation(swing, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ 'transform-origin': 'top center' }),
+        useAnimation(swing, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

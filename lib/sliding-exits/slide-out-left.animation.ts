@@ -16,26 +16,44 @@ const DEFAULT_DURATION = 1000;
 
 export function slideOutLeftAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideOutLeft', [
-    transition('0 <=> 1', [
-      useAnimation(slideOutLeft, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(slideOutLeft, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function slideOutLeftOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideOutLeftOnLeave', [
-    transition(':leave', [
-      useAnimation(slideOutLeft, {
+    transition(
+      ':leave',
+      [
+        useAnimation(slideOutLeft, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

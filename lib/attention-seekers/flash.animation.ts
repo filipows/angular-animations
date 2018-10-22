@@ -19,13 +19,22 @@ const DEFAULT_DURATION = 1000;
 
 export function flashAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flash', [
-    transition('0 <=> 1', [
-      useAnimation(flash, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(flash, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

@@ -23,14 +23,23 @@ const DEFAULT_DURATION = 1000;
 
 export function bounceAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounce', [
-    transition('0 <=> 1', [
-      style({ 'transform-origin': 'center bottom' }),
-      useAnimation(bounce, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ 'transform-origin': 'center bottom' }),
+        useAnimation(bounce, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

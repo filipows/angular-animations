@@ -21,13 +21,22 @@ const DEFAULT_DURATION = 1000;
 
 export function rubberBandAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rubberBand', [
-    transition('0 <=> 1', [
-      useAnimation(rubberBand, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(rubberBand, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

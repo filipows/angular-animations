@@ -16,28 +16,46 @@ const DEFAULT_DURATION = 1000;
 
 export function rotateOutAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOut', [
-    transition('0 <=> 1', [
-      style({ 'transform-origin': 'center' }),
-      useAnimation(rotateOut, {
+    transition(
+      '0 <=> 1',
+      [
+        style({ 'transform-origin': 'center' }),
+        useAnimation(rotateOut, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
 
 export function rotateOutOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOutOnLeave', [
-    transition(':leave', [
-      style({ 'transform-origin': 'center' }),
-      useAnimation(rotateOut, {
+    transition(
+      ':leave',
+      [
+        style({ 'transform-origin': 'center' }),
+        useAnimation(rotateOut, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }

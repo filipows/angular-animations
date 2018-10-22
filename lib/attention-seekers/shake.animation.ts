@@ -25,13 +25,22 @@ const DEFAULT_DURATION = 1000;
 
 export function shakeAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'shake', [
-    transition('0 <=> 1', [
-      useAnimation(shake, {
+    transition(
+      '0 <=> 1',
+      [
+        useAnimation(shake, {
+          params: {
+            duration: '{{duration}}',
+            delay: '{{delay}}'
+          }
+        })
+      ],
+      {
         params: {
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          delay: (options && options.delay) || 0
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
         }
-      })
-    ])
+      }
+    )
   ]);
 }
