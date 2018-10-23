@@ -1,4 +1,16 @@
-import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
+import {
+  animate,
+  animateChild,
+  animation,
+  AnimationTriggerMetadata,
+  group,
+  keyframes,
+  query,
+  style,
+  transition,
+  trigger,
+  useAnimation
+} from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
 
@@ -21,12 +33,23 @@ export function lightSpeedInAnimation(options?: IAnimationOptions): AnimationTri
     transition(
       '0 <=> 1',
       [
-        useAnimation(lightSpeedIn, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          useAnimation(lightSpeedIn, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {
@@ -44,12 +67,23 @@ export function lightSpeedInOnEnterAnimation(options?: IAnimationOptions): Anima
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        useAnimation(lightSpeedIn, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          useAnimation(lightSpeedIn, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {

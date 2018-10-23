@@ -1,9 +1,11 @@
 import {
   animate,
+  animateChild,
   animation,
   AnimationTriggerMetadata,
   group,
   keyframes,
+  query,
   style,
   transition,
   trigger,
@@ -42,12 +44,23 @@ export function bounceInDownAnimation(options?: IAnimationOptions): AnimationTri
     transition(
       '0 <=> 1',
       [
-        useAnimation(bounceInDown, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          useAnimation(bounceInDown, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {
@@ -65,12 +78,23 @@ export function bounceInDownOnEnterAnimation(options?: IAnimationOptions): Anima
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        useAnimation(bounceInDown, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          useAnimation(bounceInDown, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {

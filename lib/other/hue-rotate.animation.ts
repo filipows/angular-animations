@@ -28,7 +28,7 @@ export function hueRotateAnimation(options?: IAnimationOptions): AnimationTrigge
     transition(
       '0 <=> 1',
       group([
-        query('@*', animateChild(), { optional: true }),
+        query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true }),
         useAnimation(hueRotate, {
           params: {
             duration: '{{duration}}',

@@ -1,4 +1,16 @@
-import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
+import {
+  animate,
+  animateChild,
+  animation,
+  AnimationTriggerMetadata,
+  group,
+  keyframes,
+  query,
+  style,
+  transition,
+  trigger,
+  useAnimation
+} from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
 
@@ -19,13 +31,24 @@ export function rotateInDownRightAnimation(options?: IAnimationOptions): Animati
     transition(
       '0 <=> 1',
       [
-        style({ 'transform-origin': 'right bottom' }),
-        useAnimation(rotateInDownRight, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          style({ 'transform-origin': 'right bottom' }),
+          useAnimation(rotateInDownRight, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {
@@ -43,13 +66,24 @@ export function rotateInDownRightOnEnterAnimation(options?: IAnimationOptions): 
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        style({ 'transform-origin': 'right bottom' }),
-        useAnimation(rotateInDownRight, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          style({ 'transform-origin': 'right bottom' }),
+          useAnimation(rotateInDownRight, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {

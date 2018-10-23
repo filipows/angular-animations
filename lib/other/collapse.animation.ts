@@ -35,7 +35,23 @@ export function collapseAnimation(options?: IAnimationOptions): AnimationTrigger
     ),
     transition(
       '0 => 1',
-      [group([query('@*', animateChild(), { optional: true }), animate('{{duration}}' + 'ms ' + '{{delay}}' + 'ms ' + 'ease-in')])],
+      [
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          group([
+            query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true }),
+            animate('{{duration}}' + 'ms ' + '{{delay}}' + 'ms ' + 'ease-in')
+          ]),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
+      ],
       {
         params: {
           delay: (options && options.delay) || 0,
@@ -45,7 +61,23 @@ export function collapseAnimation(options?: IAnimationOptions): AnimationTrigger
     ),
     transition(
       '1 => 0',
-      [group([query('@*', animateChild(), { optional: true }), animate('{{duration}}' + 'ms ' + '{{delay}}' + 'ms ' + 'ease-out')])],
+      [
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          group([
+            query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true }),
+            animate('{{duration}}' + 'ms ' + '{{delay}}' + 'ms ' + 'ease-out')
+          ]),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
+      ],
       {
         params: {
           delay: (options && options.delay) || 0,

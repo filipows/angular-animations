@@ -1,4 +1,16 @@
-import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
+import {
+  animate,
+  animateChild,
+  animation,
+  AnimationTriggerMetadata,
+  group,
+  keyframes,
+  query,
+  style,
+  transition,
+  trigger,
+  useAnimation
+} from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
 
@@ -19,13 +31,24 @@ export function slideInDownAnimation(options?: IAnimationOptions): AnimationTrig
     transition(
       '0 <=> 1',
       [
-        style({ visibility: 'visible' }),
-        useAnimation(slideInDown, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          style({ visibility: 'visible' }),
+          useAnimation(slideInDown, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {
@@ -43,12 +66,23 @@ export function slideInDownOnEnterAnimation(options?: IAnimationOptions): Animat
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        useAnimation(slideInDown, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          useAnimation(slideInDown, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {

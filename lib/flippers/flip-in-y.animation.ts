@@ -1,4 +1,16 @@
-import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
+import {
+  animate,
+  animateChild,
+  animation,
+  AnimationTriggerMetadata,
+  group,
+  keyframes,
+  query,
+  style,
+  transition,
+  trigger,
+  useAnimation
+} from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
 
@@ -22,13 +34,24 @@ export function flipInYAnimation(options?: IAnimationOptions): AnimationTriggerM
     transition(
       '0 <=> 1',
       [
-        style({ 'backface-visibility': 'visible' }),
-        useAnimation(flipInY, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          style({ 'backface-visibility': 'visible' }),
+          useAnimation(flipInY, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {
@@ -46,13 +69,24 @@ export function flipInYOnEnterAnimation(options?: IAnimationOptions): AnimationT
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        style({ 'backface-visibility': 'visible' }),
-        useAnimation(flipInY, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : []),
+        group([
+          style({ 'backface-visibility': 'visible' }),
+          useAnimation(flipInY, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after'
+          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+          : [])
       ],
       {
         params: {

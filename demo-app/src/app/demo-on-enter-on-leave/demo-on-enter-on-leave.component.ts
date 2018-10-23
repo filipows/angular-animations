@@ -76,7 +76,7 @@ import {
   animations: [
     bounceInRightOnEnterAnimation({ anchor: 'enter1' }),
     bounceInRightOnEnterAnimation({ anchor: 'enter2', delay: 100 }),
-    bounceInRightOnEnterAnimation({ anchor: 'enter3', delay: 200 }),
+    bounceInRightOnEnterAnimation({ anchor: 'enter3', delay: 200, animateChildren: 'none' }),
     bounceInOnEnterAnimation(),
     bounceInUpOnEnterAnimation(),
     bounceOutOnLeaveAnimation(),
