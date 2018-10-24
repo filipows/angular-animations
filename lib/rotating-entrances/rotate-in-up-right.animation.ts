@@ -31,9 +31,7 @@ export function rotateInUpRightAnimation(options?: IAnimationOptions): Animation
     transition(
       '0 <=> 1',
       [
-        ...(options && options.animateChildren === 'before'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : []),
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'transform-origin': 'right bottom' }),
           useAnimation(rotateInUpRight, {
@@ -43,12 +41,10 @@ export function rotateInUpRightAnimation(options?: IAnimationOptions): Animation
             }
           }),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            ? [query('@*', animateChild(), { optional: true })]
             : [])
         ]),
-        ...(options && options.animateChildren === 'after'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : [])
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {
@@ -66,9 +62,7 @@ export function rotateInUpRightOnEnterAnimation(options?: IAnimationOptions): An
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : []),
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'transform-origin': 'right bottom' }),
           useAnimation(rotateInUpRight, {
@@ -78,12 +72,10 @@ export function rotateInUpRightOnEnterAnimation(options?: IAnimationOptions): An
             }
           }),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            ? [query('@*', animateChild(), { optional: true })]
             : [])
         ]),
-        ...(options && options.animateChildren === 'after'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : [])
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {

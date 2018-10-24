@@ -31,9 +31,7 @@ export function rotateOutAnimation(options?: IAnimationOptions): AnimationTrigge
     transition(
       '0 <=> 1',
       [
-        ...(options && options.animateChildren === 'before'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : []),
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'transform-origin': 'center' }),
           useAnimation(rotateOut, {
@@ -43,12 +41,10 @@ export function rotateOutAnimation(options?: IAnimationOptions): AnimationTrigge
             }
           }),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            ? [query('@*', animateChild(), { optional: true })]
             : [])
         ]),
-        ...(options && options.animateChildren === 'after'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : [])
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {
@@ -65,9 +61,7 @@ export function rotateOutOnLeaveAnimation(options?: IAnimationOptions): Animatio
     transition(
       ':leave',
       [
-        ...(options && options.animateChildren === 'before'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : []),
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'transform-origin': 'center' }),
           useAnimation(rotateOut, {
@@ -77,12 +71,10 @@ export function rotateOutOnLeaveAnimation(options?: IAnimationOptions): Animatio
             }
           }),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            ? [query('@*', animateChild(), { optional: true })]
             : [])
         ]),
-        ...(options && options.animateChildren === 'after'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : [])
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {

@@ -31,9 +31,7 @@ export function rotateInDownLeftAnimation(options?: IAnimationOptions): Animatio
     transition(
       '0 <=> 1',
       [
-        ...(options && options.animateChildren === 'before'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : []),
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'transform-origin': 'left bottom' }),
           useAnimation(rotateInDownLeft, {
@@ -43,12 +41,10 @@ export function rotateInDownLeftAnimation(options?: IAnimationOptions): Animatio
             }
           }),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            ? [query('@*', animateChild(), { optional: true })]
             : [])
         ]),
-        ...(options && options.animateChildren === 'after'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : [])
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {
@@ -66,9 +62,7 @@ export function rotateInDownLeftOnEnterAnimation(options?: IAnimationOptions): A
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : []),
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'transform-origin': 'left bottom' }),
           useAnimation(rotateInDownLeft, {
@@ -78,12 +72,10 @@ export function rotateInDownLeftOnEnterAnimation(options?: IAnimationOptions): A
             }
           }),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            ? [query('@*', animateChild(), { optional: true })]
             : [])
         ]),
-        ...(options && options.animateChildren === 'after'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : [])
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {

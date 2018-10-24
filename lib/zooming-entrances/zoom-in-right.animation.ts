@@ -43,9 +43,7 @@ export function zoomInRightAnimation(options?: IAnimationOptions): AnimationTrig
     transition(
       '0 <=> 1',
       [
-        ...(options && options.animateChildren === 'before'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : []),
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           useAnimation(zoomInRight, {
             params: {
@@ -54,12 +52,10 @@ export function zoomInRightAnimation(options?: IAnimationOptions): AnimationTrig
             }
           }),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            ? [query('@*', animateChild(), { optional: true })]
             : [])
         ]),
-        ...(options && options.animateChildren === 'after'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : [])
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {
@@ -77,9 +73,7 @@ export function zoomInRightOnEnterAnimation(options?: IAnimationOptions): Animat
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : []),
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           useAnimation(zoomInRight, {
             params: {
@@ -88,12 +82,10 @@ export function zoomInRightOnEnterAnimation(options?: IAnimationOptions): Animat
             }
           }),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
+            ? [query('@*', animateChild(), { optional: true })]
             : [])
         ]),
-        ...(options && options.animateChildren === 'after'
-          ? [query('@*', animateChild({ delay: (options && options.delayChildren) || 0 }), { optional: true })]
-          : [])
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {

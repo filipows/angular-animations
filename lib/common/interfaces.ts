@@ -23,13 +23,4 @@ export interface IAnimationOptions {
    * Default: 'together'
    */
   animateChildren?: 'before' | 'together' | 'after' | 'none';
-  /**
-   * This parameter can only be set in a component's decorator.
-   * Cannot be set in a template.
-   *
-   * Delay for children animations in ms.
-   *
-   * Default: 0
-   */
-  delayChildren?: number;
 }
