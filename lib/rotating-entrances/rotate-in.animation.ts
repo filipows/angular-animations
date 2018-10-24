@@ -1,4 +1,16 @@
-import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger, useAnimation } from '@angular/animations';
+import {
+  animate,
+  animateChild,
+  animation,
+  AnimationTriggerMetadata,
+  group,
+  keyframes,
+  query,
+  style,
+  transition,
+  trigger,
+  useAnimation
+} from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
 
@@ -6,7 +18,7 @@ const rotateIn = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ visibility: 'visible', opacity: 0, transform: 'rotate(-200deg)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', opacity: 1, transform: 'rotate(-200deg)', easing: 'ease', offset: 0 }),
       style({ opacity: 1, transform: 'rotate(0deg)', easing: 'ease', offset: 1 })
     ])
   )
@@ -19,13 +31,20 @@ export function rotateInAnimation(options?: IAnimationOptions): AnimationTrigger
     transition(
       '0 <=> 1',
       [
-        style({ 'transform-origin': 'center' }),
-        useAnimation(rotateIn, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        group([
+          style({ 'transform-origin': 'center' }),
+          useAnimation(rotateIn, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild(), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {
@@ -43,13 +62,20 @@ export function rotateInOnEnterAnimation(options?: IAnimationOptions): Animation
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        style({ 'transform-origin': 'center' }),
-        useAnimation(rotateIn, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        group([
+          style({ 'transform-origin': 'center' }),
+          useAnimation(rotateIn, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild(), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
       {
         params: {
