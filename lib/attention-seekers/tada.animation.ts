@@ -63,3 +63,32 @@ export function tadaAnimation(options?: IAnimationOptions): AnimationTriggerMeta
     )
   ]);
 }
+
+export function tadaOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'tadaOnEnter', [
+    transition(
+      ':enter',
+      [
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        group([
+          useAnimation(tada, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild(), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
+      ],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    )
+  ]);
+}

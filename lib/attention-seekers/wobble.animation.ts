@@ -59,3 +59,32 @@ export function wobbleAnimation(options?: IAnimationOptions): AnimationTriggerMe
     )
   ]);
 }
+
+export function wobbleOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'wobbleOnEnter', [
+    transition(
+      ':enter',
+      [
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        group([
+          useAnimation(wobble, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild(), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
+      ],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    )
+  ]);
+}

@@ -63,3 +63,33 @@ export function jelloAnimation(options?: IAnimationOptions): AnimationTriggerMet
     )
   ]);
 }
+
+export function jelloOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'jelloOnEnter', [
+    transition(
+      ':enter',
+      [
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        group([
+          style({ 'transform-origin': 'center' }),
+          useAnimation(jello, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild(), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
+      ],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    )
+  ]);
+}

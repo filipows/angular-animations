@@ -122,6 +122,38 @@
     <ng-container *ngSwitchCase="'rollInOut'">
       <app-angular-img *ngIf="state" [@rollInOnEnter] [@rollOutOnLeave]></app-angular-img>
     </ng-container>
+    <!-- Attention Seekers -->
+    <ng-container *ngSwitchCase="'bounce'">
+      <app-angular-img *ngIf="state" [@bounceOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'flash'">
+      <app-angular-img *ngIf="state" [@flashOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'pulse'">
+      <app-angular-img *ngIf="state" [@pulseOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'rubberBand'">
+      <app-angular-img *ngIf="state" [@rubberBandOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'shake'">
+      <app-angular-img *ngIf="state" [@shakeOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'swing'">
+      <app-angular-img *ngIf="state" [@swingOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'tada'">
+      <app-angular-img *ngIf="state" [@tadaOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'wobble'">
+      <app-angular-img *ngIf="state" [@wobbleOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'jello'">
+      <app-angular-img *ngIf="state" [@jelloOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'flip'">
+      <app-angular-img *ngIf="state" [@flipOnEnter] [@fadeOutOnLeave]></app-angular-img>
+    </ng-container>
+
     <div *ngSwitchDefault>Select animaion</div>
   </div>
 

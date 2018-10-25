@@ -63,3 +63,32 @@ export function shakeAnimation(options?: IAnimationOptions): AnimationTriggerMet
     )
   ]);
 }
+
+export function shakeOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'shakeOnEnter', [
+    transition(
+      ':enter',
+      [
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        group([
+          useAnimation(shake, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild(), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
+      ],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    )
+  ]);
+}

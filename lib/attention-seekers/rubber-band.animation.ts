@@ -59,3 +59,32 @@ export function rubberBandAnimation(options?: IAnimationOptions): AnimationTrigg
     )
   ]);
 }
+
+export function rubberBandOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'rubberBandOnEnter', [
+    transition(
+      ':enter',
+      [
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        group([
+          useAnimation(rubberBand, {
+            params: {
+              duration: '{{duration}}',
+              delay: '{{delay}}'
+            }
+          }),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild(), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
+      ],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    )
+  ]);
+}

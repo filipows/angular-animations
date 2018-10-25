@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
 
 import {
+  bounceOnEnterAnimation,
+  flashOnEnterAnimation,
+  pulseOnEnterAnimation,
+  rubberBandOnEnterAnimation,
+  shakeOnEnterAnimation,
+  swingOnEnterAnimation,
+  tadaOnEnterAnimation,
+  wobbleOnEnterAnimation,
+  jelloOnEnterAnimation,
+  flipOnEnterAnimation,
   bounceInOnEnterAnimation,
   bounceOutOnLeaveAnimation,
   bounceInUpOnEnterAnimation,
@@ -77,6 +87,16 @@ import {
     bounceInRightOnEnterAnimation({ anchor: 'enter1' }),
     bounceInRightOnEnterAnimation({ anchor: 'enter2', delay: 100 }),
     bounceInRightOnEnterAnimation({ anchor: 'enter3', delay: 200, animateChildren: 'none' }),
+    bounceOnEnterAnimation(),
+    flashOnEnterAnimation(),
+    pulseOnEnterAnimation(),
+    rubberBandOnEnterAnimation(),
+    shakeOnEnterAnimation(),
+    swingOnEnterAnimation(),
+    tadaOnEnterAnimation(),
+    wobbleOnEnterAnimation(),
+    jelloOnEnterAnimation(),
+    flipOnEnterAnimation(),
     bounceInOnEnterAnimation(),
     bounceInUpOnEnterAnimation(),
     bounceOutOnLeaveAnimation(),
@@ -188,9 +208,13 @@ export class DemoOnEnterOnLeaveComponent {
     {
       label: 'Specials',
       animations: ['jackInTheBoxOnEnterHingeOnLeave', 'rollInOut']
+    },
+    {
+      label: 'Attention Seekers',
+      animations: ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'jello', 'flip']
     }
   ];
-  animation = this.options[0].animations[0];
+  animation = 'bounceIn';
 
   state = true;
 
