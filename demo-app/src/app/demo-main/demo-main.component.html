@@ -1,4 +1,4 @@
-<div style="text-align:center">
+<div class="container">
   <h1 [@enter1]>
     Angular Animations Demo!
   </h1>
@@ -104,7 +104,6 @@
   </div>
 
 
-
   <div [@enter3] (@enter3.done)="animationState = !animationState">
     <mat-form-field appearance="outline">
       <mat-select [(ngModel)]="animation" (ngModelChange)="animateAfterChange()">
@@ -113,6 +112,15 @@
         </mat-optgroup>
       </mat-select>
     </mat-form-field>
-    <button mat-stroked-button color="primary" class="animate-btn" (click)="animate()">Animate it</button>
+    <button [@hueButton]="hueBtnState" (@hueButton.done)="hueBtnState = !hueBtnState" mat-stroked-button color="primary"
+      class="animate-btn" (click)="animate()">Animate it</button>
   </div>
+
+  <div [@enter3]>
+    <hr>
+    <div>
+      <a href="https://github.com/filipows/angular-animations">View on GitHub</a> or <a href="">play with StackBlitz</a>
+    </div>
+  </div>
+
 </div>

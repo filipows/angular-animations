@@ -172,7 +172,8 @@ import {
     collapseAnimation(),
     rotateAnimation(),
     rotateAnimation({ anchor: 'rotate90', degrees: 90 }),
-    hueRotateAnimation()
+    hueRotateAnimation(),
+    hueRotateAnimation({ anchor: 'hueButton', duration: 20000 })
   ]
 })
 export class DemoMainComponent {
@@ -260,6 +261,7 @@ export class DemoMainComponent {
   ];
   animation = 'rubberBand';
   animationState = false;
+  hueBtnState = false;
 
   animate() {
     this.animationState = !this.animationState;
