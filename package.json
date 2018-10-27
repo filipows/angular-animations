@@ -1,4 +1,5 @@
 {
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "angular-animations",
   "version": "0.0.1",
   "description": "Angular Animations Utilities",
@@ -7,10 +8,10 @@
   "scripts": {
     "start": "npm run demo-app",
     "demo-app": "cd demo-app && ng serve",
-    "build": "npx tsc",
+    "build": "ng-packagr -p package.json",
     "prepublish": "npm run lint && npm test && npm run build",
     "release": "np",
-    "test": "npx tsc --noEmit",
+    "test": "tsc --noEmit",
     "prettier": "prettier \"lib/**/*.ts\" --config \"./.prettierrc.json\" -l",
     "prettier-fix": "prettier \"**/*.ts\" --config \"./.prettierrc.json\" --write",
     "tslint": "tslint -p ./tsconfig.json -c tslint.json",
@@ -48,15 +49,25 @@
   "homepage": "https://github.com/filipows/angular-animations#readme",
   "devDependencies": {
     "@angular/animations": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
+    "@angular/compiler-cli": "^6.0.0",
+    "@angular/core": "^6.0.0",
     "angular-cli-ghpages": "^0.5.3",
     "husky": "^1.1.2",
+    "ng-packagr": "^4.4.0",
     "np": "^3.0.4",
     "prettier": "1.14.3",
+    "tsickle": "^0.33.1",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
-    "typescript": "^3.1.3"
+    "typescript": "^2.9.2"
   },
   "peerDependencies": {
     "@angular/animations": "^6.0.0"
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "lib/index.ts"
+    }
   }
 }
