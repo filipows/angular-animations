@@ -10,9 +10,17 @@ import { DemoOnEnterOnLeaveComponent } from './demo-on-enter-on-leave/demo-on-en
 import { AppRoutingModule } from './app-routing.module';
 import { DemoMainComponent } from './demo-main/demo-main.component';
 import { ExperimentsComponent } from './experiments/experiments.component';
+import { DemoDynamicParamsComponent } from './demo-dynamic-params/demo-dynamic-params.component';
 
 @NgModule({
-  declarations: [AppComponent, AngularImgComponent, DemoOnEnterOnLeaveComponent, DemoMainComponent, ExperimentsComponent],
+  declarations: [
+    AppComponent,
+    AngularImgComponent,
+    DemoOnEnterOnLeaveComponent,
+    DemoMainComponent,
+    ExperimentsComponent,
+    DemoDynamicParamsComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
