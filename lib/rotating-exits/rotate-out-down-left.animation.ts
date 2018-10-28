@@ -32,8 +32,8 @@ export function rotateOutDownLeftAnimation(options?: IAnimationOptions): Animati
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'left bottom' }),
         group([
-          style({ 'transform-origin': 'left bottom' }),
           useAnimation(rotateOutDownLeft, {
             params: {
               duration: '{{duration}}',
@@ -62,8 +62,8 @@ export function rotateOutDownLeftOnLeaveAnimation(options?: IAnimationOptions): 
       ':leave',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'left bottom' }),
         group([
-          style({ 'transform-origin': 'left bottom' }),
           useAnimation(rotateOutDownLeft, {
             params: {
               duration: '{{duration}}',

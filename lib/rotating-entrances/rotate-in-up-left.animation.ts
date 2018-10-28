@@ -32,8 +32,8 @@ export function rotateInUpLeftAnimation(options?: IAnimationOptions): AnimationT
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'left bottom' }),
         group([
-          style({ 'transform-origin': 'left bottom' }),
           useAnimation(rotateInUpLeft, {
             params: {
               duration: '{{duration}}',
@@ -63,8 +63,8 @@ export function rotateInUpLeftOnEnterAnimation(options?: IAnimationOptions): Ani
       [
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'left bottom' }),
         group([
-          style({ 'transform-origin': 'left bottom' }),
           useAnimation(rotateInUpLeft, {
             params: {
               duration: '{{duration}}',

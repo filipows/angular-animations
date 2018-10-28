@@ -32,8 +32,8 @@ export function rotateOutAnimation(options?: IAnimationOptions): AnimationTrigge
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'center' }),
         group([
-          style({ 'transform-origin': 'center' }),
           useAnimation(rotateOut, {
             params: {
               duration: '{{duration}}',
@@ -62,8 +62,8 @@ export function rotateOutOnLeaveAnimation(options?: IAnimationOptions): Animatio
       ':leave',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'center' }),
         group([
-          style({ 'transform-origin': 'center' }),
           useAnimation(rotateOut, {
             params: {
               duration: '{{duration}}',

@@ -32,8 +32,8 @@ export function rotateInAnimation(options?: IAnimationOptions): AnimationTrigger
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'center' }),
         group([
-          style({ 'transform-origin': 'center' }),
           useAnimation(rotateIn, {
             params: {
               duration: '{{duration}}',
@@ -63,8 +63,8 @@ export function rotateInOnEnterAnimation(options?: IAnimationOptions): Animation
       [
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'center' }),
         group([
-          style({ 'transform-origin': 'center' }),
           useAnimation(rotateIn, {
             params: {
               duration: '{{duration}}',

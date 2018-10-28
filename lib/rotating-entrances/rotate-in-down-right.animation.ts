@@ -32,8 +32,8 @@ export function rotateInDownRightAnimation(options?: IAnimationOptions): Animati
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'right bottom' }),
         group([
-          style({ 'transform-origin': 'right bottom' }),
           useAnimation(rotateInDownRight, {
             params: {
               duration: '{{duration}}',
@@ -63,8 +63,8 @@ export function rotateInDownRightOnEnterAnimation(options?: IAnimationOptions): 
       [
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'right bottom' }),
         group([
-          style({ 'transform-origin': 'right bottom' }),
           useAnimation(rotateInDownRight, {
             params: {
               duration: '{{duration}}',
