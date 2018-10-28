@@ -19,7 +19,11 @@
       <input matInput placeholder="" min="0" step="0.01" type="number" [(ngModel)]="scale">
     </mat-form-field>
 
-    <mat-form-field appearance="outline" *ngIf="['shake', 'fadeInDownBig', 'fadeInUpBig', 'fadeInLeftBig', 'fadeInRightBig', 'fadeInDown', 'fadeInUp', 'fadeInLeft', 'fadeInRight'].includes(animation)">
+    <mat-form-field appearance="outline" *ngIf="[
+    'shake', 
+    'fadeInDownBig', 'fadeInUpBig', 'fadeInLeftBig', 'fadeInRightBig', 'fadeInDown', 'fadeInUp', 'fadeInLeft', 'fadeInRight', 
+    'fadeOutDownBig', 'fadeOutUpBig', 'fadeOutLeftBig', 'fadeOutRightBig', 'fadeOutDown', 'fadeOutUp', 'fadeOutLeft', 'fadeOutRight'
+    ].includes(animation)">
       <mat-label>Translate (px, %, em, vw, vh):</mat-label>
       <input matInput placeholder="" type="text" [(ngModel)]="translate">
     </mat-form-field>
@@ -60,14 +64,14 @@
     <app-angular-img *ngSwitchCase="'fadeInUpBig'" [@fadeInUpBig]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <!-- Fading exits -->
     <app-angular-img *ngSwitchCase="'fadeOut'" [@fadeOut]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'fadeOutDown'" [@fadeOutDown]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'fadeOutDownBig'" [@fadeOutDownBig]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'fadeOutLeft'" [@fadeOutLeft]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'fadeOutLeftBig'" [@fadeOutLeftBig]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'fadeOutRight'" [@fadeOutRight]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'fadeOutRightBig'" [@fadeOutRightBig]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'fadeOutUp'" [@fadeOutUp]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'fadeOutUpBig'" [@fadeOutUpBig]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'fadeOutDown'" [@fadeOutDown]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'fadeOutDownBig'" [@fadeOutDownBig]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'fadeOutLeft'" [@fadeOutLeft]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'fadeOutLeftBig'" [@fadeOutLeftBig]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'fadeOutRight'" [@fadeOutRight]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'fadeOutRightBig'" [@fadeOutRightBig]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'fadeOutUp'" [@fadeOutUp]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'fadeOutUpBig'" [@fadeOutUpBig]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <!-- Flippers -->
     <app-angular-img *ngSwitchCase="'flip'" [@flip]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'flipInX'" [@flipInX]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>

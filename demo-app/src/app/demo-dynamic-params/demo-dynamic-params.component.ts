@@ -280,14 +280,22 @@ export class DemoDynamicParamsComponent {
       case 'fadeInDown':
       case 'fadeInUp':
       case 'fadeInLeft':
-      case 'fadeInRight': {
+      case 'fadeInRight':
+      case 'fadeOutDown':
+      case 'fadeOutUp':
+      case 'fadeOutLeft':
+      case 'fadeOutRight': {
         this.translate = '100%';
         break;
       }
       case 'fadeInDownBig':
       case 'fadeInUpBig':
       case 'fadeInLeftBig':
-      case 'fadeInRightBig': {
+      case 'fadeInRightBig':
+      case 'fadeOutDownBig':
+      case 'fadeOutUpBig':
+      case 'fadeOutLeftBig':
+      case 'fadeOutRightBig': {
         this.translate = '2000px';
         break;
       }
