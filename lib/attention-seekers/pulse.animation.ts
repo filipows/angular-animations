@@ -3,6 +3,7 @@ import {
   animateChild,
   animation,
   AnimationTriggerMetadata,
+  AUTO_STYLE,
   group,
   keyframes,
   query,
@@ -18,7 +19,7 @@ const pulse = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
+      style({ visibility: AUTO_STYLE, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
       style({ transform: 'scale3d(1.05, 1.05, 1.05)', easing: 'ease', offset: 0.5 }),
       style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1 })
     ])
@@ -62,6 +63,7 @@ export function pulseOnEnterAnimation(options?: IAnimationOptions): AnimationTri
       ':enter',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ visibility: 'hidden' }),
         group([
           useAnimation(pulse, {
             params: {

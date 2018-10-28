@@ -3,6 +3,7 @@ import {
   animateChild,
   animation,
   AnimationTriggerMetadata,
+  AUTO_STYLE,
   group,
   keyframes,
   query,
@@ -18,7 +19,7 @@ const shake = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: AUTO_STYLE, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
       style({ transform: 'translate3d(-10px, 0, 0)', easing: 'ease', offset: 0.1 }),
       style({ transform: 'translate3d(10px, 0, 0)', easing: 'ease', offset: 0.2 }),
       style({ transform: 'translate3d(-10px, 0, 0)', easing: 'ease', offset: 0.3 }),
@@ -70,6 +71,7 @@ export function shakeOnEnterAnimation(options?: IAnimationOptions): AnimationTri
       ':enter',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ visibility: 'hidden' }),
         group([
           useAnimation(shake, {
             params: {
