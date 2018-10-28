@@ -261,7 +261,7 @@ export class DemoDynamicParamsComponent implements OnInit {
       animations: ['collapse', 'rotate', 'rotate90', 'rotate720', 'hueRotate']
     }
   ];
-  animation = 'flipInX';
+  animation = 'lightSpeedIn';
   animationState = false;
 
   animate() {
@@ -312,6 +312,11 @@ export class DemoDynamicParamsComponent implements OnInit {
       case 'flipOutX':
       case 'flipOutY': {
         this.degrees = 90;
+        break;
+      }
+      case 'lightSpeedIn':
+      case 'lightSpeedOut': {
+        this.translate = '100%';
         break;
       }
     }
