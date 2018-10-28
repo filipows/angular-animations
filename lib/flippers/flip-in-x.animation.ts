@@ -16,7 +16,7 @@ import { IAnimationOptions } from '../common/interfaces';
 
 export interface IFlipInXAnimationOptions extends IAnimationOptions {
   /**
-   * Angle -number of degrees from which to start animation.
+   * Angle - number of degrees from which to start animation.
    *
    * Default 90
    */

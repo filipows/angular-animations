@@ -30,7 +30,8 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" *ngIf="[
-      'flipInX', 'flipInY', 'flipOutX', 'flipOutY'
+      'flipInX', 'flipInY', 'flipOutX', 'flipOutY',
+      'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight'
     ].includes(animation)">
       <mat-label>Degrees:</mat-label>
       <input matInput placeholder="" type="number" [(ngModel)]="degrees">
@@ -91,11 +92,11 @@
     <app-angular-img *ngSwitchCase="'lightSpeedIn'" [@lightSpeedIn]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'lightSpeedOut'" [@lightSpeedOut]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <!-- Rotating entrances -->
-    <app-angular-img *ngSwitchCase="'rotateIn'" [@rotateIn]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rotateInDownLeft'" [@rotateInDownLeft]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rotateInDownRight'" [@rotateInDownRight]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rotateInUpLeft'" [@rotateInUpLeft]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rotateInUpRight'" [@rotateInUpRight]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'rotateIn'" [@rotateIn]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'rotateInDownLeft'" [@rotateInDownLeft]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'rotateInDownRight'" [@rotateInDownRight]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'rotateInUpLeft'" [@rotateInUpLeft]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'rotateInUpRight'" [@rotateInUpRight]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
     <!--Rotating exits  -->
     <app-angular-img *ngSwitchCase="'rotateOut'" [@rotateOut]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'rotateOutDownLeft'" [@rotateOutDownLeft]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>

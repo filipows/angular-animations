@@ -261,7 +261,7 @@ export class DemoDynamicParamsComponent implements OnInit {
       animations: ['collapse', 'rotate', 'rotate90', 'rotate720', 'hueRotate']
     }
   ];
-  animation = 'lightSpeedIn';
+  animation = 'rotateIn';
   animationState = false;
 
   animate() {
@@ -317,6 +317,20 @@ export class DemoDynamicParamsComponent implements OnInit {
       case 'lightSpeedIn':
       case 'lightSpeedOut': {
         this.translate = '100%';
+        break;
+      }
+      case 'rotateInDownLeft':
+      case 'rotateInDownRight':
+      case 'rotateInUpLeft': {
+        this.degrees = 45;
+        break;
+      }
+      case 'rotateInUpRight': {
+        this.degrees = 90;
+        break;
+      }
+      case 'rotateIn': {
+        this.degrees = -200;
         break;
       }
     }
