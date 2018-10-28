@@ -9,9 +9,10 @@ import { AngularImgComponent } from './angular-img/angular-img.component';
 import { DemoOnEnterOnLeaveComponent } from './demo-on-enter-on-leave/demo-on-enter-on-leave.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DemoMainComponent } from './demo-main/demo-main.component';
+import { ExperimentsComponent } from './experiments/experiments.component';
 
 @NgModule({
-  declarations: [AppComponent, AngularImgComponent, DemoOnEnterOnLeaveComponent, DemoMainComponent],
+  declarations: [AppComponent, AngularImgComponent, DemoOnEnterOnLeaveComponent, DemoMainComponent, ExperimentsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

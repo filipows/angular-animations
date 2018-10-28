@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DemoMainComponent } from './demo-main/demo-main.component';
 import { DemoOnEnterOnLeaveComponent } from './demo-on-enter-on-leave/demo-on-enter-on-leave.component';
+import { ExperimentsComponent } from './experiments/experiments.component';
 
 export const routes: Routes = [
   {
@@ -12,6 +13,10 @@ export const routes: Routes = [
   {
     path: 'enter-leave',
     component: DemoOnEnterOnLeaveComponent
+  },
+  {
+    path: 'experiments',
+    component: ExperimentsComponent
   },
   {
     path: '**',
