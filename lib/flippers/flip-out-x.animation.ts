@@ -14,20 +14,29 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IFlipOutXAnimationOptions extends IAnimationOptions {
+  /**
+   * Angle - number of degrees at which end animation.
+   *
+   * Default 90
+   */
+  degrees?: number;
+}
+
 const flipOutX = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
       style({ transform: 'perspective(400px)', opacity: 1, easing: 'ease', offset: 0 }),
       style({ transform: 'perspective(400px) rotate3d(1, 0, 0, -20deg)', opacity: 1, easing: 'ease', offset: 0.3 }),
-      style({ transform: 'perspective(400px) rotate3d(1, 0, 0, 90deg)', opacity: 0, easing: 'ease', offset: 1 })
+      style({ transform: 'perspective(400px) rotate3d(1, 0, 0, {{degrees}}deg)', opacity: 0, easing: 'ease', offset: 1 })
     ])
   )
 ]);
 
 const DEFAULT_DURATION = 750;
 
-export function flipOutXAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function flipOutXAnimation(options?: IFlipOutXAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipOutX', [
     transition(
       '0 <=> 1',
@@ -35,12 +44,7 @@ export function flipOutXAnimation(options?: IAnimationOptions): AnimationTrigger
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'backface-visibility': 'visible' }),
-          useAnimation(flipOutX, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(flipOutX),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -50,14 +54,15 @@ export function flipOutXAnimation(options?: IAnimationOptions): AnimationTrigger
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || 90
         }
       }
     )
   ]);
 }
 
-export function flipOutXOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function flipOutXOnLeaveAnimation(options?: IFlipOutXAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipOutXOnLeave', [
     transition(
       ':leave',
@@ -65,12 +70,7 @@ export function flipOutXOnLeaveAnimation(options?: IAnimationOptions): Animation
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'backface-visibility': 'visible' }),
-          useAnimation(flipOutX, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(flipOutX),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -80,7 +80,8 @@ export function flipOutXOnLeaveAnimation(options?: IAnimationOptions): Animation
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || 90
         }
       }
     )

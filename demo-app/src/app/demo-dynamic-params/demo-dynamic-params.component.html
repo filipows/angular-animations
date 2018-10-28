@@ -27,6 +27,14 @@
       <mat-label>Translate (px, %, em, vw, vh):</mat-label>
       <input matInput placeholder="" type="text" [(ngModel)]="translate">
     </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="[
+      'flipInX', 'flipInY', 'flipOutX', 'flipOutY'
+    ].includes(animation)">
+      <mat-label>Degrees:</mat-label>
+      <input matInput placeholder="" type="number" [(ngModel)]="degrees">
+    </mat-form-field>
+
   </div>
 
   <div [ngSwitch]="animation">
@@ -74,10 +82,10 @@
     <app-angular-img *ngSwitchCase="'fadeOutUpBig'" [@fadeOutUpBig]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <!-- Flippers -->
     <app-angular-img *ngSwitchCase="'flip'" [@flip]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'flipInX'" [@flipInX]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'flipInY'" [@flipInY]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'flipOutX'" [@flipOutX]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'flipOutY'" [@flipOutY]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'flipInX'" [@flipInX]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'flipInY'" [@flipInY]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'flipOutX'" [@flipOutX]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'flipOutY'" [@flipOutY]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
     <!-- Light speed -->
     <app-angular-img *ngSwitchCase="'lightSpeedIn'" [@lightSpeedIn]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'lightSpeedOut'" [@lightSpeedOut]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>

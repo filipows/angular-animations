@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {
   bounceAnimation,
@@ -172,11 +172,12 @@ import {
     hueRotateAnimation({ anchor: 'hueButton', duration: 20000 })
   ]
 })
-export class DemoDynamicParamsComponent {
-  delay = 0;
-  duration = 1000;
+export class DemoDynamicParamsComponent implements OnInit {
+  delay: number;
+  duration: number;
   scale: number;
   translate: string;
+  degrees: number;
 
   options = [
     {
@@ -260,7 +261,7 @@ export class DemoDynamicParamsComponent {
       animations: ['collapse', 'rotate', 'rotate90', 'rotate720', 'hueRotate']
     }
   ];
-  animation = 'bounce';
+  animation = 'flipInX';
   animationState = false;
 
   animate() {
@@ -268,6 +269,13 @@ export class DemoDynamicParamsComponent {
   }
 
   animationChanged() {
+    this.setDefaultParams();
+    this.animateAfterChange();
+  }
+
+  setDefaultParams() {
+    this.duration = 1000;
+    this.delay = 0;
     switch (this.animation) {
       case 'pulse': {
         this.scale = 1.05;
@@ -299,13 +307,23 @@ export class DemoDynamicParamsComponent {
         this.translate = '2000px';
         break;
       }
+      case 'flipInX':
+      case 'flipInY':
+      case 'flipOutX':
+      case 'flipOutY': {
+        this.degrees = 90;
+        break;
+      }
     }
-    this.animateAfterChange();
   }
 
   animateAfterChange() {
     setTimeout(() => {
       this.animate();
     }, 1);
+  }
+
+  ngOnInit() {
+    this.setDefaultParams();
   }
 }
