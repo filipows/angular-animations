@@ -14,11 +14,20 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IFadeInRightgAnimationOptions extends IAnimationOptions {
+  /**
+   * Translate, possible units: px, %, em, rem, vw, vh
+   *
+   * Default: 100%
+   */
+  translate?: string;
+}
+
 const fadeInRight = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ visibility: 'visible', opacity: 0, transform: 'translate3d(100%, 0, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', opacity: 0, transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0 }),
       style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
@@ -26,19 +35,14 @@ const fadeInRight = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function fadeInRightAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function fadeInRightAnimation(options?: IFadeInRightgAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInRight', [
     transition(
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeInRight, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(fadeInRight),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -48,14 +52,15 @@ export function fadeInRightAnimation(options?: IAnimationOptions): AnimationTrig
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%'
         }
       }
     )
   ]);
 }
 
-export function fadeInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function fadeInRightOnEnterAnimation(options?: IFadeInRightgAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInRightOnEnter', [
     transition(
       ':enter',
@@ -63,12 +68,7 @@ export function fadeInRightOnEnterAnimation(options?: IAnimationOptions): Animat
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeInRight, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(fadeInRight),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -78,7 +78,8 @@ export function fadeInRightOnEnterAnimation(options?: IAnimationOptions): Animat
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%'
         }
       }
     )

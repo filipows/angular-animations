@@ -80,7 +80,6 @@ import {
   // other
   collapseAnimation,
   rotateAnimation,
-  bounceInUpOnEnterAnimation,
   hueRotateAnimation
 } from '../../../../lib/';
 
@@ -174,6 +173,11 @@ import {
   ]
 })
 export class DemoDynamicParamsComponent {
+  delay = 0;
+  duration = 1000;
+  scale: number;
+  translate: string;
+
   options = [
     {
       label: 'Attention Seekers',
@@ -258,10 +262,37 @@ export class DemoDynamicParamsComponent {
   ];
   animation = 'bounce';
   animationState = false;
-  hueBtnState = false;
 
   animate() {
     this.animationState = !this.animationState;
+  }
+
+  animationChanged() {
+    switch (this.animation) {
+      case 'pulse': {
+        this.scale = 1.05;
+        break;
+      }
+      case 'shake': {
+        this.translate = '10px';
+        break;
+      }
+      case 'fadeInDown':
+      case 'fadeInUp':
+      case 'fadeInLeft':
+      case 'fadeInRight': {
+        this.translate = '100%';
+        break;
+      }
+      case 'fadeInDownBig':
+      case 'fadeInUpBig':
+      case 'fadeInLeftBig':
+      case 'fadeInRightBig': {
+        this.translate = '2000px';
+        break;
+      }
+    }
+    this.animateAfterChange();
   }
 
   animateAfterChange() {
