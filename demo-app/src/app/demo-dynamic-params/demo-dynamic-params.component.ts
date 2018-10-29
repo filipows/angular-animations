@@ -333,6 +333,23 @@ export class DemoDynamicParamsComponent implements OnInit {
         this.degrees = -200;
         break;
       }
+      case 'rotateOut': {
+        this.degrees = 200;
+        break;
+      }
+      case 'rotateOutDownLeft': {
+        this.degrees = 45;
+        break;
+      }
+      case 'rotateOutDownRight':
+      case 'rotateOutUpLeft': {
+        this.degrees = -45;
+        break;
+      }
+      case 'rotateOutUpRight': {
+        this.degrees = 90;
+        break;
+      }
     }
   }
 

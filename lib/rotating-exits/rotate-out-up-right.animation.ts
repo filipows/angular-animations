@@ -14,19 +14,28 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IRotateOutUpRightAnimationOptions extends IAnimationOptions {
+  /**
+   * Angle - number of degrees at which end animation.
+   *
+   * Default 90
+   */
+  degrees?: number;
+}
+
 const rotateOutUpRight = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
       style({ opacity: 1, easing: 'ease', offset: 0 }),
-      style({ opacity: 0, transform: 'rotate3d(0, 0, 1, 90deg)', easing: 'ease', offset: 1 })
+      style({ opacity: 0, transform: 'rotate3d(0, 0, 1, {{degrees}}deg)', easing: 'ease', offset: 1 })
     ])
   )
 ]);
 
 const DEFAULT_DURATION = 1000;
 
-export function rotateOutUpRightAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function rotateOutUpRightAnimation(options?: IRotateOutUpRightAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOutUpRight', [
     transition(
       '0 <=> 1',
@@ -34,12 +43,7 @@ export function rotateOutUpRightAnimation(options?: IAnimationOptions): Animatio
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'right bottom' }),
         group([
-          useAnimation(rotateOutUpRight, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(rotateOutUpRight),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -49,14 +53,15 @@ export function rotateOutUpRightAnimation(options?: IAnimationOptions): Animatio
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || 90
         }
       }
     )
   ]);
 }
 
-export function rotateOutUpRightOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function rotateOutUpRightOnLeaveAnimation(options?: IRotateOutUpRightAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOutUpRightOnLeave', [
     transition(
       ':leave',
@@ -64,12 +69,7 @@ export function rotateOutUpRightOnLeaveAnimation(options?: IAnimationOptions): A
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'right bottom' }),
         group([
-          useAnimation(rotateOutUpRight, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(rotateOutUpRight),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -79,7 +79,8 @@ export function rotateOutUpRightOnLeaveAnimation(options?: IAnimationOptions): A
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || 90
         }
       }
     )

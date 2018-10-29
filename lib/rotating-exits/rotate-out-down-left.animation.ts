@@ -14,19 +14,28 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IRotateOutDownLeftAnimationOptions extends IAnimationOptions {
+  /**
+   * Angle - number of degrees at which end animation.
+   *
+   * Default 45
+   */
+  degrees?: number;
+}
+
 const rotateOutDownLeft = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
       style({ opacity: 1, easing: 'ease', offset: 0 }),
-      style({ opacity: 0, transform: 'rotate3d(0, 0, 1, 45deg)', easing: 'ease', offset: 1 })
+      style({ opacity: 0, transform: 'rotate3d(0, 0, 1, {{degrees}}deg)', easing: 'ease', offset: 1 })
     ])
   )
 ]);
 
 const DEFAULT_DURATION = 1000;
 
-export function rotateOutDownLeftAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function rotateOutDownLeftAnimation(options?: IRotateOutDownLeftAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOutDownLeft', [
     transition(
       '0 <=> 1',
@@ -34,12 +43,7 @@ export function rotateOutDownLeftAnimation(options?: IAnimationOptions): Animati
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'left bottom' }),
         group([
-          useAnimation(rotateOutDownLeft, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(rotateOutDownLeft),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -49,14 +53,15 @@ export function rotateOutDownLeftAnimation(options?: IAnimationOptions): Animati
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || 45
         }
       }
     )
   ]);
 }
 
-export function rotateOutDownLeftOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function rotateOutDownLeftOnLeaveAnimation(options?: IRotateOutDownLeftAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOutDownLeftOnLeave', [
     transition(
       ':leave',
@@ -64,12 +69,7 @@ export function rotateOutDownLeftOnLeaveAnimation(options?: IAnimationOptions): 
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'left bottom' }),
         group([
-          useAnimation(rotateOutDownLeft, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(rotateOutDownLeft),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -79,7 +79,8 @@ export function rotateOutDownLeftOnLeaveAnimation(options?: IAnimationOptions): 
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || 45
         }
       }
     )
