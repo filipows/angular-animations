@@ -319,14 +319,17 @@ export class DemoDynamicParamsComponent implements OnInit {
         this.translate = '100%';
         break;
       }
-      case 'rotateInDownLeft':
+      case 'rotateInDownLeft': {
+        this.degrees = -45;
+        break;
+      }
       case 'rotateInDownRight':
       case 'rotateInUpLeft': {
         this.degrees = 45;
         break;
       }
       case 'rotateInUpRight': {
-        this.degrees = 90;
+        this.degrees = -90;
         break;
       }
       case 'rotateIn': {
