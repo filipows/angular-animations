@@ -25,7 +25,8 @@
     'fadeOutDownBig', 'fadeOutUpBig', 'fadeOutLeftBig', 'fadeOutRightBig', 'fadeOutDown', 'fadeOutUp', 'fadeOutLeft', 'fadeOutRight',
     'lightSpeedIn', 'lightSpeedOut',
     'slideInUp', 'slideInDown', 'slideInLeft', 'slideInRight',
-    'slideOutUp', 'slideOutDown', 'slideOutLeft', 'slideOutRight'
+    'slideOutUp', 'slideOutDown', 'slideOutLeft', 'slideOutRight',
+    'rollIn', 'rollOut'
     ].includes(animation)">
       <mat-label>Translate (px, %, rem, em, vw, vh):</mat-label>
       <input matInput placeholder="" type="text" [(ngModel)]="translate">
@@ -34,8 +35,9 @@
     <mat-form-field appearance="outline" *ngIf="[
       'flipInX', 'flipInY', 'flipOutX', 'flipOutY',
       'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight',
-      'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight'
-    ].includes(animation)">
+      'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight',
+      'rollIn', 'rollOut'
+      ].includes(animation)">
       <mat-label>Degrees:</mat-label>
       <input matInput placeholder="" type="number" [(ngModel)]="degrees">
     </mat-form-field>
@@ -115,7 +117,7 @@
     <app-angular-img *ngSwitchCase="'slideOutUp'" [@slideOutUp]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'slideOutDown'" [@slideOutDown]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'slideOutLeft'" [@slideOutLeft]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'slideOutRight'" [@slideOutRight]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'slideOutRight'" [@slideOutRight]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <!-- Zooming entrances -->
     <app-angular-img *ngSwitchCase="'zoomIn'" [@zoomIn]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'zoomInDown'" [@zoomInDown]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
@@ -131,8 +133,8 @@
     <!-- Specials -->
     <app-angular-img *ngSwitchCase="'hinge'" [@hinge]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'jackInTheBox'" [@jackInTheBox]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rollIn'" [@rollIn]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rollOut'" [@rollOut]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'rollIn'" [@rollIn]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'rollOut'" [@rollOut]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees, translate: translate }}"></app-angular-img>
     <!-- Other -->
     <app-angular-img *ngSwitchCase="'collapse'" [@collapse]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'rotate'" [@rotate]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>

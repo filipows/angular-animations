@@ -21,7 +21,7 @@ const zoomInLeft = animation([
       style({
         visibility: 'visible',
         opacity: 0,
-        transform: 'scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0)',
+        transform: 'scale3d(0.1, 0.1, 0.1) translate3d(-3000px, 0, 0)',
         easing: 'ease',
         offset: 0
       }),
