@@ -14,11 +14,20 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface ISlideInUpAnimationOptions extends IAnimationOptions {
+  /**
+   * Translate, possible units: px, %, em, rem, vw, vh
+   *
+   * Default: 100%
+   */
+  translate?: string;
+}
+
 const slideInUp = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ visibility: 'visible', transform: 'translate3d(0, 100%, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', transform: 'translate3d(0, {{translate}}, 0)', easing: 'ease', offset: 0 }),
       style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
@@ -26,7 +35,7 @@ const slideInUp = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function slideInUpAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function slideInUpAnimation(options?: ISlideInUpAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideInUp', [
     transition(
       '0 <=> 1',
@@ -34,12 +43,7 @@ export function slideInUpAnimation(options?: IAnimationOptions): AnimationTrigge
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ visibility: 'visible' }),
-          useAnimation(slideInUp, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(slideInUp),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -49,14 +53,15 @@ export function slideInUpAnimation(options?: IAnimationOptions): AnimationTrigge
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%'
         }
       }
     )
   ]);
 }
 
-export function slideInUpOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function slideInUpOnEnterAnimation(options?: ISlideInUpAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideInUpOnEnter', [
     transition(
       ':enter',
@@ -64,12 +69,7 @@ export function slideInUpOnEnterAnimation(options?: IAnimationOptions): Animatio
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideInUp, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(slideInUp),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -79,7 +79,8 @@ export function slideInUpOnEnterAnimation(options?: IAnimationOptions): Animatio
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%'
         }
       }
     )

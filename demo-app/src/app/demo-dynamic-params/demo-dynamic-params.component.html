@@ -23,7 +23,8 @@
     'shake', 
     'fadeInDownBig', 'fadeInUpBig', 'fadeInLeftBig', 'fadeInRightBig', 'fadeInDown', 'fadeInUp', 'fadeInLeft', 'fadeInRight', 
     'fadeOutDownBig', 'fadeOutUpBig', 'fadeOutLeftBig', 'fadeOutRightBig', 'fadeOutDown', 'fadeOutUp', 'fadeOutLeft', 'fadeOutRight',
-    'lightSpeedIn', 'lightSpeedOut'
+    'lightSpeedIn', 'lightSpeedOut',
+    'slideInUp', 'slideInDown', 'slideInLeft', 'slideInRight'
     ].includes(animation)">
       <mat-label>Translate (px, %, rem, em, vw, vh):</mat-label>
       <input matInput placeholder="" type="text" [(ngModel)]="translate">
@@ -105,10 +106,10 @@
     <app-angular-img *ngSwitchCase="'rotateOutUpLeft'" [@rotateOutUpLeft]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'rotateOutUpRight'" [@rotateOutUpRight]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
     <!-- Sliding entrances -->
-    <app-angular-img *ngSwitchCase="'slideInUp'" [@slideInUp]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'slideInDown'" [@slideInDown]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'slideInLeft'" [@slideInLeft]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'slideInRight'" [@slideInRight]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'slideInUp'" [@slideInUp]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'slideInDown'" [@slideInDown]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'slideInLeft'" [@slideInLeft]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'slideInRight'" [@slideInRight]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <!-- Sliding exits -->
     <app-angular-img *ngSwitchCase="'slideOutUp'" [@slideOutUp]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'slideOutDown'" [@slideOutDown]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
