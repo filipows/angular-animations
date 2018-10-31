@@ -277,6 +277,20 @@ export class DemoDynamicParamsComponent implements OnInit {
     this.duration = 1000;
     this.delay = 0;
     switch (this.animation) {
+      case 'bounceInDown':
+      case 'bounceInUp':
+      case 'bounceInLeft':
+      case 'bounceInRight': {
+        this.translate = '3000px';
+        break;
+      }
+      case 'bounceOutDown':
+      case 'bounceOutUp':
+      case 'bounceOutLeft':
+      case 'bounceOutRight': {
+        this.translate = '2000px';
+        break;
+      }
       case 'pulse': {
         this.scale = 1.05;
         break;

@@ -21,6 +21,8 @@
 
     <mat-form-field appearance="outline" *ngIf="[
     'shake', 
+    'bounceInDown', 'bounceInUp', 'bounceInLeft', 'bounceInRight',
+    'bounceOutDown', 'bounceOutUp', 'bounceOutLeft', 'bounceOutRight',
     'fadeInDownBig', 'fadeInUpBig', 'fadeInLeftBig', 'fadeInRightBig', 'fadeInDown', 'fadeInUp', 'fadeInLeft', 'fadeInRight', 
     'fadeOutDownBig', 'fadeOutUpBig', 'fadeOutLeftBig', 'fadeOutRightBig', 'fadeOutDown', 'fadeOutUp', 'fadeOutLeft', 'fadeOutRight',
     'lightSpeedIn', 'lightSpeedOut',
@@ -58,16 +60,16 @@
     <app-angular-img *ngSwitchCase="'jello'" [@jello]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <!-- Bouncing entrances -->
     <app-angular-img *ngSwitchCase="'bounceIn'" [@bounceIn]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'bounceInDown'" [@bounceInDown]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'bounceInLeft'" [@bounceInLeft]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'bounceInRight'" [@bounceInRight]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'bounceInUp'" [@bounceInUp]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'bounceInDown'" [@bounceInDown]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'bounceInLeft'" [@bounceInLeft]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'bounceInRight'" [@bounceInRight]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'bounceInUp'" [@bounceInUp]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <!-- Bouncing exits -->
     <app-angular-img *ngSwitchCase="'bounceOut'" [@bounceOut]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'bounceOutDown'" [@bounceOutDown]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'bounceOutLeft'" [@bounceOutLeft]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'bounceOutRight'" [@bounceOutRight]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'bounceOutUp'" [@bounceOutUp]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'bounceOutDown'" [@bounceOutDown]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'bounceOutLeft'" [@bounceOutLeft]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'bounceOutRight'" [@bounceOutRight]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'bounceOutUp'" [@bounceOutUp]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
     <!-- Fading entrances -->
     <app-angular-img *ngSwitchCase="'fadeIn'" [@fadeIn]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'fadeInDown'" [@fadeInDown]="{ value: animationState, params: { duration: duration, delay: delay, translate: translate }}"></app-angular-img>
