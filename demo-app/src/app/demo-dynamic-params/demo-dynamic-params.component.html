@@ -3,23 +3,29 @@
     Dynamic params:
   </h1>
 
-  <div class="dynamic-params-container" [@enter1]="{ value: '', params: { delay: 0 } }">
-    <mat-form-field appearance="outline">
+  <form class="dynamic-params-container" [@enter1]="{ value: '', params: { delay: 0 } }" #f="ngForm" ngNativeValidate>
+    <mat-form-field appearance="outline" hideRequiredMarker="true">
       <mat-label>Duration (ms)</mat-label>
-      <input matInput placeholder="" min="1" type="number" [(ngModel)]="duration">
+      <input matInput required placeholder="" min="1" pattern="[1-9][0-9]*\.?[0-9]+" type="number" name="duration"
+        [(ngModel)]="duration">
+      <mat-error>Duration must be positive value</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" hideRequiredMarker="true">
       <mat-label>Delay (ms)</mat-label>
-      <input matInput placeholder="" min="0" type="number" [(ngModel)]="delay">
+      <input matInput required placeholder="" min="0" pattern="([0-9]*\.)?[0-9]*" type="number" name="delay"
+        [(ngModel)]="delay">
+      <mat-error>Delay must be non-negative value</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" *ngIf="animation === 'pulse'">
+    <mat-form-field appearance="outline" hideRequiredMarker="true" *ngIf="animation === 'pulse'">
       <mat-label>Scale factor:</mat-label>
-      <input matInput placeholder="" min="0" step="0.01" type="number" [(ngModel)]="scale">
+      <input matInput required placeholder="" min="0" step="0.01" pattern="[0-9]*\.?[0-9]+" type="number" name="scalingFactor"
+        [(ngModel)]="scale">
+      <mat-error>Scaling factor must be non-negative value</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" *ngIf="[
+    <mat-form-field appearance="outline" hideRequiredMarker="true" *ngIf="[
     'shake', 
     'bounceInDown', 'bounceInUp', 'bounceInLeft', 'bounceInRight',
     'bounceOutDown', 'bounceOutUp', 'bounceOutLeft', 'bounceOutRight',
@@ -31,10 +37,11 @@
     'rollIn', 'rollOut'
     ].includes(animation)">
       <mat-label>Translate (px, %, rem, em, vw, vh):</mat-label>
-      <input matInput placeholder="" type="text" [(ngModel)]="translate">
+      <input name="translate" matInput required placeholder="" type="text" [(ngModel)]="translate" pattern="-?([0-9])?\.?[0-9]+(px|%|rem|em|vw|vh|vmin|vmax)">
+      <mat-error>Use valid translate value </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" *ngIf="[
+    <mat-form-field appearance="outline" hideRequiredMarker="true" *ngIf="[
       'flipInX', 'flipInY', 'flipOutX', 'flipOutY',
       'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight',
       'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight',
@@ -42,10 +49,9 @@
       'rotate'
       ].includes(animation)">
       <mat-label>Degrees:</mat-label>
-      <input matInput placeholder="" type="number" [(ngModel)]="degrees">
+      <input matInput required placeholder="" type="number" name="degrees" [(ngModel)]="degrees">
     </mat-form-field>
-
-  </div>
+  </form>
 
   <div [ngSwitch]="animation" [@enter2]>
     <!-- Attention seekers -->
@@ -154,7 +160,8 @@
         </mat-optgroup>
       </mat-select>
     </mat-form-field>
-    <button mat-stroked-button color="primary" class="animate-btn" (click)="animate()">Animate it</button>
+    <button [disabled]="f.invalid" mat-stroked-button color="primary" class="animate-btn" (click)="animate()">Animate
+      it</button>
   </div>
 
 </div>
