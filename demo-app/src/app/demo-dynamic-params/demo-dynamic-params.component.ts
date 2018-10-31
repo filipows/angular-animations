@@ -80,7 +80,10 @@ import {
   // other
   collapseAnimation,
   rotateAnimation,
-  hueRotateAnimation
+  hueRotateAnimation,
+  rollInOnEnterAnimation,
+  lightSpeedInOnEnterAnimation,
+  rotateInUpLeftOnEnterAnimation
 } from '../../../../lib/';
 
 @Component({
@@ -88,6 +91,9 @@ import {
   templateUrl: './demo-dynamic-params.component.html',
   styleUrls: ['./demo-dynamic-params.component.scss'],
   animations: [
+    lightSpeedInOnEnterAnimation({ anchor: 'enter1', translate: '100%' }),
+    rollInOnEnterAnimation({ anchor: 'enter2', translate: '800px', degrees: 360, delay: 250 }),
+    rotateInUpLeftOnEnterAnimation({ anchor: 'enter3' }),
     bounceAnimation(),
     flashAnimation(),
     pulseAnimation({ anchor: 'pulse' }),

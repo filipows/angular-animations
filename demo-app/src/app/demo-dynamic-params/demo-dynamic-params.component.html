@@ -1,9 +1,9 @@
 <div class="container">
-  <h1>
+  <h1 [@enter1]="{ value: '', params: { delay: 0 } }">
     Dynamic params:
   </h1>
 
-  <div class="dynamic-params-container">
+  <div class="dynamic-params-container" [@enter1]="{ value: '', params: { delay: 0 } }">
     <mat-form-field appearance="outline">
       <mat-label>Duration (ms)</mat-label>
       <input matInput placeholder="" min="1" type="number" [(ngModel)]="duration">
@@ -47,7 +47,7 @@
 
   </div>
 
-  <div [ngSwitch]="animation">
+  <div [ngSwitch]="animation" [@enter2]>
     <!-- Attention seekers -->
     <app-angular-img *ngSwitchCase="'bounce'" [@bounce]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'flash'" [@flash]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
@@ -146,7 +146,7 @@
   </div>
 
 
-  <div>
+  <div [@enter3]="{ value: '', params: { delay: 1200, duration: 1000 } }" class="bottom-row">
     <mat-form-field appearance="outline">
       <mat-select [(ngModel)]="animation" (ngModelChange)="animationChanged()">
         <mat-optgroup *ngFor="let option of options" [label]="option.label">
