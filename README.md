@@ -1,4 +1,4 @@
-# Angular-Animations Utility Lirary
+# Angular-Animations Utility Library
 
 [![npm version](https://badge.fury.io/js/angular-animations.svg)](https://www.npmjs.com/package/angular-animations)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
@@ -99,7 +99,7 @@ import { collapseAnimation, rubberBandAnimation } from 'angular-animations';
 
 ### Parametrized animations
 
-All animations are open for customizations. All of them have parameters: `duration` and `delay`, and if it make sense for an animation, additional ones: `translate`, `degrees` or `scalingFactor`.
+All animations are open for customizations. All of them have parameters: `duration` and `delay`, and if it make sense for an animation, additional ones: `translate`, `degrees` or `scale`.
 
 Parameters can be used either in a component decorator or dynamically in a template.
 
