@@ -21,7 +21,7 @@ export function collapseAnimation(options?: IAnimationOptions): AnimationTrigger
       '1',
       style({
         height: '0',
-        display: 'none',
+        visibility: 'hidden',
         overflow: 'hidden'
       })
     ),
@@ -29,7 +29,7 @@ export function collapseAnimation(options?: IAnimationOptions): AnimationTrigger
       '0',
       style({
         height: AUTO_STYLE,
-        display: AUTO_STYLE,
+        visibility: AUTO_STYLE,
         overflow: 'hidden'
       })
     ),

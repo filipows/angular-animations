@@ -14,11 +14,20 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IFadeInDownBigAnimationOptions extends IAnimationOptions {
+  /**
+   * Translate, possible units: px, %, em, rem, vw, vh
+   *
+   * Default: 2000px
+   */
+  translate?: string;
+}
+
 const fadeInDownBig = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ visibility: 'visible', opacity: 0, transform: 'translate3d(0, -2000px, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', opacity: 0, transform: 'translate3d(0, -{{translate}}, 0)', easing: 'ease', offset: 0 }),
       style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
@@ -26,19 +35,14 @@ const fadeInDownBig = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function fadeInDownBigAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function fadeInDownBigAnimation(options?: IFadeInDownBigAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInDownBig', [
     transition(
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeInDownBig, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(fadeInDownBig),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -48,14 +52,15 @@ export function fadeInDownBigAnimation(options?: IAnimationOptions): AnimationTr
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '2000px'
         }
       }
     )
   ]);
 }
 
-export function fadeInDownBigOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function fadeInDownBigOnEnterAnimation(options?: IFadeInDownBigAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInDownBigOnEnter', [
     transition(
       ':enter',
@@ -63,12 +68,7 @@ export function fadeInDownBigOnEnterAnimation(options?: IAnimationOptions): Anim
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeInDownBig, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(fadeInDownBig),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -78,7 +78,8 @@ export function fadeInDownBigOnEnterAnimation(options?: IAnimationOptions): Anim
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '2000px'
         }
       }
     )

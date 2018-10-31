@@ -14,31 +14,35 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface ISlideOutDownAnimationOptions extends IAnimationOptions {
+  /**
+   * Translate, possible units: px, %, em, rem, vw, vh
+   *
+   * Default: 100%
+   */
+  translate?: string;
+}
+
 const slideOutDown = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
       style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
-      style({ transform: 'translate3d(0, 100%, 0)', visibility: 'hidden', easing: 'ease', offset: 1 })
+      style({ transform: 'translate3d(0, {{translate}}, 0)', visibility: 'hidden', easing: 'ease', offset: 1 })
     ])
   )
 ]);
 
 const DEFAULT_DURATION = 1000;
 
-export function slideOutDownAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function slideOutDownAnimation(options?: ISlideOutDownAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideOutDown', [
     transition(
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideOutDown, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(slideOutDown),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -48,26 +52,22 @@ export function slideOutDownAnimation(options?: IAnimationOptions): AnimationTri
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%'
         }
       }
     )
   ]);
 }
 
-export function slideOutDownOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function slideOutDownOnLeaveAnimation(options?: ISlideOutDownAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideOutDownOnLeave', [
     transition(
       ':leave',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideOutDown, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(slideOutDown),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -77,7 +77,8 @@ export function slideOutDownOnLeaveAnimation(options?: IAnimationOptions): Anima
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%'
         }
       }
     )

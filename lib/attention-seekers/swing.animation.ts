@@ -3,6 +3,7 @@ import {
   animateChild,
   animation,
   AnimationTriggerMetadata,
+  AUTO_STYLE,
   group,
   keyframes,
   query,
@@ -18,7 +19,7 @@ const swing = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ transform: 'rotate3d(0, 0, 1, 0deg)', easing: 'ease', offset: 0 }),
+      style({ visibility: AUTO_STYLE, transform: 'rotate3d(0, 0, 1, 0deg)', easing: 'ease', offset: 0 }),
       style({ transform: 'rotate3d(0, 0, 1, 15deg)', easing: 'ease', offset: 0.2 }),
       style({ transform: 'rotate3d(0, 0, 1, -10deg)', easing: 'ease', offset: 0.4 }),
       style({ transform: 'rotate3d(0, 0, 1, 5deg)', easing: 'ease', offset: 0.6 }),
@@ -66,6 +67,7 @@ export function swingOnEnterAnimation(options?: IAnimationOptions): AnimationTri
       ':enter',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ visibility: 'hidden' }),
         group([
           style({ 'transform-origin': 'top center' }),
           useAnimation(swing, {

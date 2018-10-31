@@ -3,6 +3,7 @@ import {
   animateChild,
   animation,
   AnimationTriggerMetadata,
+  AUTO_STYLE,
   group,
   keyframes,
   query,
@@ -14,12 +15,21 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IPulseAnimationOptions extends IAnimationOptions {
+  /**
+   * Scale factor
+   *
+   * Default: 1.05
+   */
+  scale?: number;
+}
+
 const pulse = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
-      style({ transform: 'scale3d(1.05, 1.05, 1.05)', easing: 'ease', offset: 0.5 }),
+      style({ visibility: AUTO_STYLE, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
+      style({ transform: 'scale3d({{scale}}, {{scale}}, {{scale}})', easing: 'ease', offset: 0.5 }),
       style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1 })
     ])
   )
@@ -27,19 +37,14 @@ const pulse = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function pulseAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function pulseAnimation(options?: IPulseAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'pulse', [
     transition(
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(pulse, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(pulse),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -49,26 +54,23 @@ export function pulseAnimation(options?: IAnimationOptions): AnimationTriggerMet
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          scale: (options && options.scale) || 1.05
         }
       }
     )
   ]);
 }
 
-export function pulseOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function pulseOnEnterAnimation(options?: IPulseAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'pulseOnEnter', [
     transition(
       ':enter',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ visibility: 'hidden' }),
         group([
-          useAnimation(pulse, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(pulse),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -78,7 +80,8 @@ export function pulseOnEnterAnimation(options?: IAnimationOptions): AnimationTri
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          scale: (options && options.scale) || 1.05
         }
       }
     )

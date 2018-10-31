@@ -12,6 +12,8 @@
     "prerelease": "npm run lint",
     "release": "np --no-publish",
     "postrelease": "npm run build && npm publish dist",
+    "release-beta": "np --no-publish --any-branch",
+    "postrelease-beta": "npm run build && npm publish dist --tag beta",
     "test": "tsc --noEmit",
     "prettier": "prettier \"lib/**/*.ts\" --config \"./.prettierrc.json\" -l",
     "prettier-fix": "prettier \"**/*.ts\" --config \"./.prettierrc.json\" --write",

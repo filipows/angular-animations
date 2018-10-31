@@ -14,6 +14,15 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IBounceOutUpAnimationOptions extends IAnimationOptions {
+  /**
+   * Translate, possible units: px, %, em, rem, vw, vh
+   *
+   * Default: 2000px
+   */
+  translate?: string;
+}
+
 const bounceOutUp = animation(
   group([
     animate(
@@ -23,7 +32,7 @@ const bounceOutUp = animation(
         style({ transform: 'translate3d(0, -10px, 0)', easing: 'ease', offset: 0.2 }),
         style({ transform: 'translate3d(0, 20px, 0)', easing: 'ease', offset: 0.4 }),
         style({ transform: 'translate3d(0, 20px, 0)', easing: 'ease', offset: 0.45 }),
-        style({ transform: 'translate3d(0, -2000px, 0)', easing: 'ease', offset: 1 })
+        style({ transform: 'translate3d(0, -{{translate}}, 0)', easing: 'ease', offset: 1 })
       ])
     ),
     animation([
@@ -41,19 +50,14 @@ const bounceOutUp = animation(
 
 const DEFAULT_DURATION = 1000;
 
-export function bounceOutUpAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function bounceOutUpAnimation(options?: IBounceOutUpAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceOutUp', [
     transition(
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(bounceOutUp, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(bounceOutUp),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -63,26 +67,22 @@ export function bounceOutUpAnimation(options?: IAnimationOptions): AnimationTrig
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '2000px'
         }
       }
     )
   ]);
 }
 
-export function bounceOutUpOnLeaveAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function bounceOutUpOnLeaveAnimation(options?: IBounceOutUpAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceOutUpOnLeave', [
     transition(
       ':leave',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(bounceOutUp, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(bounceOutUp),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -92,7 +92,8 @@ export function bounceOutUpOnLeaveAnimation(options?: IAnimationOptions): Animat
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '2000px'
         }
       }
     )

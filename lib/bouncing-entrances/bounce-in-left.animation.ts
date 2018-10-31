@@ -14,12 +14,21 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IBounceInLeftAnimationOptions extends IAnimationOptions {
+  /**
+   * Translate, possible units: px, %, em, rem, vw, vh
+   *
+   * Default: 3000px
+   */
+  translate?: string;
+}
+
 const bounceInLeft = animation(
   group([
     animate(
       '{{duration}}ms {{delay}}ms',
       keyframes([
-        style({ transform: 'translate3d(-3000px, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
+        style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
         style({ transform: 'translate3d(25px, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.6 }),
         style({ transform: 'translate3d(-10px, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.75 }),
         style({ transform: 'translate3d(5px, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.9 }),
@@ -39,19 +48,14 @@ const bounceInLeft = animation(
 
 const DEFAULT_DURATION = 1000;
 
-export function bounceInLeftAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function bounceInLeftAnimation(options?: IBounceInLeftAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceInLeft', [
     transition(
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(bounceInLeft, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(bounceInLeft),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -61,14 +65,15 @@ export function bounceInLeftAnimation(options?: IAnimationOptions): AnimationTri
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '3000px'
         }
       }
     )
   ]);
 }
 
-export function bounceInLeftOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function bounceInLeftOnEnterAnimation(options?: IBounceInLeftAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceInLeftOnEnter', [
     transition(
       ':enter',
@@ -76,12 +81,7 @@ export function bounceInLeftOnEnterAnimation(options?: IAnimationOptions): Anima
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(bounceInLeft, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(bounceInLeft),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -91,7 +91,8 @@ export function bounceInLeftOnEnterAnimation(options?: IAnimationOptions): Anima
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '3000px'
         }
       }
     )

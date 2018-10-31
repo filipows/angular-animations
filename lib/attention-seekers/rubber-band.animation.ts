@@ -3,6 +3,7 @@ import {
   animateChild,
   animation,
   AnimationTriggerMetadata,
+  AUTO_STYLE,
   group,
   keyframes,
   query,
@@ -18,7 +19,7 @@ const rubberBand = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
+      style({ visibility: AUTO_STYLE, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
       style({ transform: 'scale3d(1.25, 0.75, 1)', easing: 'ease', offset: 0.3 }),
       style({ transform: 'scale3d(0.75, 1.25, 1)', easing: 'ease', offset: 0.4 }),
       style({ transform: 'scale3d(1.15, 0.85, 1)', easing: 'ease', offset: 0.5 }),
@@ -66,6 +67,7 @@ export function rubberBandOnEnterAnimation(options?: IAnimationOptions): Animati
       ':enter',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ visibility: 'hidden' }),
         group([
           useAnimation(rubberBand, {
             params: {

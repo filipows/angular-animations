@@ -14,11 +14,20 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface ISlideInLeftAnimationOptions extends IAnimationOptions {
+  /**
+   * Translate, possible units: px, %, em, rem, vw, vh
+   *
+   * Default: 100%
+   */
+  translate?: string;
+}
+
 const slideInLeft = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ visibility: 'visible', transform: 'translate3d(-100%, 0, 0)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0 }),
       style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
     ])
   )
@@ -26,7 +35,7 @@ const slideInLeft = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function slideInLeftAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function slideInLeftAnimation(options?: ISlideInLeftAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideInLeft', [
     transition(
       '0 <=> 1',
@@ -34,12 +43,7 @@ export function slideInLeftAnimation(options?: IAnimationOptions): AnimationTrig
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ visibility: 'visible' }),
-          useAnimation(slideInLeft, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(slideInLeft),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -49,14 +53,15 @@ export function slideInLeftAnimation(options?: IAnimationOptions): AnimationTrig
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%'
         }
       }
     )
   ]);
 }
 
-export function slideInLeftOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function slideInLeftOnEnterAnimation(options?: ISlideInLeftAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideInLeftOnEnter', [
     transition(
       ':enter',
@@ -64,12 +69,7 @@ export function slideInLeftOnEnterAnimation(options?: IAnimationOptions): Animat
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideInLeft, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(slideInLeft),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -79,7 +79,8 @@ export function slideInLeftOnEnterAnimation(options?: IAnimationOptions): Animat
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%'
         }
       }
     )

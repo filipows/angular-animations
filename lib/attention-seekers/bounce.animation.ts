@@ -3,6 +3,7 @@ import {
   animateChild,
   animation,
   AnimationTriggerMetadata,
+  AUTO_STYLE,
   group,
   keyframes,
   query,
@@ -18,7 +19,7 @@ const bounce = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
+      style({ visibility: AUTO_STYLE, transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
       style({ transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.2 }),
       style({ transform: 'translate3d(0, -30px, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.4 }),
       style({ transform: 'translate3d(0, -30px, 0)', easing: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)', offset: 0.43 }),
@@ -69,6 +70,7 @@ export function bounceOnEnterAnimation(options?: IAnimationOptions): AnimationTr
       ':enter',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ visibility: 'hidden' }),
         group([
           style({ 'transform-origin': 'center bottom' }),
           useAnimation(bounce, {

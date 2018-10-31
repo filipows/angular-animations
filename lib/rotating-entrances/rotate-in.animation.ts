@@ -14,11 +14,20 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IRotateInAnimationOptions extends IAnimationOptions {
+  /**
+   * Angle - number of degrees from which to start animation.
+   *
+   * Default -200
+   */
+  degrees?: number;
+}
+
 const rotateIn = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ visibility: 'visible', opacity: 1, transform: 'rotate(-200deg)', easing: 'ease', offset: 0 }),
+      style({ visibility: 'visible', opacity: 0, transform: 'rotate({{degrees}}deg)', easing: 'ease', offset: 0 }),
       style({ opacity: 1, transform: 'rotate(0deg)', easing: 'ease', offset: 1 })
     ])
   )
@@ -26,20 +35,15 @@ const rotateIn = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function rotateInAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function rotateInAnimation(options?: IRotateInAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateIn', [
     transition(
       '0 <=> 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'center' }),
         group([
-          style({ 'transform-origin': 'center' }),
-          useAnimation(rotateIn, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(rotateIn),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -49,28 +53,24 @@ export function rotateInAnimation(options?: IAnimationOptions): AnimationTrigger
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || -200
         }
       }
     )
   ]);
 }
 
-export function rotateInOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function rotateInOnEnterAnimation(options?: IRotateInAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateInOnEnter', [
     transition(
       ':enter',
       [
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ 'transform-origin': 'center' }),
         group([
-          style({ 'transform-origin': 'center' }),
-          useAnimation(rotateIn, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(rotateIn),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -80,7 +80,8 @@ export function rotateInOnEnterAnimation(options?: IAnimationOptions): Animation
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || -200
         }
       }
     )

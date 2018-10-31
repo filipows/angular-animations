@@ -14,11 +14,26 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
+export interface IFlipInYAnimationOptions extends IAnimationOptions {
+  /**
+   * Angle -number of degrees from which to start animation.
+   *
+   * Default 90
+   */
+  degrees?: number;
+}
+
 const flipInY = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ visibility: 'visible', transform: 'perspective(400px) rotate3d(0, 1, 0, 90deg)', opacity: 0, easing: 'ease-in', offset: 0 }),
+      style({
+        visibility: 'visible',
+        transform: 'perspective(400px) rotate3d(0, 1, 0, {{degrees}}deg)',
+        opacity: 0,
+        easing: 'ease-in',
+        offset: 0
+      }),
       style({ transform: 'perspective(400px) rotate3d(0, 1, 0, -20deg)', opacity: 0.5, easing: 'ease-in', offset: 0.4 }),
       style({ transform: 'perspective(400px) rotate3d(0, 1, 0, 10deg)', opacity: 1, easing: 'ease-in', offset: 0.6 }),
       style({ transform: 'perspective(400px) rotate3d(0, 1, 0, -5deg)', easing: 'ease', offset: 0.8 }),
@@ -29,7 +44,7 @@ const flipInY = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function flipInYAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function flipInYAnimation(options?: IFlipInYAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipInY', [
     transition(
       '0 <=> 1',
@@ -37,12 +52,7 @@ export function flipInYAnimation(options?: IAnimationOptions): AnimationTriggerM
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'backface-visibility': 'visible' }),
-          useAnimation(flipInY, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(flipInY),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -52,14 +62,15 @@ export function flipInYAnimation(options?: IAnimationOptions): AnimationTriggerM
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || 90
         }
       }
     )
   ]);
 }
 
-export function flipInYOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function flipInYOnEnterAnimation(options?: IFlipInYAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipInYOnEnter', [
     transition(
       ':enter',
@@ -68,12 +79,7 @@ export function flipInYOnEnterAnimation(options?: IAnimationOptions): AnimationT
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'backface-visibility': 'visible' }),
-          useAnimation(flipInY, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(flipInY),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -83,7 +89,8 @@ export function flipInYOnEnterAnimation(options?: IAnimationOptions): AnimationT
       {
         params: {
           delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          degrees: (options && options.degrees) || 90
         }
       }
     )

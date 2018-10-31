@@ -3,6 +3,7 @@ import {
   animateChild,
   animation,
   AnimationTriggerMetadata,
+  AUTO_STYLE,
   group,
   keyframes,
   query,
@@ -18,7 +19,7 @@ const flash = animation([
   animate(
     '{{duration}}ms {{delay}}ms',
     keyframes([
-      style({ opacity: 1, easing: 'ease', offset: 0 }),
+      style({ visibility: AUTO_STYLE, opacity: 1, easing: 'ease', offset: 0 }),
       style({ opacity: 0, easing: 'ease', offset: 0.25 }),
       style({ opacity: 1, easing: 'ease', offset: 0.5 }),
       style({ opacity: 0, easing: 'ease', offset: 0.75 }),
@@ -64,6 +65,7 @@ export function flashOnEnterAnimation(options?: IAnimationOptions): AnimationTri
       ':enter',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        style({ visibility: 'hidden' }),
         group([
           useAnimation(flash, {
             params: {
