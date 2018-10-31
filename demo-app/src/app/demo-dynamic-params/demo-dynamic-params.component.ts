@@ -258,10 +258,10 @@ export class DemoDynamicParamsComponent implements OnInit {
     },
     {
       label: 'Other',
-      animations: ['collapse', 'rotate', 'rotate90', 'rotate720', 'hueRotate']
+      animations: ['collapse', 'rotate', 'hueRotate']
     }
   ];
-  animation = 'rollIn';
+  animation = 'pulse';
   animationState = false;
 
   animate() {
@@ -383,6 +383,10 @@ export class DemoDynamicParamsComponent implements OnInit {
       }
       case 'collapse': {
         this.duration = 200;
+        break;
+      }
+      case 'rotate': {
+        this.degrees = 90;
         break;
       }
     }

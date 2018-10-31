@@ -36,7 +36,8 @@
       'flipInX', 'flipInY', 'flipOutX', 'flipOutY',
       'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight',
       'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight',
-      'rollIn', 'rollOut'
+      'rollIn', 'rollOut',
+      'rotate'
       ].includes(animation)">
       <mat-label>Degrees:</mat-label>
       <input matInput placeholder="" type="number" [(ngModel)]="degrees">
@@ -137,9 +138,7 @@
     <app-angular-img *ngSwitchCase="'rollOut'" [@rollOut]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees, translate: translate }}"></app-angular-img>
     <!-- Other -->
     <app-angular-img *ngSwitchCase="'collapse'" [@collapse]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rotate'" [@rotate]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rotate90'" [@rotate90]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rotate720'" [@rotate]="{ value: animationState, params: { duration: 700, degrees: 720 } }"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'rotate'" [@rotate]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'hueRotate'" [@hueRotate]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <div *ngSwitchDefault>Select animaion</div>
   </div>
