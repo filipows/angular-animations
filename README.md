@@ -141,6 +141,107 @@ With parameters in a template, we can for ex achieve staggering animations:
 <div  *ngFor="let i of [1,2,3]"  [@enter]="{ value: '', params: { delay: i * 100 } }"></div>
 ```
 
+## Available Animations and Parameters
+
+All animations have `duration` and `delay` params.
+
+|                    | Animation          | Default Anchor          | OnEnter/OnLeave                | Additional Params                                         |
+| ------------------ | ------------------ | ----------------------- | ------------------------------ | --------------------------------------------------------- |
+| Attention Seekers  |                    |                         |                                |                                                           |
+|                    | bounce             | `[@bounce]`             | `[@bounceOnEnter]`             | `scale` (default: 1.05)                                   |
+|                    | flash              | `[@flash]`              | `[@flashOnEnter]`              |                                                           |
+|                    | pulse              | `[@pulse]`              | `[@pulseOnEnter]`              |                                                           |
+|                    | rubberBand         | `[@rubberBand]`         | `[@rubberBandOnEnter]`         |                                                           |
+|                    | shake              | `[@shake]`              | `[@shakeOnEnter]`              | `translate` (default: '10px')                             |
+|                    | swing              | `[@swing]`              | `[@swingOnEnter]`              |                                                           |
+|                    | tada               | `[@tada]`               | `[@tadaOnEnter]`               |                                                           |
+|                    | wobble             | `[@wobble]`             | `[@wobbleOnEnter]`             |                                                           |
+|                    | jello              | `[@jello]`              | `[@jelloOnEnter]`              |                                                           |
+| Bouncing entrances |                    |                         |                                |                                                           |
+|                    | bounceIn           | `[@bounceIn]`           | `[@bounceInOnEnter]`           |                                                           |
+|                    | bounceInDown       | `[@bounceInDown]`       | `[@bounceInDownOnEnter]`       | `translate` (default: '3000px')                           |
+|                    | bounceInLeft       | `[@bounceInLeft]`       | `[@bounceInLeftOnEnter]`       | `translate` (default: '3000px')                           |
+|                    | bounceInRight      | `[@bounceInRight]`      | `[@bounceInRightOnEnter]`      | `translate` (default: '3000px')                           |
+|                    | bounceInUp         | `[@bounceInUp]`         | `[@bounceInUpOnEnter]`         | `translate` (default: '3000px')                           |
+| Bouncing exits     |                    |                         |                                |                                                           |
+|                    | bounceOut          | `[@bounceOut]`          | `[@bounceOutOnLeave]`          |                                                           |
+|                    | bounceOutDown      | `[@bounceOutDown]`      | `[@bounceOutDownOnLeave]`      | `translate` (default: '2000px')                           |
+|                    | bounceOutLeft      | `[@bounceOutLeft]`      | `[@bounceOutLeftOnLeave]`      | `translate` (default: '2000px')                           |
+|                    | bounceOutRight     | `[@bounceOutRight]`     | `[@bounceOutRightOnLeave]`     | `translate` (default: '2000px')                           |
+|                    | bounceOutUp        | `[@bounceOutUp]`        | `[@bounceOutUpOnLeave]`        | `translate` (default: '2000px')                           |
+| Fading entrances   |                    |                         |                                |                                                           |
+|                    | fadeIn             | `[@fadeIn]`             | `[@fadeInOnEnter]`             |                                                           |
+|                    | fadeInDown         | `[@fadeInDown]`         | `[@fadeInDownOnEnter]`         | `translate` (default: '100%')                             |
+|                    | fadeInDownBig      | `[@fadeInDownBig]`      | `[@fadeInDownBigOnEnter]`      | `translate` (default: '2000px')                           |
+|                    | fadeInLeft         | `[@fadeInLeft]`         | `[@fadeInLeftOnEnter]`         | `translate` (default: '100%')                             |
+|                    | fadeInLeftBig      | `[@fadeInLeftBig]`      | `[@fadeInLeftBigOnEnter]`      | `translate` (default: '2000px')                           |
+|                    | fadeInRight        | `[@fadeInRight]`        | `[@fadeInRightOnEnter]`        | `translate` (default: '100%')                             |
+|                    | fadeInRightBig     | `[@fadeInRightBig]`     | `[@fadeInRightBigOnEnter]`     | `translate` (default: '2000px')                           |
+|                    | fadeInUp           | `[@fadeInUp]`           | `[@fadeInUpOnEnter]`           | `translate` (default: '100%')                             |
+|                    | fadeInUpBig        | `[@fadeInUpBig]`        | `[@fadeInUpBigOnEnter]`        | `translate` (default: '2000px')                           |
+| Fading exits       |                    |                         |                                |                                                           |
+|                    | fadeOut            | `[@fadeOut]`            | `[@fadeOutOnLeave]`            |                                                           |
+|                    | fadeOutDown        | `[@fadeOutDown]`        | `[@fadeOutDownOnLeave]`        | `translate` (default: '100%')                             |
+|                    | fadeOutDownBig     | `[@fadeOutDownBig]`     | `[@fadeOutDownBigOnLeave]`     | `translate` (default: '2000px')                           |
+|                    | fadeOutLeft        | `[@fadeOutLeft]`        | `[@fadeOutLeftOnLeave]`        | `translate` (default: '100%')                             |
+|                    | fadeOutLeftBig     | `[@fadeOutLeftBig]`     | `[@fadeOutLeftBigOnLeave]`     | `translate` (default: '2000px')                           |
+|                    | fadeOutRight       | `[@fadeOutRight]`       | `[@fadeOutRightOnLeave]`       | `translate` (default: '100%')                             |
+|                    | fadeOutRightBig    | `[@fadeOutRightBig]`    | `[@fadeOutRightBigOnLeave]`    | `translate` (default: '2000px')                           |
+|                    | fadeOutUp          | `[@fadeOutUp]`          | `[@fadeOutUpOnLeave]`          | `translate` (default: '100%')                             |
+|                    | fadeOutUpBig       | `[@fadeOutUpBig]`       | `[@fadeOutUpBigOnLeave]`       | `translate` (default: '2000px')                           |
+| Flippers           |                    |                         |                                |                                                           |
+|                    | flip               | `[@flip]`               | `[@flipOnEnter]`               |                                                           |
+|                    | flipInX            | `[@flipInX]`            | `[@flipInXOnEnter]`            | `degrees` (default: 90)                                   |
+|                    | flipInY            | `[@flipInY]`            | `[@flipInYOnEnter]`            | `degrees` (default: 90)                                   |
+|                    | flipOutX           | `[@flipOutX]`           | `[@flipOutXOnLeave]`           | `degrees` (default: 90)                                   |
+|                    | flipOutY           | `[@flipOutY]`           | `[@flipOutYOnLeave]`           | `degrees` (default: 90)                                   |
+| Light speed        |                    |                         |                                |                                                           |
+|                    | lightSpeedIn       | `[@lightSpeedIn]`       | `[@lightSpeedInOnEnter]`       | `translate` (default: '100%')                             |
+|                    | lightSpeedOut      | `[@lightSpeedOut]`      | `[@lightSpeedOutOnLeave]`      | `translate` (default: '100%')                             |
+| Rotating entrances |                    |                         |                                |                                                           |
+|                    | rotateIn           | `[@rotateIn]`           | `[@rotateInOnEnter]`           | `degrees` (default: -200)                                 |
+|                    | rotateInDownLeft   | `[@rotateInDownLeft]`   | `[@rotateInDownLeftOnEnter]`   | `degrees` (default: -45)                                  |
+|                    | rotateInDownRight  | `[@rotateInDownRight]`  | `[@rotateInDownRightOnEnter]`  | `degrees` (default: 45)                                   |
+|                    | rotateInUpLeft     | `[@rotateInUpLeft]`     | `[@rotateInUpLeftOnEnter]`     | `degrees` (default: 45)                                   |
+|                    | rotateInUpRight    | `[@rotateInUpRight]`    | `[@rotateInUpRightOnEnter]`    | `degrees` (default: -90)                                  |
+| Rotating exits     |                    |                         |                                |                                                           |
+|                    | rotateOut          | `[@rotateOut]`          | `[@rotateOutOnLeave]`          | `degrees` (default: 200)                                  |
+|                    | rotateOutDownLeft  | `[@rotateOutDownLeft]`  | `[@rotateOutDownLeftOnLeave]`  | `degrees` (default: 45)                                   |
+|                    | rotateOutDownRight | `[@rotateOutDownRight]` | `[@rotateOutDownRightOnLeave]` | `degrees` (default: -45)                                  |
+|                    | rotateOutUpLeft    | `[@rotateOutUpLeft]`    | `[@rotateOutUpLeftOnLeave]`    | `degrees` (default: -45)                                  |
+|                    | rotateOutUpRight   | `[@rotateOutUpRight]`   | `[@rotateOutUpRightOnLeave]`   | `degrees` (default: -90)                                  |
+| Sliding entrances  |                    |                         |                                |                                                           |
+|                    | slideInUp          | `[@slideInUp]`          | `[@slideInUpOnEnter]`          | `translate` (default: '100%')                             |
+|                    | slideInDown        | `[@slideInDown]`        | `[@slideInDownOnEnter]`        | `translate` (default: '100%')                             |
+|                    | slideInLeft        | `[@slideInLeft]`        | `[@slideInLeftOnEnter]`        | `translate` (default: '100%')                             |
+|                    | slideInRight       | `[@slideInRight]`       | `[@slideInRightOnEnter]`       | `translate` (default: '100%')                             |
+| Sliding exits      |                    |                         |                                |                                                           |
+|                    | slideOutUp         | `[@slideOutUp]`         | `[@slideOutUpOnLeave]`         | `translate` (default: '100%')                             |
+|                    | slideOutDown       | `[@slideOutDown]`       | `[@slideOutDownOnLeave]`       | `translate` (default: '100%')                             |
+|                    | slideOutLeft       | `[@slideOutLeft]`       | `[@slideOutLeftOnLeave]`       | `translate` (default: '100%')                             |
+|                    | slideOutRight      | `[@slideOutRight]`      | `[@slideOutRightOnLeave]`      | `translate` (default: '100%')                             |
+| Zooming entrances  |                    |                         |                                |                                                           |
+|                    | zoomIn             | `[@zoomIn]`             | `[@zoomInOnEnter]`             |                                                           |
+|                    | zoomInDown         | `[@zoomInDown]`         | `[@zoomInDownOnEnter]`         |                                                           |
+|                    | zoomInLeft         | `[@zoomInLeft]`         | `[@zoomInLeftOnEnter]`         |                                                           |
+|                    | zoomInRight        | `[@zoomInRight]`        | `[@zoomInRightOnEnter]`        |                                                           |
+|                    | zoomInUp           | `[@zoomInUp]`           | `[@zoomInUpOnEnter]`           |                                                           |
+| Zooming exits      |                    |                         |                                |                                                           |
+|                    | zoomOut            | `[@zoomOut]`            | `[@zoomOutOnLeave]`            |                                                           |
+|                    | zoomOutDown        | `[@zoomOutDown]`        | `[@zoomOutDownOnLeave]`        |                                                           |
+|                    | zoomOutLeft        | `[@zoomOutLeft]`        | `[@zoomOutLeftOnLeave]`        |                                                           |
+|                    | zoomOutRight       | `[@zoomOutRight]`       | `[@zoomOutRightOnLeave]`       |                                                           |
+|                    | zoomOutUp          | `[@zoomOutUp]`          | `[@zoomOutUpOnLeave]`          |                                                           |
+| Specials           |                    |                         |                                |                                                           |
+|                    | hinge              | `[@hinge]`              | `[@hingeOnLeave]`              |                                                           |
+|                    | jackInTheBox       | `[@jackInTheBox]`       | `[@jackInTheBoxOnEnter]`       |                                                           |
+|                    | rollIn             | `[@rollIn]`             | `[@rollInOnEnter]`             | `degrees` (default: -120), `translate` (default: '-100%') |
+|                    | rollOut            | `[@rollOut]`            | `[@rollOutOnLeave]`            | `degrees` (default: 120), `translate` (default: '100%')   |
+| Other              |                    |                         |                                |                                                           |
+|                    | collapse           | `[@collapse]`           | `-`                            |                                                           |
+|                    | rotate             | `[@rotate]`             | `-`                            | `degrees` (default: 90)                                   |
+|                    | hueRotate          | `[@hueRotate]`          | `-`                            |                                                           |
+
 ## Running Demo App
 
 ```
