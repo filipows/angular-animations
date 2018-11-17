@@ -245,6 +245,7 @@ All animations have `duration` and `delay` params.
 ## Running Demo App
 
 ```
+npm install
 npm start
 ```
 

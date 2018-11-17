@@ -8,6 +8,7 @@
   "scripts": {
     "start": "npm run demo-app",
     "demo-app": "cd demo-app && ng serve",
+    "postinstall": "cd demo-app && npm install",
     "build": "ng-packagr -p package.json",
     "prerelease": "npm run lint",
     "release": "np --no-publish",
