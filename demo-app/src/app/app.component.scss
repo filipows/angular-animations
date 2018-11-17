@@ -1,0 +1,26 @@
+:host {
+  .toolbar {
+    display: flex;
+  }
+  .top-navigtaion {
+    margin-left: auto;
+  }
+
+  .sidenave-container {
+    background: #ffffff;
+    color: inherit;
+    height: calc(100vh - 64px);
+  }
+
+  @media screen and (max-width: 600px) {
+    .sidenave-container {
+      height: calc(100vh - 56px);
+    }
+  }
+
+  @media screen and (max-width: 860px) {
+    .top-navigtaion {
+      display: none;
+    }
+  }
+}

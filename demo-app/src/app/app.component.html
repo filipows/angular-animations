@@ -1,10 +1,26 @@
-<mat-toolbar color="primary">
-  <nav>
+<mat-toolbar color="primary" class="toolbar">
+  <button mat-icon-button (click)="snav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>Angular Animations Utility Library</h1>
+  <nav class="top-navigtaion">
     <a mat-button routerLink="/" routerLinkActive="active">Home</a>
     <a mat-button routerLink="/enter-leave" routerLinkActive="active">On Enter/On Leave</a>
-    <!-- <a mat-button routerLink="/experiments" routerLinkActive="active">Experiments</a> -->
     <a mat-button routerLink="/dynamic-params" routerLinkActive="active">Dynamic Params</a>
+    <a mat-button routerLink="/experiments" routerLinkActive="active">Experiments</a>
   </nav>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<mat-sidenav-container class="sidenave-container">
+  <mat-sidenav #snav mode="over" fixedTopGap="56">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" routerLinkActive="active">Home</a>
+      <a mat-list-item routerLink="/enter-leave" routerLinkActive="active">On Enter/On Leave</a>
+      <a mat-list-item routerLink="/dynamic-params" routerLinkActive="active">Dynamic Params</a>
+      <a mat-list-item routerLink="/experiments" routerLinkActive="active">Experiments</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
