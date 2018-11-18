@@ -5,7 +5,7 @@
 
 Easy, Reusable Animation Utility library for Angular Apps.
 
-Angular Animations utility library is a collection of reusable and parametrized animations build for Angular 4.4.6+ that can be used in a declarative manner. It implements all animations from [animate.css](https://daneden.github.io/animate.css/) (and more).
+Angular Animations utility library is a collection of reusable and parametrized animations build for Angular 4.4.6+ that can be used in a declarative manner. It implements all animations from [animate.css](https://daneden.github.io/animate.css/) (and more). Works both with AOT and JIT compilations.
 
 ### Quick links
 
