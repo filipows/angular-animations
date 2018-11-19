@@ -23,7 +23,7 @@ export interface IBounceOutDownAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-export const bounceOutDown = animation(
+const bounceOutDown = animation(
   group([
     animate(
       '{{duration}}ms {{delay}}ms',
