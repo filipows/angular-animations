@@ -39,12 +39,7 @@ export function wobbleAnimation(options?: IAnimationOptions): AnimationTriggerMe
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(wobble, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(wobble),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -69,12 +64,7 @@ export function wobbleOnEnterAnimation(options?: IAnimationOptions): AnimationTr
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ visibility: 'hidden' }),
         group([
-          useAnimation(wobble, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(wobble),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

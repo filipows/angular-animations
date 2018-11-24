@@ -30,12 +30,7 @@ export function fadeOutAnimation(options?: IAnimationOptions): AnimationTriggerM
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeOut, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(fadeOut),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -59,12 +54,7 @@ export function fadeOutOnLeaveAnimation(options?: IAnimationOptions): AnimationT
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeOut, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(fadeOut),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

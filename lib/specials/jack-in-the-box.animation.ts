@@ -41,12 +41,7 @@ export function jackInTheBoxAnimation(options?: IAnimationOptions): AnimationTri
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(jackInTheBox, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(jackInTheBox),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -71,12 +66,7 @@ export function jackInTheBoxOnEnterAnimation(options?: IAnimationOptions): Anima
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(jackInTheBox, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(jackInTheBox),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

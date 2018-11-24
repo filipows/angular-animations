@@ -45,12 +45,7 @@ export function zoomOutUpAnimation(options?: IAnimationOptions): AnimationTrigge
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(zoomOutUp, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(zoomOutUp),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -74,12 +69,7 @@ export function zoomOutUpOnLeaveAnimation(options?: IAnimationOptions): Animatio
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(zoomOutUp, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(zoomOutUp),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

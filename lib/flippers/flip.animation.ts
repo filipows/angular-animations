@@ -53,12 +53,7 @@ export function flipAnimation(options?: IAnimationOptions): AnimationTriggerMeta
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'backface-visibility': 'visible' }),
-          useAnimation(flip, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(flip),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -83,12 +78,7 @@ export function flipOnEnterAnimation(options?: IAnimationOptions): AnimationTrig
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'backface-visibility': 'visible' }),
-          useAnimation(flip, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(flip),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

@@ -43,12 +43,7 @@ export function jelloAnimation(options?: IAnimationOptions): AnimationTriggerMet
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'transform-origin': 'center' }),
-          useAnimation(jello, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(jello),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -74,12 +69,7 @@ export function jelloOnEnterAnimation(options?: IAnimationOptions): AnimationTri
         style({ visibility: 'hidden' }),
         group([
           style({ 'transform-origin': 'center' }),
-          useAnimation(jello, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(jello),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

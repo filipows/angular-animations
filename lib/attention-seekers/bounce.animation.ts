@@ -42,12 +42,7 @@ export function bounceAnimation(options?: IAnimationOptions): AnimationTriggerMe
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'transform-origin': 'center bottom' }),
-          useAnimation(bounce, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(bounce),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -73,12 +68,7 @@ export function bounceOnEnterAnimation(options?: IAnimationOptions): AnimationTr
         style({ visibility: 'hidden' }),
         group([
           style({ 'transform-origin': 'center bottom' }),
-          useAnimation(bounce, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(bounce),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

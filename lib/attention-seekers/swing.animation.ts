@@ -39,12 +39,7 @@ export function swingAnimation(options?: IAnimationOptions): AnimationTriggerMet
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'transform-origin': 'top center' }),
-          useAnimation(swing, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(swing),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -70,12 +65,7 @@ export function swingOnEnterAnimation(options?: IAnimationOptions): AnimationTri
         style({ visibility: 'hidden' }),
         group([
           style({ 'transform-origin': 'top center' }),
-          useAnimation(swing, {
-            params: {
-              duration: '{{duration}}',
-              delay: '{{delay}}'
-            }
-          }),
+          useAnimation(swing),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

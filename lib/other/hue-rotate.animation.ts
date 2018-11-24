@@ -25,23 +25,11 @@ const DEFAULT_DURATION = 3000;
 
 export function hueRotateAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'hueRotate', [
-    transition(
-      '0 <=> 1',
-      group([
-        query('@*', animateChild(), { optional: true }),
-        useAnimation(hueRotate, {
-          params: {
-            duration: '{{duration}}',
-            delay: '{{delay}}'
-          }
-        })
-      ]),
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
-        }
+    transition('0 <=> 1', group([query('@*', animateChild(), { optional: true }), useAnimation(hueRotate)]), {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION
       }
-    )
+    })
   ]);
 }
