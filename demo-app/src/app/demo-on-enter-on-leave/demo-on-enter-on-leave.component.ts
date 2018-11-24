@@ -76,7 +76,11 @@ import {
   hingeOnLeaveAnimation,
   jackInTheBoxOnEnterAnimation,
   rollInOnEnterAnimation,
-  rollOutOnLeaveAnimation
+  rollOutOnLeaveAnimation,
+  expandOnEnterAnimation,
+  collapseOnLeaveAnimation,
+  fadeInExpandOnEnterAnimation,
+  fadeOutCollapseOnLeaveAnimation
 } from '../../../../lib';
 
 @Component({
@@ -162,7 +166,11 @@ import {
     hingeOnLeaveAnimation(),
     jackInTheBoxOnEnterAnimation(),
     rollInOnEnterAnimation(),
-    rollOutOnLeaveAnimation()
+    rollOutOnLeaveAnimation(),
+    expandOnEnterAnimation({ duration: 400 }),
+    collapseOnLeaveAnimation({ duration: 400 }),
+    fadeInExpandOnEnterAnimation({ duration: 400 }),
+    fadeOutCollapseOnLeaveAnimation({ duration: 400 })
   ]
 })
 export class DemoOnEnterOnLeaveComponent {
@@ -212,6 +220,10 @@ export class DemoOnEnterOnLeaveComponent {
     {
       label: 'Attention Seekers',
       animations: ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'jello', 'flip']
+    },
+    {
+      label: 'Other',
+      animations: ['expandCollapse', 'fadeInExpandFadeOutCollapse']
     }
   ];
   animation = 'bounceIn';
