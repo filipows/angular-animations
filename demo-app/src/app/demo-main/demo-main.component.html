@@ -3,6 +3,15 @@
     Angular Animations Demo
   </h1>
 
+  Card state: {{cardState}}
+  <button (click)="cardFlipped = !cardFlipped">flip card</button>
+
+  <div class="card-wrapper">
+    <div [@flipCardFront]="!!cardFlipped" style="background: red">FRONT</div>
+    <div [@flipCardBack]="!!cardFlipped" style="background: yellow">BACK</div>
+  </div>
+
+
   <div [ngSwitch]="animation" [@enter2]>
     <!-- Attention seekers -->
     <app-angular-img *ngSwitchCase="'bounce'" [@bounce]="animationState"></app-angular-img>

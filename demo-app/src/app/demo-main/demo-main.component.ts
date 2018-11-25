@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import {
+  flipCardBackAnimation,
+  flipCardFrontAnimation,
   bounceAnimation,
   flashAnimation,
   pulseAnimation,
@@ -89,6 +91,8 @@ import {
   templateUrl: './demo-main.component.html',
   styleUrls: ['./demo-main.component.scss'],
   animations: [
+    flipCardBackAnimation(),
+    flipCardFrontAnimation(),
     bounceInUpOnEnterAnimation({ anchor: 'enter1' }),
     bounceInUpOnEnterAnimation({ anchor: 'enter2', delay: 100 }),
     bounceInUpOnEnterAnimation({ anchor: 'enter3', delay: 200 }),
