@@ -38,7 +38,7 @@ const DEFAULT_DURATION = 1000;
 export function fadeInUpBigAnimation(options?: IFadeInUpBigAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInUpBig', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

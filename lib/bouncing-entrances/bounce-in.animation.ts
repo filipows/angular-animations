@@ -43,7 +43,7 @@ const DEFAULT_DURATION = 750;
 export function bounceInAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceIn', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

@@ -53,7 +53,7 @@ const DEFAULT_DURATION = 1000;
 export function bounceOutUpAnimation(options?: IBounceOutUpAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceOutUp', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

@@ -38,7 +38,7 @@ const DEFAULT_DURATION = 1000;
 export function slideInUpAnimation(options?: ISlideInUpAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideInUp', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

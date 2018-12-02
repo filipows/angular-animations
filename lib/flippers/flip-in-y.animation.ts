@@ -47,7 +47,7 @@ const DEFAULT_DURATION = 1000;
 export function flipInYAnimation(options?: IFlipInYAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipInY', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

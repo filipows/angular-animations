@@ -38,7 +38,7 @@ const DEFAULT_DURATION = 1000;
 export function rotateInDownRightAnimation(options?: IRotateInDownRightAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateInDownRight', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'right bottom' }),

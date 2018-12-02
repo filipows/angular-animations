@@ -269,14 +269,19 @@ export class DemoDynamicParamsComponent implements OnInit {
   ];
   animation = 'pulse';
   animationState = false;
+  animationWithState = false;
 
   animate() {
-    this.animationState = !this.animationState;
+    this.animationState = false;
+    setTimeout(() => {
+      this.animationState = !this.animationState;
+      this.animationWithState = !this.animationWithState;
+    }, 1);
   }
 
   animationChanged() {
     this.setDefaultParams();
-    this.animateAfterChange();
+    this.animate();
   }
 
   setDefaultParams() {
@@ -410,12 +415,6 @@ export class DemoDynamicParamsComponent implements OnInit {
         break;
       }
     }
-  }
-
-  animateAfterChange() {
-    setTimeout(() => {
-      this.animate();
-    }, 1);
   }
 
   ngOnInit() {

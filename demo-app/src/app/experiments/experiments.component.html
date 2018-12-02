@@ -3,7 +3,7 @@
     <app-angular-img *ngFor="let i of [0,1,2,3,4]" [@enter]="{value: '', params: { delay: i * 150 }}" (@enter.done)="hueState = !hueState"></app-angular-img>
   </div>
 
-  <button [@btnEnter] [@btnEnterFadeIn] mat-stroked-button color="primary" class="animate-btn" (click)="animationState = !animationState;">Animate
+  <button [@btnEnter] [@btnEnterFadeIn] mat-stroked-button color="primary" class="animate-btn" (click)="animate()">Animate
     letters</button>
 
   <div [@flash]="flashState">

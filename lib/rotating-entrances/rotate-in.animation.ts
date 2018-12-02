@@ -38,7 +38,7 @@ const DEFAULT_DURATION = 1000;
 export function rotateInAnimation(options?: IRotateInAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateIn', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'center' }),

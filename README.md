@@ -78,7 +78,7 @@ and use them in the template:
 
 ### Animations with state or triggered by state changes
 
-These animations take as an input a boolean value. Some of animations, like Attention Seekers are triggered by any changes of the state, but others like `collapse` or `rotate` animations are displaying default state when the value is `falsy` and transition to end state when the value is `truthy`
+These animations take as an input a boolean value. Some animations, like Attention Seekers are triggered by any changes of the state, all `in` and `out` animations are triggered by changes of state from `false` to `true`. Animations that preserve state, like `collapse` or `rotate` display default state when the value is `false` and transition to end state when the value is `true`
 
 ```ts
 import { collapseAnimation, rubberBandAnimation } from 'angular-animations';

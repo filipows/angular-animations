@@ -50,7 +50,7 @@ const DEFAULT_DURATION = 1000;
 export function rollInAnimation(options?: IRollInAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rollIn', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

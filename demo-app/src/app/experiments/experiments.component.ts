@@ -50,5 +50,12 @@ export class ExperimentsComponent implements OnInit {
     }
   }
 
+  animate() {
+    this.animationState = false;
+    setTimeout(() => {
+      this.animationState = true;
+    }, 1);
+  }
+
   ngOnInit() {}
 }

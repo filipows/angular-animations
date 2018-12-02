@@ -51,7 +51,7 @@ const DEFAULT_DURATION = 1000;
 export function bounceInLeftAnimation(options?: IBounceInLeftAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceInLeft', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

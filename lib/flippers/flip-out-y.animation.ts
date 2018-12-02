@@ -39,7 +39,7 @@ const DEFAULT_DURATION = 750;
 export function flipOutYAnimation(options?: IFlipOutYAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'flipOutY', [
     transition(
-      '0 <=> 1',
+      '0 => 1',
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

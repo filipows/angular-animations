@@ -145,8 +145,8 @@
     <app-angular-img *ngSwitchCase="'rollIn'" [@rollIn]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees, translate: translate }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'rollOut'" [@rollOut]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees, translate: translate }}"></app-angular-img>
     <!-- Other -->
-    <app-angular-img *ngSwitchCase="'collapse'" [@collapse]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rotate'" [@rotate]="{ value: animationState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'collapse'" [@collapse]="{ value: animationWithState, params: { duration: duration, delay: delay }}"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'rotate'" [@rotate]="{ value: animationWithState, params: { duration: duration, delay: delay, degrees: degrees }}"></app-angular-img>
     <app-angular-img *ngSwitchCase="'hueRotate'" [@hueRotate]="{ value: animationState, params: { duration: duration, delay: delay }}"></app-angular-img>
     <div *ngSwitchDefault>Select animaion</div>
   </div>

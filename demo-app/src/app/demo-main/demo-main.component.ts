@@ -261,15 +261,14 @@ export class DemoMainComponent {
   ];
   animation = 'rubberBand';
   animationState = false;
+  animationWithState = false;
   hueBtnState = false;
 
   animate() {
-    this.animationState = !this.animationState;
-  }
-
-  animateAfterChange() {
+    this.animationState = false;
     setTimeout(() => {
-      this.animate();
+      this.animationState = true;
+      this.animationWithState = !this.animationWithState;
     }, 1);
   }
 }
