@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "angular-animations",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Angular Animations Utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
