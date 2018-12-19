@@ -2,6 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/angular-animations.svg)](https://www.npmjs.com/package/angular-animations)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Gitter chat](https://badges.gitter.im/angular-animations.png)](https://gitter.im/angular-animations/Lobby)
 
 Easy, Reusable Animation Utility library for Angular Apps.
 
