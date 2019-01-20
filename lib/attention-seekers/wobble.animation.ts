@@ -13,7 +13,7 @@ import {
   useAnimation
 } from '@angular/animations';
 
-import { IAnimationOptions } from '../common/interfaces';
+import { IAnimationOptions, IAttentionSeekerAnimationOptions } from '../common/interfaces';
 
 const wobble = animation([
   animate(
@@ -32,10 +32,10 @@ const wobble = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function wobbleAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function wobbleAnimation(options?: IAttentionSeekerAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'wobble', [
     transition(
-      '0 <=> 1',
+      `0 ${(options && options.direction) || '<=>'} 1`,
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

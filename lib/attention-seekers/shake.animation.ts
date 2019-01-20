@@ -13,9 +13,9 @@ import {
   useAnimation
 } from '@angular/animations';
 
-import { IAnimationOptions } from '../common/interfaces';
+import { IAttentionSeekerAnimationOptions } from '../common/interfaces';
 
-export interface IShakeAnimationOptions extends IAnimationOptions {
+export interface IShakeAnimationOptions extends IAttentionSeekerAnimationOptions {
   /**
    * Shake size. Possible units: px, %, em, rem, vw, vh
    *
@@ -44,11 +44,10 @@ const shake = animation([
 ]);
 
 const DEFAULT_DURATION = 1000;
-
 export function shakeAnimation(options?: IShakeAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'shake', [
     transition(
-      '0 <=> 1',
+      `0 ${(options && options.direction) || '<=>'} 1`,
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

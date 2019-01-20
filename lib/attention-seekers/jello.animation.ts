@@ -13,7 +13,7 @@ import {
   useAnimation
 } from '@angular/animations';
 
-import { IAnimationOptions } from '../common/interfaces';
+import { IAnimationOptions, IAttentionSeekerAnimationOptions } from '../common/interfaces';
 
 const jello = animation([
   animate(
@@ -35,10 +35,10 @@ const jello = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function jelloAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function jelloAnimation(options?: IAttentionSeekerAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'jello', [
     transition(
-      '0 <=> 1',
+      `0 ${(options && options.direction) || '<=>'} 1`,
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

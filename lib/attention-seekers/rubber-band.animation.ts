@@ -13,7 +13,7 @@ import {
   useAnimation
 } from '@angular/animations';
 
-import { IAnimationOptions } from '../common/interfaces';
+import { IAnimationOptions, IAttentionSeekerAnimationOptions } from '../common/interfaces';
 
 const rubberBand = animation([
   animate(
@@ -32,10 +32,10 @@ const rubberBand = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function rubberBandAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function rubberBandAnimation(options?: IAttentionSeekerAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rubberBand', [
     transition(
-      '0 <=> 1',
+      `0 ${(options && options.direction) || '<=>'} 1`,
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
