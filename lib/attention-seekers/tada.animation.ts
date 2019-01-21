@@ -13,7 +13,7 @@ import {
   useAnimation
 } from '@angular/animations';
 
-import { IAnimationOptions } from '../common/interfaces';
+import { IAnimationOptions, IAttentionSeekerAnimationOptions } from '../common/interfaces';
 
 const tada = animation([
   animate(
@@ -36,10 +36,10 @@ const tada = animation([
 
 const DEFAULT_DURATION = 1000;
 
-export function tadaAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+export function tadaAnimation(options?: IAttentionSeekerAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'tada', [
     transition(
-      '0 <=> 1',
+      `0 ${(options && options.direction) || '<=>'} 1`,
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

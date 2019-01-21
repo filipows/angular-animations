@@ -79,7 +79,9 @@ and use them in the template:
 
 ### Animations with state or triggered by state changes
 
-These animations take as an input a boolean value. Some animations, like Attention Seekers are triggered by any changes of the state, all `in` and `out` animations are triggered by changes of state from `false` to `true`. Animations that preserve state, like `collapse` or `rotate` display default state when the value is `false` and transition to end state when the value is `true`
+These animations take as an input a boolean value. Some animations, like Attention Seekers are triggered depending on the `direction` parameter; bidirectional (`<=>`) will be triggered by any state change, unidirectional (`=>`) will be triggered only when state changes from false to true.
+
+All `in` and `out` animations are triggered by changes of state from `false` to `true`. Animations that preserve state, like `collapse` or `rotate` display default state when the value is `false` and transition to end state when the value is `true`
 
 ```ts
 import { collapseAnimation, rubberBandAnimation } from 'angular-animations';
@@ -118,6 +120,21 @@ In a decorator:
 
 ```html
 <div  *ngIf="CONDITION"  [@enter] [@leave]></div>
+```
+
+Animations like Attention Seekers can take a direction parameter (cannot be in template)
+```ts
+@Component({
+  ...
+  animations: [
+    // triggers when STATE changes from false to true
+    rubberBandAnimation({anchor: 'rubber', direction: '=>', duration: 500})
+  ]
+})
+```
+
+```html
+<div [@rubber]="STATE"> </div>
 ```
 
 In a template (providing option for dynamic changes):

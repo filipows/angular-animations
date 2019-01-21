@@ -24,3 +24,15 @@ export interface IAnimationOptions {
    */
   animateChildren?: 'before' | 'together' | 'after' | 'none';
 }
+
+export interface IAttentionSeekerAnimationOptions extends IAnimationOptions {
+  /**
+   * Indicates the direction of the state change expression in attention seekers.
+   *
+   * <=> is bidirectional (triggers whenever the state changes)
+   * => unidirectional (triggers whenever the state changes from false to true)
+   *
+   * Cannot be dynamic
+   */
+  direction?: '<=>' | '=>';
+}

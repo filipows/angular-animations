@@ -13,9 +13,9 @@ import {
   useAnimation
 } from '@angular/animations';
 
-import { IAnimationOptions } from '../common/interfaces';
+import { IAttentionSeekerAnimationOptions } from '../common/interfaces';
 
-export interface IPulseAnimationOptions extends IAnimationOptions {
+export interface IPulseAnimationOptions extends IAttentionSeekerAnimationOptions {
   /**
    * Scale factor
    *
@@ -40,7 +40,7 @@ const DEFAULT_DURATION = 1000;
 export function pulseAnimation(options?: IPulseAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'pulse', [
     transition(
-      '0 <=> 1',
+      `0 ${(options && options.direction) || '<=>'} 1`,
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
