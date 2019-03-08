@@ -10,6 +10,8 @@ import {
   tadaAnimation,
   wobbleAnimation,
   jelloAnimation,
+  heartBeatAnimation,
+  headShakeAnimation,
   bounceInAnimation,
   bounceInDownAnimation,
   bounceInLeftAnimation,
@@ -101,6 +103,8 @@ import {
     tadaAnimation(),
     wobbleAnimation(),
     jelloAnimation(),
+    heartBeatAnimation(),
+    headShakeAnimation(),
     bounceInAnimation(),
     bounceInDownAnimation(),
     bounceInLeftAnimation(),
@@ -180,7 +184,7 @@ export class DemoMainComponent {
   options = [
     {
       label: 'Attention Seekers',
-      animations: ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'jello']
+      animations: ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'jello', 'heartBeat', 'headShake']
     },
     {
       label: 'Bouncing Entrances',

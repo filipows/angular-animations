@@ -7,3 +7,5 @@ export * from './swing.animation';
 export * from './tada.animation';
 export * from './wobble.animation';
 export * from './jello.animation';
+export * from './heart-beat.animation';
+export * from './head-shake.animation';
