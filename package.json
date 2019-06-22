@@ -64,7 +64,7 @@
     "tsickle": "^0.35.0",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": ">=3.4.0 and < 3.5.0"
+    "typescript": "~3.4.0"
   },
   "peerDependencies": {
     "@angular/animations": ">=6.0.0"
