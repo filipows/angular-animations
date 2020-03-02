@@ -23,16 +23,17 @@ export interface IFlipOutXAnimationOptions extends IAnimationOptions {
   degrees?: number;
 }
 
-const flipOutX = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ transform: 'perspective(400px)', opacity: 1, easing: 'ease', offset: 0 }),
-      style({ transform: 'perspective(400px) rotate3d(1, 0, 0, -20deg)', opacity: 1, easing: 'ease', offset: 0.3 }),
-      style({ transform: 'perspective(400px) rotate3d(1, 0, 0, {{degrees}}deg)', opacity: 0, easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const flipOutX = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ transform: 'perspective(400px)', opacity: 1, easing: 'ease', offset: 0 }),
+        style({ transform: 'perspective(400px) rotate3d(1, 0, 0, -20deg)', opacity: 1, easing: 'ease', offset: 0.3 }),
+        style({ transform: 'perspective(400px) rotate3d(1, 0, 0, {{degrees}}deg)', opacity: 0, easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 750;
 
@@ -44,7 +45,7 @@ export function flipOutXAnimation(options?: IFlipOutXAnimationOptions): Animatio
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'backface-visibility': 'visible' }),
-          useAnimation(flipOutX),
+          useAnimation(flipOutX()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -70,7 +71,7 @@ export function flipOutXOnLeaveAnimation(options?: IFlipOutXAnimationOptions): A
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'backface-visibility': 'visible' }),
-          useAnimation(flipOutX),
+          useAnimation(flipOutX()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

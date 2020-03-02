@@ -23,15 +23,16 @@ export interface ISlideInDownAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const slideInDown = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: 'visible', transform: 'translate3d(0, -{{translate}}, 0)', easing: 'ease', offset: 0 }),
-      style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const slideInDown = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: 'visible', transform: 'translate3d(0, -{{translate}}, 0)', easing: 'ease', offset: 0 }),
+        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -43,7 +44,7 @@ export function slideInDownAnimation(options?: ISlideInDownAnimationOptions): An
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ visibility: 'visible' }),
-          useAnimation(slideInDown),
+          useAnimation(slideInDown()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -69,7 +70,7 @@ export function slideInDownOnEnterAnimation(options?: ISlideInDownAnimationOptio
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideInDown),
+          useAnimation(slideInDown()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

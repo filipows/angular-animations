@@ -23,15 +23,16 @@ export interface IFadeInDownAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const fadeInDown = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: 'visible', opacity: 0, transform: 'translate3d(0, -{{translate}}, 0)', easing: 'ease', offset: 0 }),
-      style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const fadeInDown = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: 'visible', opacity: 0, transform: 'translate3d(0, -{{translate}}, 0)', easing: 'ease', offset: 0 }),
+        style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -42,7 +43,7 @@ export function fadeInDownAnimation(options?: IFadeInDownAnimationOptions): Anim
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeInDown),
+          useAnimation(fadeInDown()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -68,7 +69,7 @@ export function fadeInDownOnEnterAnimation(options?: IFadeInDownAnimationOptions
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeInDown),
+          useAnimation(fadeInDown()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

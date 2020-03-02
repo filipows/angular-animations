@@ -23,15 +23,16 @@ export interface ILightSpeedOutAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const lightSpeedOut = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ opacity: 1, easing: 'ease-in', offset: 0 }),
-      style({ opacity: 0, transform: 'translate3d({{translate}}, 0, 0) skewX(30deg)', easing: 'ease-in', offset: 1 })
-    ])
-  )
-]);
+const lightSpeedOut = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ opacity: 1, easing: 'ease-in', offset: 0 }),
+        style({ opacity: 0, transform: 'translate3d({{translate}}, 0, 0) skewX(30deg)', easing: 'ease-in', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -42,7 +43,7 @@ export function lightSpeedOutAnimation(options?: ILightSpeedOutAnimationOptions)
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(lightSpeedOut),
+          useAnimation(lightSpeedOut()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -67,7 +68,7 @@ export function lightSpeedOutOnLeaveAnimation(options?: ILightSpeedOutAnimationO
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(lightSpeedOut),
+          useAnimation(lightSpeedOut()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

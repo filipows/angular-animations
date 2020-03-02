@@ -24,16 +24,17 @@ export interface IPulseAnimationOptions extends IAttentionSeekerAnimationOptions
   scale?: number;
 }
 
-const pulse = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: AUTO_STYLE, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
-      style({ transform: 'scale3d({{scale}}, {{scale}}, {{scale}})', easing: 'ease', offset: 0.5 }),
-      style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const pulse = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: AUTO_STYLE, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
+        style({ transform: 'scale3d({{scale}}, {{scale}}, {{scale}})', easing: 'ease', offset: 0.5 }),
+        style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -44,7 +45,7 @@ export function pulseAnimation(options?: IPulseAnimationOptions): AnimationTrigg
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(pulse),
+          useAnimation(pulse()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -70,7 +71,7 @@ export function pulseOnEnterAnimation(options?: IPulseAnimationOptions): Animati
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ visibility: 'hidden' }),
         group([
-          useAnimation(pulse),
+          useAnimation(pulse()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

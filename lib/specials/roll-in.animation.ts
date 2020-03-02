@@ -29,21 +29,22 @@ export interface IRollInAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const rollIn = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({
-        visibility: 'visible',
-        opacity: 0,
-        transform: 'translate3d({{translate}}, 0, 0) rotate3d(0, 0, 1, {{degrees}}deg)',
-        easing: 'ease',
-        offset: 0
-      }),
-      style({ opacity: 1, transform: 'translate3d(0, 0, 0) rotate3d(0, 0, 1, 0deg)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const rollIn = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({
+          visibility: 'visible',
+          opacity: 0,
+          transform: 'translate3d({{translate}}, 0, 0) rotate3d(0, 0, 1, {{degrees}}deg)',
+          easing: 'ease',
+          offset: 0
+        }),
+        style({ opacity: 1, transform: 'translate3d(0, 0, 0) rotate3d(0, 0, 1, 0deg)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -54,7 +55,7 @@ export function rollInAnimation(options?: IRollInAnimationOptions): AnimationTri
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(rollIn),
+          useAnimation(rollIn()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -81,7 +82,7 @@ export function rollInOnEnterAnimation(options?: IRollInAnimationOptions): Anima
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(rollIn),
+          useAnimation(rollIn()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

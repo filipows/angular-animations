@@ -15,20 +15,21 @@ import {
 
 import { IAnimationOptions, IAttentionSeekerAnimationOptions } from '../common/interfaces';
 
-const rubberBand = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: AUTO_STYLE, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
-      style({ transform: 'scale3d(1.25, 0.75, 1)', easing: 'ease', offset: 0.3 }),
-      style({ transform: 'scale3d(0.75, 1.25, 1)', easing: 'ease', offset: 0.4 }),
-      style({ transform: 'scale3d(1.15, 0.85, 1)', easing: 'ease', offset: 0.5 }),
-      style({ transform: 'scale3d(0.95, 1.05, 1)', easing: 'ease', offset: 0.65 }),
-      style({ transform: 'scale3d(1.05, 0.95, 1)', easing: 'ease', offset: 0.75 }),
-      style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const rubberBand = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: AUTO_STYLE, transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 0 }),
+        style({ transform: 'scale3d(1.25, 0.75, 1)', easing: 'ease', offset: 0.3 }),
+        style({ transform: 'scale3d(0.75, 1.25, 1)', easing: 'ease', offset: 0.4 }),
+        style({ transform: 'scale3d(1.15, 0.85, 1)', easing: 'ease', offset: 0.5 }),
+        style({ transform: 'scale3d(0.95, 1.05, 1)', easing: 'ease', offset: 0.65 }),
+        style({ transform: 'scale3d(1.05, 0.95, 1)', easing: 'ease', offset: 0.75 }),
+        style({ transform: 'scale3d(1, 1, 1)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -39,7 +40,7 @@ export function rubberBandAnimation(options?: IAttentionSeekerAnimationOptions):
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(rubberBand),
+          useAnimation(rubberBand()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -64,7 +65,7 @@ export function rubberBandOnEnterAnimation(options?: IAnimationOptions): Animati
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ visibility: 'hidden' }),
         group([
-          useAnimation(rubberBand),
+          useAnimation(rubberBand()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

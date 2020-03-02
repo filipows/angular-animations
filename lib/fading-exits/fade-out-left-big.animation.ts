@@ -23,15 +23,16 @@ export interface IFadeOutLeftBigAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const fadeOutLeftBig = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
-      style({ opacity: 0, transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const fadeOutLeftBig = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
+        style({ opacity: 0, transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -42,7 +43,7 @@ export function fadeOutLeftBigAnimation(options?: IFadeOutLeftBigAnimationOption
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeOutLeftBig),
+          useAnimation(fadeOutLeftBig()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -67,7 +68,7 @@ export function fadeOutLeftBigOnLeaveAnimation(options?: IFadeOutLeftBigAnimatio
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeOutLeftBig),
+          useAnimation(fadeOutLeftBig()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

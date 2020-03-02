@@ -24,24 +24,25 @@ export interface IShakeAnimationOptions extends IAttentionSeekerAnimationOptions
   translate?: string;
 }
 
-const shake = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: AUTO_STYLE, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
-      style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.1 }),
-      style({ transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0.2 }),
-      style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.3 }),
-      style({ transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0.4 }),
-      style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.5 }),
-      style({ transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0.6 }),
-      style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.7 }),
-      style({ transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0.8 }),
-      style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.9 }),
-      style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const shake = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: AUTO_STYLE, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
+        style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.1 }),
+        style({ transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0.2 }),
+        style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.3 }),
+        style({ transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0.4 }),
+        style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.5 }),
+        style({ transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0.6 }),
+        style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.7 }),
+        style({ transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0.8 }),
+        style({ transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0.9 }),
+        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 export function shakeAnimation(options?: IShakeAnimationOptions): AnimationTriggerMetadata {
@@ -51,7 +52,7 @@ export function shakeAnimation(options?: IShakeAnimationOptions): AnimationTrigg
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(shake),
+          useAnimation(shake()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -77,7 +78,7 @@ export function shakeOnEnterAnimation(options?: IShakeAnimationOptions): Animati
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ visibility: 'hidden' }),
         group([
-          useAnimation(shake),
+          useAnimation(shake()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

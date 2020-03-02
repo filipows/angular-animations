@@ -23,15 +23,16 @@ export interface IRotateOutDownRightAnimationOptions extends IAnimationOptions {
   degrees?: number;
 }
 
-const rotateOutDownRight = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ opacity: 1, easing: 'ease', offset: 0 }),
-      style({ opacity: 0, transform: 'rotate3d(0, 0, 1, {{degrees}}deg)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const rotateOutDownRight = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ opacity: 1, easing: 'ease', offset: 0 }),
+        style({ opacity: 0, transform: 'rotate3d(0, 0, 1, {{degrees}}deg)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -43,7 +44,7 @@ export function rotateOutDownRightAnimation(options?: IRotateOutDownRightAnimati
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'right bottom' }),
         group([
-          useAnimation(rotateOutDownRight),
+          useAnimation(rotateOutDownRight()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -69,7 +70,7 @@ export function rotateOutDownRightOnLeaveAnimation(options?: IRotateOutDownRight
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'right bottom' }),
         group([
-          useAnimation(rotateOutDownRight),
+          useAnimation(rotateOutDownRight()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
