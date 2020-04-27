@@ -1,5 +1,5 @@
-export * from './zoom-in.animation';
-export * from './zoom-in-down.animation';
-export * from './zoom-in-left.animation';
-export * from './zoom-in-right.animation';
-export * from './zoom-in-up.animation';
+export { zoomInDownAnimation, zoomInDownOnEnterAnimation } from './zoom-in-down.animation';
+export { zoomInLeftAnimation, zoomInLeftOnEnterAnimation } from './zoom-in-left.animation';
+export { zoomInRightAnimation, zoomInRightOnEnterAnimation } from './zoom-in-right.animation';
+export { zoomInUpAnimation, zoomInUpOnEnterAnimation } from './zoom-in-up.animation';
+export { zoomInAnimation, zoomInOnEnterAnimation } from './zoom-in.animation';
