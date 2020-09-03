@@ -24,18 +24,19 @@ export interface IHeartBeatAnimationOptions extends IAttentionSeekerAnimationOpt
   scale?: number;
 }
 
-const heartBeat = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: AUTO_STYLE, transform: 'scale(1)', easing: 'ease-in-out', offset: 0 }),
-      style({ transform: 'scale({{scale}})', easing: 'ease-in-out', offset: 0.14 }),
-      style({ transform: 'scale(1)', easing: 'ease-in-out', offset: 0.28 }),
-      style({ transform: 'scale({{scale}})', easing: 'ease-in-out', offset: 0.42 }),
-      style({ transform: 'scale(1)', easing: 'ease-in-out', offset: 0.7 })
-    ])
-  )
-]);
+const heartBeat = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: AUTO_STYLE, transform: 'scale(1)', easing: 'ease-in-out', offset: 0 }),
+        style({ transform: 'scale({{scale}})', easing: 'ease-in-out', offset: 0.14 }),
+        style({ transform: 'scale(1)', easing: 'ease-in-out', offset: 0.28 }),
+        style({ transform: 'scale({{scale}})', easing: 'ease-in-out', offset: 0.42 }),
+        style({ transform: 'scale(1)', easing: 'ease-in-out', offset: 0.7 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1300;
 const DEFAULT_SCALE = 1.3;
@@ -47,7 +48,7 @@ export function heartBeatAnimation(options?: IHeartBeatAnimationOptions): Animat
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(heartBeat),
+          useAnimation(heartBeat()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -73,7 +74,7 @@ export function heartBeatOnEnterAnimation(options?: IHeartBeatAnimationOptions):
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ visibility: 'hidden' }),
         group([
-          useAnimation(heartBeat),
+          useAnimation(heartBeat()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

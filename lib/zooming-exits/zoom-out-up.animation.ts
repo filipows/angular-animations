@@ -14,27 +14,28 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
-const zoomOutUp = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({
-        'transform-origin': 'center bottom',
-        opacity: 1,
-        transform: 'scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0)',
-        easing: 'ease',
-        offset: 0.4
-      }),
-      style({
-        'transform-origin': 'center bottom',
-        opacity: 0,
-        transform: 'scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0)',
-        easing: 'cubic-bezier(0.55, 0.055, 0.675, 0.19)',
-        offset: 1
-      })
-    ])
-  )
-]);
+const zoomOutUp = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({
+          'transform-origin': 'center bottom',
+          opacity: 1,
+          transform: 'scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0)',
+          easing: 'ease',
+          offset: 0.4
+        }),
+        style({
+          'transform-origin': 'center bottom',
+          opacity: 0,
+          transform: 'scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0)',
+          easing: 'cubic-bezier(0.55, 0.055, 0.675, 0.19)',
+          offset: 1
+        })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -45,7 +46,7 @@ export function zoomOutUpAnimation(options?: IAnimationOptions): AnimationTrigge
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(zoomOutUp),
+          useAnimation(zoomOutUp()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -69,7 +70,7 @@ export function zoomOutUpOnLeaveAnimation(options?: IAnimationOptions): Animatio
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(zoomOutUp),
+          useAnimation(zoomOutUp()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

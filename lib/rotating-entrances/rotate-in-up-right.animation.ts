@@ -23,15 +23,16 @@ export interface IRotateInUpRightAnimationOptions extends IAnimationOptions {
   degrees?: number;
 }
 
-const rotateInUpRight = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: 'visible', opacity: 0, transform: 'rotate3d(0, 0, 1, {{degrees}}deg)', easing: 'ease', offset: 0 }),
-      style({ opacity: 1, transform: 'rotate3d(0, 0, 1, 0deg)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const rotateInUpRight = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: 'visible', opacity: 0, transform: 'rotate3d(0, 0, 1, {{degrees}}deg)', easing: 'ease', offset: 0 }),
+        style({ opacity: 1, transform: 'rotate3d(0, 0, 1, 0deg)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -43,7 +44,7 @@ export function rotateInUpRightAnimation(options?: IRotateInUpRightAnimationOpti
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'right bottom' }),
         group([
-          useAnimation(rotateInUpRight),
+          useAnimation(rotateInUpRight()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -70,7 +71,7 @@ export function rotateInUpRightOnEnterAnimation(options?: IRotateInUpRightAnimat
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'right bottom' }),
         group([
-          useAnimation(rotateInUpRight),
+          useAnimation(rotateInUpRight()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

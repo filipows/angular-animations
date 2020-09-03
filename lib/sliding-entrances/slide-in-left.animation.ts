@@ -23,15 +23,16 @@ export interface ISlideInLeftAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const slideInLeft = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: 'visible', transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0 }),
-      style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const slideInLeft = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: 'visible', transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 0 }),
+        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -43,7 +44,7 @@ export function slideInLeftAnimation(options?: ISlideInLeftAnimationOptions): An
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ visibility: 'visible' }),
-          useAnimation(slideInLeft),
+          useAnimation(slideInLeft()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -69,7 +70,7 @@ export function slideInLeftOnEnterAnimation(options?: ISlideInLeftAnimationOptio
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideInLeft),
+          useAnimation(slideInLeft()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

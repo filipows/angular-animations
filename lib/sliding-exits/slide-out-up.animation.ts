@@ -23,15 +23,16 @@ export interface ISlideOutUpAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const slideOutUp = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
-      style({ transform: 'translate3d(0, -{{translate}}, 0)', visibility: 'hidden', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const slideOutUp = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
+        style({ transform: 'translate3d(0, -{{translate}}, 0)', visibility: 'hidden', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -42,7 +43,7 @@ export function slideOutUpAnimation(options?: ISlideOutUpAnimationOptions): Anim
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideOutUp),
+          useAnimation(slideOutUp()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -67,7 +68,7 @@ export function slideOutUpOnLeaveAnimation(options?: ISlideOutUpAnimationOptions
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideOutUp),
+          useAnimation(slideOutUp()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

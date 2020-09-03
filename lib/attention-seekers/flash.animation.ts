@@ -15,18 +15,19 @@ import {
 
 import { IAnimationOptions, IAttentionSeekerAnimationOptions } from '../common/interfaces';
 
-const flash = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: AUTO_STYLE, opacity: 1, easing: 'ease', offset: 0 }),
-      style({ opacity: 0, easing: 'ease', offset: 0.25 }),
-      style({ opacity: 1, easing: 'ease', offset: 0.5 }),
-      style({ opacity: 0, easing: 'ease', offset: 0.75 }),
-      style({ opacity: 1, easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const flash = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: AUTO_STYLE, opacity: 1, easing: 'ease', offset: 0 }),
+        style({ opacity: 0, easing: 'ease', offset: 0.25 }),
+        style({ opacity: 1, easing: 'ease', offset: 0.5 }),
+        style({ opacity: 0, easing: 'ease', offset: 0.75 }),
+        style({ opacity: 1, easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -37,7 +38,7 @@ export function flashAnimation(options?: IAttentionSeekerAnimationOptions): Anim
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(flash),
+          useAnimation(flash()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -62,7 +63,7 @@ export function flashOnEnterAnimation(options?: IAnimationOptions): AnimationTri
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ visibility: 'hidden' }),
         group([
-          useAnimation(flash),
+          useAnimation(flash()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

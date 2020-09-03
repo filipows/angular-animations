@@ -23,15 +23,16 @@ export interface ISlideInRightAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const slideInRight = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: 'visible', transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0 }),
-      style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const slideInRight = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: 'visible', transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0 }),
+        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -43,7 +44,7 @@ export function slideInRightAnimation(options?: ISlideInRightAnimationOptions): 
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ visibility: 'visible' }),
-          useAnimation(slideInRight),
+          useAnimation(slideInRight()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -69,7 +70,7 @@ export function slideInRightOnEnterAnimation(options?: ISlideInRightAnimationOpt
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideInRight),
+          useAnimation(slideInRight()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

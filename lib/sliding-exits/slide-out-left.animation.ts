@@ -23,15 +23,16 @@ export interface ISlideOutLeftAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const slideOutLeft = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
-      style({ transform: 'translate3d(-{{translate}}, 0, 0)', visibility: 'hidden', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const slideOutLeft = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
+        style({ transform: 'translate3d(-{{translate}}, 0, 0)', visibility: 'hidden', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -42,7 +43,7 @@ export function slideOutLeftAnimation(options?: ISlideOutLeftAnimationOptions): 
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideOutLeft),
+          useAnimation(slideOutLeft()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -67,7 +68,7 @@ export function slideOutLeftOnLeaveAnimation(options?: ISlideOutLeftAnimationOpt
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(slideOutLeft),
+          useAnimation(slideOutLeft()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

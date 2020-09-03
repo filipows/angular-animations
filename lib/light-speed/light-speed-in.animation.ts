@@ -23,23 +23,24 @@ export interface ILightSpeedInAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const lightSpeedIn = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({
-        visibility: 'visible',
-        opacity: 0,
-        transform: 'translate3d({{translate}}, 0, 0) skewX(-30deg)',
-        easing: 'ease-out',
-        offset: 0
-      }),
-      style({ opacity: 1, transform: 'skewX(20deg)', easing: 'ease-out', offset: 0.6 }),
-      style({ opacity: 1, transform: 'skewX(-5deg)', easing: 'ease-out', offset: 0.8 }),
-      style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease-out', offset: 1 })
-    ])
-  )
-]);
+const lightSpeedIn = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({
+          visibility: 'visible',
+          opacity: 0,
+          transform: 'translate3d({{translate}}, 0, 0) skewX(-30deg)',
+          easing: 'ease-out',
+          offset: 0
+        }),
+        style({ opacity: 1, transform: 'skewX(20deg)', easing: 'ease-out', offset: 0.6 }),
+        style({ opacity: 1, transform: 'skewX(-5deg)', easing: 'ease-out', offset: 0.8 }),
+        style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease-out', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -50,7 +51,7 @@ export function lightSpeedInAnimation(options?: ILightSpeedInAnimationOptions): 
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(lightSpeedIn),
+          useAnimation(lightSpeedIn()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -76,7 +77,7 @@ export function lightSpeedInOnEnterAnimation(options?: ILightSpeedInAnimationOpt
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(lightSpeedIn),
+          useAnimation(lightSpeedIn()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

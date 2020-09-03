@@ -23,15 +23,16 @@ export interface IRotateInAnimationOptions extends IAnimationOptions {
   degrees?: number;
 }
 
-const rotateIn = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([
-      style({ visibility: 'visible', opacity: 0, transform: 'rotate({{degrees}}deg)', easing: 'ease', offset: 0 }),
-      style({ opacity: 1, transform: 'rotate(0deg)', easing: 'ease', offset: 1 })
-    ])
-  )
-]);
+const rotateIn = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({ visibility: 'visible', opacity: 0, transform: 'rotate({{degrees}}deg)', easing: 'ease', offset: 0 }),
+        style({ opacity: 1, transform: 'rotate(0deg)', easing: 'ease', offset: 1 })
+      ])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -43,7 +44,7 @@ export function rotateInAnimation(options?: IRotateInAnimationOptions): Animatio
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'center' }),
         group([
-          useAnimation(rotateIn),
+          useAnimation(rotateIn()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -70,7 +71,7 @@ export function rotateInOnEnterAnimation(options?: IRotateInAnimationOptions): A
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'center' }),
         group([
-          useAnimation(rotateIn),
+          useAnimation(rotateIn()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

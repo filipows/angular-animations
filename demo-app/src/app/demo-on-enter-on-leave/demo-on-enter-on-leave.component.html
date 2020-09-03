@@ -7,7 +7,7 @@
     <mat-form-field appearance="outline">
       <mat-select [(ngModel)]="animation" (ngModelChange)="state = false">
         <mat-optgroup *ngFor="let option of options" [label]="option.label">
-          <mat-option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</mat-option>
+          <mat-option *ngFor="let animation of option.animations" [value]="animation">{{ animation }}</mat-option>
         </mat-optgroup>
       </mat-select>
     </mat-form-field>
@@ -17,7 +17,7 @@
   <div [ngSwitch]="animation" [@enter3]>
     <!-- Bouncing -->
     <ng-container *ngSwitchCase="'bounceIn'">
-      <app-angular-img *ngIf="state" [@bounceInOnEnter]="{ value: '', params: { duration: 1000 }}" [@bounceOutOnLeave]></app-angular-img>
+      <app-angular-img *ngIf="state" [@bounceInOnEnter]="{ value: '', params: { duration: 1000 } }" [@bounceOutOnLeave]></app-angular-img>
     </ng-container>
     <ng-container *ngSwitchCase="'bounceInUp'">
       <app-angular-img *ngIf="state" [@bounceInUpOnEnter] [@bounceOutUpOnLeave]></app-angular-img>
@@ -160,7 +160,12 @@
     <ng-container *ngSwitchCase="'fadeInExpandFadeOutCollapse'">
       <app-angular-img *ngIf="state" [@fadeInExpandOnEnter] [@fadeOutCollapseOnLeave]></app-angular-img>
     </ng-container>
+    <ng-container *ngSwitchCase="'expandRightCollapseLeft'">
+      <app-angular-img *ngIf="state" [@expandRightOnEnter] [@collapseLeftOnLeave]></app-angular-img>
+    </ng-container>
+    <ng-container *ngSwitchCase="'fadeInExpandRightFadeOutCollapseLeft'">
+      <app-angular-img *ngIf="state" [@fadeInExpandRightOnEnter] [@fadeOutCollapseLeftOnLeave]></app-angular-img>
+    </ng-container>
     <div *ngSwitchDefault>Select animaion</div>
   </div>
-
 </div>

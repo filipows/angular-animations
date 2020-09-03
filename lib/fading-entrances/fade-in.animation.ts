@@ -14,12 +14,13 @@ import {
 
 import { IAnimationOptions } from '../common/interfaces';
 
-const fadeIn = animation([
-  animate(
-    '{{duration}}ms {{delay}}ms',
-    keyframes([style({ visibility: 'visible', opacity: 0, easing: 'ease', offset: 0 }), style({ opacity: 1, easing: 'ease', offset: 1 })])
-  )
-]);
+const fadeIn = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([style({ visibility: 'visible', opacity: 0, easing: 'ease', offset: 0 }), style({ opacity: 1, easing: 'ease', offset: 1 })])
+    )
+  ]);
 
 const DEFAULT_DURATION = 1000;
 
@@ -30,7 +31,7 @@ export function fadeInAnimation(options?: IAnimationOptions): AnimationTriggerMe
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeIn),
+          useAnimation(fadeIn()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -55,7 +56,7 @@ export function fadeInOnEnterAnimation(options?: IAnimationOptions): AnimationTr
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(fadeIn),
+          useAnimation(fadeIn()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])

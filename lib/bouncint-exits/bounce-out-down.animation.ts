@@ -23,28 +23,29 @@ export interface IBounceOutDownAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const bounceOutDown = animation(
-  group([
-    animate(
-      '{{duration}}ms {{delay}}ms',
-      keyframes([
-        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
-        style({ transform: 'translate3d(0, 10px, 0)', easing: 'ease', offset: 0.2 }),
-        style({ transform: 'translate3d(0, -20px, 0)', easing: 'ease', offset: 0.4 }),
-        style({ transform: 'translate3d(0, -20px, 0)', easing: 'ease', offset: 0.45 }),
-        style({ transform: 'translate3d(0, {{translate}}, 0)', easing: 'ease', offset: 1 })
-      ])
-    ),
-    animate(
-      '{{duration}}ms {{delay}}ms',
-      keyframes([
-        style({ opacity: 1, easing: 'ease', offset: 0 }),
-        style({ opacity: 1, easing: 'ease', offset: 0.45 }),
-        style({ opacity: 0, easing: 'ease', offset: 1 })
-      ])
-    )
-  ])
-);
+const bounceOutDown = () =>
+  animation(
+    group([
+      animate(
+        '{{duration}}ms {{delay}}ms',
+        keyframes([
+          style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
+          style({ transform: 'translate3d(0, 10px, 0)', easing: 'ease', offset: 0.2 }),
+          style({ transform: 'translate3d(0, -20px, 0)', easing: 'ease', offset: 0.4 }),
+          style({ transform: 'translate3d(0, -20px, 0)', easing: 'ease', offset: 0.45 }),
+          style({ transform: 'translate3d(0, {{translate}}, 0)', easing: 'ease', offset: 1 })
+        ])
+      ),
+      animate(
+        '{{duration}}ms {{delay}}ms',
+        keyframes([
+          style({ opacity: 1, easing: 'ease', offset: 0 }),
+          style({ opacity: 1, easing: 'ease', offset: 0.45 }),
+          style({ opacity: 0, easing: 'ease', offset: 1 })
+        ])
+      )
+    ])
+  );
 
 const DEFAULT_DURATION = 1000;
 
@@ -55,7 +56,7 @@ export function bounceOutDownAnimation(options?: IBounceOutDownAnimationOptions)
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(bounceOutDown),
+          useAnimation(bounceOutDown()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
@@ -80,7 +81,7 @@ export function bounceOutDownOnLeaveAnimation(options?: IBounceOutDownAnimationO
       [
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
-          useAnimation(bounceOutDown),
+          useAnimation(bounceOutDown()),
           ...(!options || !options.animateChildren || options.animateChildren === 'together'
             ? [query('@*', animateChild(), { optional: true })]
             : [])
