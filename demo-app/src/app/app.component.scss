@@ -6,14 +6,17 @@
     margin-left: auto;
   }
 
-  .sidenave-container {
+  .sidenav-container {
     background: #ffffff;
     color: inherit;
     height: calc(100vh - 64px);
+    .mat-sidenav-content {
+      overflow: hidden;
+    }
   }
 
   @media screen and (max-width: 600px) {
-    .sidenave-container {
+    .sidenav-container {
       height: calc(100vh - 56px);
     }
   }
