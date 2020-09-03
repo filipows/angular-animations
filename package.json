@@ -52,19 +52,19 @@
   },
   "homepage": "https://github.com/filipows/angular-animations#readme",
   "devDependencies": {
-    "@angular/animations": "^8.0.0",
-    "@angular/compiler": "^8.0.0",
-    "@angular/compiler-cli": "^8.0.0",
-    "@angular/core": "^8.0.0",
-    "angular-cli-ghpages": "^0.5.3",
+    "@angular/animations": "^10.1.0",
+    "@angular/compiler": "^10.1.0",
+    "@angular/compiler-cli": "^10.1.0",
+    "@angular/core": "^10.1.0",
+    "angular-cli-ghpages": "^0.6.2",
     "husky": "^2.4.1",
-    "ng-packagr": "^5.3.0",
-    "np": "^5.0.3",
-    "prettier": "^1.18.2",
+    "ng-packagr": "^10.1.0",
+    "np": "^6.5.0",
+    "prettier": "^2.1.1",
     "tsickle": "^0.35.0",
-    "tslint": "^5.18.0",
+    "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "~3.4.0"
+    "typescript": "~4.0.2"
   },
   "peerDependencies": {
     "@angular/animations": ">=6.0.0"
