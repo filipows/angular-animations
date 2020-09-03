@@ -87,6 +87,16 @@ const expand = animation(
   )
 );
 
+const expandRight = animation(
+  animate(
+    '{{duration}}ms {{delay}}ms',
+    keyframes([
+      style({ width: '0', visibility: 'hidden', overflow: 'hidden', easing: 'ease-out', offset: 0 }),
+      style({ width: AUTO_STYLE, visibility: AUTO_STYLE, overflow: 'hidden', easing: 'ease-out', offset: 1 })
+    ])
+  )
+);
+
 const fadeInExpand = animation(
   animate(
     '{{duration}}ms {{delay}}ms',
@@ -156,6 +166,31 @@ export function collapseOnLeaveAnimation(options?: IAnimationOptions): Animation
         ]),
         ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
       ],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION
+        }
+      }
+    )
+  ]);
+}
+
+export function expandRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'expandRightOnEnter', [
+    transition(
+      ':enter',
+      animation([
+        style({ visibility: 'hidden' }),
+        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
+        group([
+          useAnimation(expandRight),
+          ...(!options || !options.animateChildren || options.animateChildren === 'together'
+            ? [query('@*', animateChild(), { optional: true })]
+            : [])
+        ]),
+        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
+      ]),
       {
         params: {
           delay: (options && options.delay) || 0,
