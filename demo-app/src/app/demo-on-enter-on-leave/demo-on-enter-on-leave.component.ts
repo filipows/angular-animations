@@ -80,7 +80,11 @@ import {
   expandOnEnterAnimation,
   collapseOnLeaveAnimation,
   fadeInExpandOnEnterAnimation,
-  fadeOutCollapseOnLeaveAnimation
+  fadeOutCollapseOnLeaveAnimation,
+  expandRightOnEnterAnimation,
+  collapseLeftOnLeaveAnimation,
+  fadeInExpandRightOnEnterAnimation,
+  fadeOutCollapseLeftOnLeaveAnimation
 } from '../../../../lib';
 
 @Component({
@@ -170,7 +174,11 @@ import {
     expandOnEnterAnimation({ duration: 400 }),
     collapseOnLeaveAnimation({ duration: 400 }),
     fadeInExpandOnEnterAnimation({ duration: 400 }),
-    fadeOutCollapseOnLeaveAnimation({ duration: 400 })
+    fadeOutCollapseOnLeaveAnimation({ duration: 400 }),
+    expandRightOnEnterAnimation({ duration: 400 }),
+    collapseLeftOnLeaveAnimation({ duration: 400 }),
+    fadeInExpandRightOnEnterAnimation({ duration: 400 }),
+    fadeOutCollapseLeftOnLeaveAnimation({ duration: 400 })
   ]
 })
 export class DemoOnEnterOnLeaveComponent {
@@ -223,7 +231,7 @@ export class DemoOnEnterOnLeaveComponent {
     },
     {
       label: 'Other',
-      animations: ['expandCollapse', 'fadeInExpandFadeOutCollapse']
+      animations: ['expandCollapse', 'fadeInExpandFadeOutCollapse', 'expandRightCollapseLeft', 'fadeInExpandRightFadeOutCollapseLeft']
     }
   ];
   animation = 'bounceIn';

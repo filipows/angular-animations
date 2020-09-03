@@ -98,32 +98,42 @@
     <app-angular-img *ngSwitchCase="'rollOut'" [@rollOut]="animationState"></app-angular-img>
     <!-- Other -->
     <app-angular-img *ngSwitchCase="'collapse'" [@collapse]="animationWithState"></app-angular-img>
+    <app-angular-img *ngSwitchCase="'collapseHorizontally'" [@collapseHorizontally]="animationWithState"></app-angular-img>
     <app-angular-img *ngSwitchCase="'rotate'" [@rotate]="animationWithState"></app-angular-img>
     <app-angular-img *ngSwitchCase="'rotate90'" [@rotate90]="animationWithState"></app-angular-img>
-    <app-angular-img *ngSwitchCase="'rotate720'" [@rotate]="{value: animationWithState, params: { duration: 700, degrees: 720 } }"></app-angular-img>
+    <app-angular-img
+      *ngSwitchCase="'rotate720'"
+      [@rotate]="{ value: animationWithState, params: { duration: 700, degrees: 720 } }"
+    ></app-angular-img>
     <app-angular-img *ngSwitchCase="'hueRotate'" [@hueRotate]="animationState"></app-angular-img>
     <div *ngSwitchDefault>Select animaion</div>
   </div>
-
 
   <div [@enter3] (@enter3.done)="animationState = !animationState">
     <mat-form-field appearance="outline">
       <mat-select [(ngModel)]="animation" (ngModelChange)="animate()">
         <mat-optgroup *ngFor="let option of options" [label]="option.label">
-          <mat-option *ngFor="let animation of option.animations" [value]="animation">{{animation}}</mat-option>
+          <mat-option *ngFor="let animation of option.animations" [value]="animation">{{ animation }}</mat-option>
         </mat-optgroup>
       </mat-select>
     </mat-form-field>
-    <button [@hueButton]="hueBtnState" (@hueButton.done)="hueBtnState = !hueBtnState" mat-stroked-button color="primary"
-      class="animate-btn" (click)="animate()">Animate it</button>
+    <button
+      [@hueButton]="hueBtnState"
+      (@hueButton.done)="hueBtnState = !hueBtnState"
+      mat-stroked-button
+      color="primary"
+      class="animate-btn"
+      (click)="animate()"
+    >
+      Animate it
+    </button>
   </div>
 
   <div [@enter3]>
-    <hr>
+    <hr />
     <div>
-      <a href="https://github.com/filipows/angular-animations">View on GitHub</a> or <a href="https://stackblitz.com/edit/angular-animations-lib-demo">play
-        with StackBlitz</a>
+      <a href="https://github.com/filipows/angular-animations">View on GitHub</a> or
+      <a href="https://stackblitz.com/edit/angular-animations-lib-demo">play with StackBlitz</a>
     </div>
   </div>
-
 </div>
