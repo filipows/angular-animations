@@ -24,7 +24,7 @@ export {
   tadaOnEnterAnimation,
   wobbleAnimation,
   wobbleOnEnterAnimation
-} from './attention-seekers/index';
+} from './attention-seekers';
 export {
   IBounceInDownAnimationOptions,
   IBounceInLeftAnimationOptions,
@@ -40,7 +40,7 @@ export {
   bounceInRightOnEnterAnimation,
   bounceInUpAnimation,
   bounceInUpOnEnterAnimation
-} from './bouncing-entrances/index';
+} from './bouncing-entrances';
 export {
   IBounceOutDownAnimationOptions,
   IBounceOutLeftAnimationOptions,
@@ -56,7 +56,7 @@ export {
   bounceOutRightOnLeaveAnimation,
   bounceOutUpAnimation,
   bounceOutUpOnLeaveAnimation
-} from './bouncint-exits/index';
+} from './bouncing-exits';
 export {
   IFadeInDownAnimationOptions,
   IFadeInDownBigAnimationOptions,
@@ -84,7 +84,7 @@ export {
   fadeInUpBigAnimation,
   fadeInUpBigOnEnterAnimation,
   fadeInUpOnEnterAnimation
-} from './fading-entrances/index';
+} from './fading-entrances';
 export {
   IFadeOutDownAnimationOptions,
   IFadeOutDownBigAnimationOptions,
@@ -112,7 +112,7 @@ export {
   fadeOutUpBigAnimation,
   fadeOutUpBigOnLeaveAnimation,
   fadeOutUpOnLeaveAnimation
-} from './fading-exits/index';
+} from './fading-exits';
 export {
   IFlipInXAnimationOptions,
   IFlipInYAnimationOptions,
@@ -128,7 +128,7 @@ export {
   flipOutXOnLeaveAnimation,
   flipOutYAnimation,
   flipOutYOnLeaveAnimation
-} from './flippers/index';
+} from './flippers';
 export {
   ILightSpeedInAnimationOptions,
   ILightSpeedOutAnimationOptions,
@@ -136,7 +136,7 @@ export {
   lightSpeedInOnEnterAnimation,
   lightSpeedOutAnimation,
   lightSpeedOutOnLeaveAnimation
-} from './light-speed/index';
+} from './light-speed';
 export {
   IRotateInAnimationOptions,
   IRotateInDownLeftAnimationOptions,
@@ -153,7 +153,7 @@ export {
   rotateInUpLeftOnEnterAnimation,
   rotateInUpRightAnimation,
   rotateInUpRightOnEnterAnimation
-} from './rotating-entrances/index';
+} from './rotating-entrances';
 export {
   IRotateOutAnimationOptions,
   IRotateOutDownLeftAnimationOptions,
@@ -170,7 +170,7 @@ export {
   rotateOutUpLeftOnLeaveAnimation,
   rotateOutUpRightAnimation,
   rotateOutUpRightOnLeaveAnimation
-} from './rotating-exits/index';
+} from './rotating-exits';
 export {
   ISlideInDownAnimationOptions,
   ISlideInLeftAnimationOptions,
@@ -184,7 +184,7 @@ export {
   slideInRightOnEnterAnimation,
   slideInUpAnimation,
   slideInUpOnEnterAnimation
-} from './sliding-entrances/index';
+} from './sliding-entrances';
 export {
   ISlideOutDownAnimationOptions,
   ISlideOutLeftAnimationOptions,
@@ -198,7 +198,7 @@ export {
   slideOutRightOnLeaveAnimation,
   slideOutUpAnimation,
   slideOutUpOnLeaveAnimation
-} from './sliding-exits/index';
+} from './sliding-exits';
 export {
   zoomInAnimation,
   zoomInDownAnimation,
@@ -210,7 +210,7 @@ export {
   zoomInRightOnEnterAnimation,
   zoomInUpAnimation,
   zoomInUpOnEnterAnimation
-} from './zooming-entrances/index';
+} from './zooming-entrances';
 export {
   zoomOutAnimation,
   zoomOutDownAnimation,
@@ -222,7 +222,7 @@ export {
   zoomOutRightOnLeaveAnimation,
   zoomOutUpAnimation,
   zoomOutUpOnLeaveAnimation
-} from './zooming-exits/index';
+} from './zooming-exits';
 export {
   IRollInAnimationOptions,
   IRollOutAnimationOptions,
@@ -234,7 +234,7 @@ export {
   rollInOnEnterAnimation,
   rollOutAnimation,
   rollOutOnLeaveAnimation
-} from './specials/index';
+} from './specials';
 export {
   animateChildrenOnLeaveAnimation,
   collapseAnimation,
@@ -242,6 +242,11 @@ export {
   expandOnEnterAnimation,
   fadeInExpandOnEnterAnimation,
   fadeOutCollapseOnLeaveAnimation,
+  collapseHorizontallyAnimation,
+  collapseLeftOnLeaveAnimation,
+  expandRightOnEnterAnimation,
+  fadeInExpandRightOnEnterAnimation,
+  fadeOutCollapseLeftOnLeaveAnimation,
   hueRotateAnimation,
   rotateAnimation
-} from './other/index';
+} from './other';

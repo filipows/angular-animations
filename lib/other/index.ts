@@ -4,7 +4,12 @@ export {
   expandOnEnterAnimation,
   collapseOnLeaveAnimation,
   fadeInExpandOnEnterAnimation,
-  fadeOutCollapseOnLeaveAnimation
+  fadeOutCollapseOnLeaveAnimation,
+  collapseHorizontallyAnimation,
+  collapseLeftOnLeaveAnimation,
+  expandRightOnEnterAnimation,
+  fadeInExpandRightOnEnterAnimation,
+  fadeOutCollapseLeftOnLeaveAnimation
 } from './collapse.animation';
 export { hueRotateAnimation } from './hue-rotate.animation';
 export { rotateAnimation } from './rotate.animation';

@@ -3,7 +3,7 @@ import { animate, animation, AnimationTriggerMetadata, keyframes, style, transit
 import { IAnimationOptions } from '../common/interfaces';
 import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
 
-export interface IFadeInRightBigAnimationOptions extends IAnimationOptions {
+export interface IBounceOutLeftAnimationOptions extends IAnimationOptions {
   /**
    * Translate, possible units: px, %, em, rem, vw, vh
    *
@@ -12,22 +12,23 @@ export interface IFadeInRightBigAnimationOptions extends IAnimationOptions {
   translate?: string;
 }
 
-const fadeInRightBig = () =>
+const bounceOutLeft = () =>
   animation([
     animate(
       '{{duration}}ms {{delay}}ms',
       keyframes([
-        style({ visibility: 'visible', opacity: 0, transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0 }),
-        style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
+        style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
+        style({ opacity: 1, transform: 'translate3d(20px, 0, 0)', easing: 'ease', offset: 0.2 }),
+        style({ opacity: 0, transform: 'translate3d(-{{translate}}, 0, 0)', easing: 'ease', offset: 1 })
       ])
     )
   ]);
 
 const DEFAULT_DURATION = 1000;
 
-export function fadeInRightBigAnimation(options?: IFadeInRightBigAnimationOptions): AnimationTriggerMetadata {
-  return trigger((options && options.anchor) || 'fadeInRightBig', [
-    transition('0 => 1', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(fadeInRightBig(), options)], {
+export function bounceOutLeftAnimation(options?: IBounceOutLeftAnimationOptions): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'bounceOutLeft', [
+    transition('0 => 1', [...useAnimationIncludingChildren(bounceOutLeft(), options)], {
       params: {
         delay: (options && options.delay) || 0,
         duration: (options && options.duration) || DEFAULT_DURATION,
@@ -37,9 +38,9 @@ export function fadeInRightBigAnimation(options?: IFadeInRightBigAnimationOption
   ]);
 }
 
-export function fadeInRightBigOnEnterAnimation(options?: IFadeInRightBigAnimationOptions): AnimationTriggerMetadata {
-  return trigger((options && options.anchor) || 'fadeInRightBigOnEnter', [
-    transition(':enter', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(fadeInRightBig(), options)], {
+export function bounceOutLeftOnLeaveAnimation(options?: IBounceOutLeftAnimationOptions): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'bounceOutLeftOnLeave', [
+    transition(':leave', [...useAnimationIncludingChildren(bounceOutLeft(), options)], {
       params: {
         delay: (options && options.delay) || 0,
         duration: (options && options.duration) || DEFAULT_DURATION,

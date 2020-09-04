@@ -81,6 +81,7 @@ import {
   rollOutAnimation,
   // other
   collapseAnimation,
+  collapseHorizontallyAnimation,
   rotateAnimation,
   bounceInUpOnEnterAnimation,
   hueRotateAnimation
@@ -174,6 +175,7 @@ import {
     rollOutAnimation(),
     // other
     collapseAnimation(),
+    collapseHorizontallyAnimation(),
     rotateAnimation(),
     rotateAnimation({ anchor: 'rotate90', degrees: 90 }),
     hueRotateAnimation(),
@@ -260,7 +262,7 @@ export class DemoMainComponent {
     },
     {
       label: 'Other',
-      animations: ['collapse', 'rotate', 'rotate90', 'rotate720', 'hueRotate']
+      animations: ['collapse', 'collapseHorizontally', 'rotate', 'rotate90', 'rotate720', 'hueRotate']
     }
   ];
   animation = 'rubberBand';

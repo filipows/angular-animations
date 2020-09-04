@@ -79,6 +79,7 @@ import {
   rollOutAnimation,
   // other
   collapseAnimation,
+  collapseHorizontallyAnimation,
   rotateAnimation,
   hueRotateAnimation,
   rollInOnEnterAnimation,
@@ -172,6 +173,7 @@ import {
     rollOutAnimation(),
     // other
     collapseAnimation(),
+    collapseHorizontallyAnimation(),
     rotateAnimation(),
     rotateAnimation({ anchor: 'rotate90', degrees: 90 }),
     hueRotateAnimation(),
@@ -264,7 +266,7 @@ export class DemoDynamicParamsComponent implements OnInit {
     },
     {
       label: 'Other',
-      animations: ['collapse', 'rotate', 'hueRotate']
+      animations: ['collapse', 'collapseHorizontally', 'rotate', 'hueRotate']
     }
   ];
   animation = 'pulse';
@@ -406,7 +408,8 @@ export class DemoDynamicParamsComponent implements OnInit {
         this.translate = '100%';
         break;
       }
-      case 'collapse': {
+      case 'collapse':
+      case 'collapseHorizontally': {
         this.duration = 200;
         break;
       }
