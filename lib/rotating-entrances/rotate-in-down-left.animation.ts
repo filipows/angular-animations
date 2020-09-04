@@ -1,18 +1,7 @@
-import {
-  animate,
-  animateChild,
-  animation,
-  AnimationTriggerMetadata,
-  group,
-  keyframes,
-  query,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
+import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
 
 export interface IRotateInDownLeftAnimationOptions extends IAnimationOptions {
   /**
@@ -42,15 +31,8 @@ export function rotateInDownLeftAnimation(options?: IRotateInDownLeftAnimationOp
       '0 => 1',
       [
         style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'left bottom' }),
-        group([
-          useAnimation(rotateInDownLeft()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
+        ...useAnimationIncludingChildren(rotateInDownLeft(), options)
       ],
       {
         params: {
@@ -69,15 +51,8 @@ export function rotateInDownLeftOnEnterAnimation(options?: IRotateInDownLeftAnim
       ':enter',
       [
         style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'left bottom' }),
-        group([
-          useAnimation(rotateInDownLeft()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
+        ...useAnimationIncludingChildren(rotateInDownLeft(), options)
       ],
       {
         params: {

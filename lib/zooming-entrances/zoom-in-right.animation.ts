@@ -1,18 +1,7 @@
-import {
-  animate,
-  animateChild,
-  animation,
-  AnimationTriggerMetadata,
-  group,
-  keyframes,
-  query,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
+import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
 
 const zoomInRight = () =>
   animation([
@@ -41,50 +30,22 @@ const DEFAULT_DURATION = 1000;
 
 export function zoomInRightAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'zoomInRight', [
-    transition(
-      '0 => 1',
-      [
-        style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        group([
-          useAnimation(zoomInRight()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
-        }
+    transition('0 => 1', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(zoomInRight(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION
       }
-    )
+    })
   ]);
 }
 
 export function zoomInRightOnEnterAnimation(options?: IAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'zoomInRightOnEnter', [
-    transition(
-      ':enter',
-      [
-        style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        group([
-          useAnimation(zoomInRight()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION
-        }
+    transition(':enter', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(zoomInRight(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION
       }
-    )
+    })
   ]);
 }

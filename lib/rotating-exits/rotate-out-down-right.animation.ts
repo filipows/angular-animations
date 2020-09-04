@@ -1,18 +1,7 @@
-import {
-  animate,
-  animateChild,
-  animation,
-  AnimationTriggerMetadata,
-  group,
-  keyframes,
-  query,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
+import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
 
 export interface IRotateOutDownRightAnimationOptions extends IAnimationOptions {
   /**
@@ -38,52 +27,24 @@ const DEFAULT_DURATION = 1000;
 
 export function rotateOutDownRightAnimation(options?: IRotateOutDownRightAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOutDownRight', [
-    transition(
-      '0 => 1',
-      [
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        style({ 'transform-origin': 'right bottom' }),
-        group([
-          useAnimation(rotateOutDownRight()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          degrees: (options && options.degrees) || -45
-        }
+    transition('0 => 1', [style({ 'transform-origin': 'right bottom' }), ...useAnimationIncludingChildren(rotateOutDownRight(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION,
+        degrees: (options && options.degrees) || -45
       }
-    )
+    })
   ]);
 }
 
 export function rotateOutDownRightOnLeaveAnimation(options?: IRotateOutDownRightAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'rotateOutDownRightOnLeave', [
-    transition(
-      ':leave',
-      [
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        style({ 'transform-origin': 'right bottom' }),
-        group([
-          useAnimation(rotateOutDownRight()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          degrees: (options && options.degrees) || -45
-        }
+    transition(':leave', [style({ 'transform-origin': 'right bottom' }), ...useAnimationIncludingChildren(rotateOutDownRight(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION,
+        degrees: (options && options.degrees) || -45
       }
-    )
+    })
   ]);
 }

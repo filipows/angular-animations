@@ -1,18 +1,7 @@
-import {
-  animate,
-  animateChild,
-  animation,
-  AnimationTriggerMetadata,
-  group,
-  keyframes,
-  query,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
+import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
 
 export interface ISlideOutRightAnimationOptions extends IAnimationOptions {
   /**
@@ -38,50 +27,24 @@ const DEFAULT_DURATION = 1000;
 
 export function slideOutRightAnimation(options?: ISlideOutRightAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideOutRight', [
-    transition(
-      '0 => 1',
-      [
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        group([
-          useAnimation(slideOutRight()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          translate: (options && options.translate) || '100%'
-        }
+    transition('0 => 1', [...useAnimationIncludingChildren(slideOutRight(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION,
+        translate: (options && options.translate) || '100%'
       }
-    )
+    })
   ]);
 }
 
 export function slideOutRightOnLeaveAnimation(options?: ISlideOutRightAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideOutRightOnLeave', [
-    transition(
-      ':leave',
-      [
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        group([
-          useAnimation(slideOutRight()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          translate: (options && options.translate) || '100%'
-        }
+    transition(':leave', [...useAnimationIncludingChildren(slideOutRight(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION,
+        translate: (options && options.translate) || '100%'
       }
-    )
+    })
   ]);
 }

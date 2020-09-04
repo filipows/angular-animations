@@ -1,19 +1,7 @@
-import {
-  animate,
-  animateChild,
-  animation,
-  AnimationTriggerMetadata,
-  AUTO_STYLE,
-  group,
-  keyframes,
-  query,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, AUTO_STYLE, keyframes, style, transition, trigger } from '@angular/animations';
 
 import { IAnimationOptions, IAttentionSeekerAnimationOptions } from '../common/interfaces';
+import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
 
 const jello = () =>
   animation([
@@ -40,17 +28,7 @@ export function jelloAnimation(options?: IAttentionSeekerAnimationOptions): Anim
   return trigger((options && options.anchor) || 'jello', [
     transition(
       `0 ${(options && options.direction) || '<=>'} 1`,
-      [
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        group([
-          style({ 'transform-origin': 'center' }),
-          useAnimation(jello()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
+      [style({ 'transform-origin': 'center' }), ...useAnimationIncludingChildren(jello(), options)],
       {
         params: {
           delay: (options && options.delay) || 0,
@@ -65,18 +43,7 @@ export function jelloOnEnterAnimation(options?: IAnimationOptions): AnimationTri
   return trigger((options && options.anchor) || 'jelloOnEnter', [
     transition(
       ':enter',
-      [
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        style({ visibility: 'hidden' }),
-        group([
-          style({ 'transform-origin': 'center' }),
-          useAnimation(jello()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
+      [style({ visibility: 'hidden' }), style({ 'transform-origin': 'center' }), ...useAnimationIncludingChildren(jello(), options)],
       {
         params: {
           delay: (options && options.delay) || 0,

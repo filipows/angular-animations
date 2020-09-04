@@ -1,18 +1,7 @@
-import {
-  animate,
-  animateChild,
-  animation,
-  AnimationTriggerMetadata,
-  group,
-  keyframes,
-  query,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, group, keyframes, style, transition, trigger } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
+import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
 
 export interface IBounceInUpAnimationOptions extends IAnimationOptions {
   /**
@@ -51,52 +40,24 @@ const DEFAULT_DURATION = 1000;
 
 export function bounceInUpAnimation(options?: IBounceInUpAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceInUp', [
-    transition(
-      '0 => 1',
-      [
-        style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        group([
-          useAnimation(bounceInUp()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          translate: (options && options.translate) || '3000px'
-        }
+    transition('0 => 1', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(bounceInUp(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION,
+        translate: (options && options.translate) || '3000px'
       }
-    )
+    })
   ]);
 }
 
 export function bounceInUpOnEnterAnimation(options?: IBounceInUpAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceInUpOnEnter', [
-    transition(
-      ':enter',
-      [
-        style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        group([
-          useAnimation(bounceInUp()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          translate: (options && options.translate) || '3000px'
-        }
+    transition(':enter', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(bounceInUp(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION,
+        translate: (options && options.translate) || '3000px'
       }
-    )
+    })
   ]);
 }
