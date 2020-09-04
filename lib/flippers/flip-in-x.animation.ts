@@ -50,6 +50,7 @@ export function flipInXAnimation(options?: IFlipInXAnimationOptions): AnimationT
     transition(
       '0 => 1',
       [
+        style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           style({ 'backface-visibility': 'visible' }),

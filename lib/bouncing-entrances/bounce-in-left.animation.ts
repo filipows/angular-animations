@@ -54,6 +54,7 @@ export function bounceInLeftAnimation(options?: IBounceInLeftAnimationOptions): 
     transition(
       '0 => 1',
       [
+        style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           useAnimation(bounceInLeft()),

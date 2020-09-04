@@ -41,6 +41,7 @@ export function fadeInRightBigAnimation(options?: IFadeInRightBigAnimationOption
     transition(
       '0 => 1',
       [
+        style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           useAnimation(fadeInRightBig()),
