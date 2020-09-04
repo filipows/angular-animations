@@ -1,18 +1,7 @@
-import {
-  animate,
-  animateChild,
-  animation,
-  AnimationTriggerMetadata,
-  group,
-  keyframes,
-  query,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
+import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
 
 export interface IBounceOutLeftAnimationOptions extends IAnimationOptions {
   /**
@@ -39,50 +28,24 @@ const DEFAULT_DURATION = 1000;
 
 export function bounceOutLeftAnimation(options?: IBounceOutLeftAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceOutLeft', [
-    transition(
-      '0 => 1',
-      [
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        group([
-          useAnimation(bounceOutLeft()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          translate: (options && options.translate) || '2000px'
-        }
+    transition('0 => 1', [...useAnimationIncludingChildren(bounceOutLeft(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION,
+        translate: (options && options.translate) || '2000px'
       }
-    )
+    })
   ]);
 }
 
 export function bounceOutLeftOnLeaveAnimation(options?: IBounceOutLeftAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'bounceOutLeftOnLeave', [
-    transition(
-      ':leave',
-      [
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        group([
-          useAnimation(bounceOutLeft()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
-      {
-        params: {
-          delay: (options && options.delay) || 0,
-          duration: (options && options.duration) || DEFAULT_DURATION,
-          translate: (options && options.translate) || '2000px'
-        }
+    transition(':leave', [...useAnimationIncludingChildren(bounceOutLeft(), options)], {
+      params: {
+        delay: (options && options.delay) || 0,
+        duration: (options && options.duration) || DEFAULT_DURATION,
+        translate: (options && options.translate) || '2000px'
       }
-    )
+    })
   ]);
 }

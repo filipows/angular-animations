@@ -1,18 +1,7 @@
-import {
-  animate,
-  animateChild,
-  animation,
-  AnimationTriggerMetadata,
-  group,
-  keyframes,
-  query,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from '@angular/animations';
+import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger } from '@angular/animations';
 
 import { IAnimationOptions } from '../common/interfaces';
+import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
 
 export interface IRotateInAnimationOptions extends IAnimationOptions {
   /**
@@ -40,18 +29,7 @@ export function rotateInAnimation(options?: IRotateInAnimationOptions): Animatio
   return trigger((options && options.anchor) || 'rotateIn', [
     transition(
       '0 => 1',
-      [
-        style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        style({ 'transform-origin': 'center' }),
-        group([
-          useAnimation(rotateIn()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
+      [style({ visibility: 'hidden' }), style({ 'transform-origin': 'center' }), ...useAnimationIncludingChildren(rotateIn(), options)],
       {
         params: {
           delay: (options && options.delay) || 0,
@@ -67,18 +45,7 @@ export function rotateInOnEnterAnimation(options?: IRotateInAnimationOptions): A
   return trigger((options && options.anchor) || 'rotateInOnEnter', [
     transition(
       ':enter',
-      [
-        style({ visibility: 'hidden' }),
-        ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
-        style({ 'transform-origin': 'center' }),
-        group([
-          useAnimation(rotateIn()),
-          ...(!options || !options.animateChildren || options.animateChildren === 'together'
-            ? [query('@*', animateChild(), { optional: true })]
-            : [])
-        ]),
-        ...(options && options.animateChildren === 'after' ? [query('@*', animateChild(), { optional: true })] : [])
-      ],
+      [style({ visibility: 'hidden' }), style({ 'transform-origin': 'center' }), ...useAnimationIncludingChildren(rotateIn(), options)],
       {
         params: {
           delay: (options && options.delay) || 0,
