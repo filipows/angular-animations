@@ -8,7 +8,7 @@ const swing = () =>
     animate(
       '{{duration}}ms {{delay}}ms',
       keyframes([
-        // style({ 'transform-origin': 'top center', offset: 0 }),
+        style({ 'transform-origin': 'top center', offset: 0 }),
         style({ visibility: AUTO_STYLE, transform: 'rotate3d(0, 0, 1, 0deg)', easing: 'ease', offset: 0 }),
         style({ transform: 'rotate3d(0, 0, 1, 15deg)', easing: 'ease', offset: 0.2 }),
         style({ transform: 'rotate3d(0, 0, 1, -10deg)', easing: 'ease', offset: 0.4 }),
