@@ -1,6 +1,6 @@
 export * from './attention-seekers/index';
 export * from './bouncing-entrances/index';
-export * from './bouncint-exits/index';
+export * from './bouncing-exits/index';
 export * from './fading-entrances/index';
 export * from './fading-exits/index';
 export * from './flippers/index';
