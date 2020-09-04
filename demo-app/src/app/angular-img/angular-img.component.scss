@@ -2,9 +2,7 @@ $width: 230px;
 
 :host {
   display: block;
-  // width: 471px;
   width: $width;
-  margin: 0 auto;
   img {
     width: $width;
   }
