@@ -40,6 +40,7 @@ export function jackInTheBoxAnimation(options?: IAnimationOptions): AnimationTri
     transition(
       '0 => 1',
       [
+        style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           useAnimation(jackInTheBox()),

@@ -54,6 +54,7 @@ export function bounceInRightAnimation(options?: IBounceInRightAnimationOptions)
     transition(
       '0 => 1',
       [
+        style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           useAnimation(bounceInRight()),
@@ -79,7 +80,6 @@ export function bounceInRightOnEnterAnimation(options?: IBounceInRightAnimationO
     transition(
       ':enter',
       [
-        // style({ background: 'red' }),
         style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([

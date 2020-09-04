@@ -41,6 +41,7 @@ export function rotateInUpLeftAnimation(options?: IRotateInUpLeftAnimationOption
     transition(
       '0 => 1',
       [
+        style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'left bottom' }),
         group([

@@ -54,6 +54,7 @@ export function bounceInUpAnimation(options?: IBounceInUpAnimationOptions): Anim
     transition(
       '0 => 1',
       [
+        style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           useAnimation(bounceInUp()),

@@ -41,6 +41,7 @@ export function rotateInAnimation(options?: IRotateInAnimationOptions): Animatio
     transition(
       '0 => 1',
       [
+        style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         style({ 'transform-origin': 'center' }),
         group([

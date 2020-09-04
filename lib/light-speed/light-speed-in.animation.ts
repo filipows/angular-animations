@@ -49,6 +49,7 @@ export function lightSpeedInAnimation(options?: ILightSpeedInAnimationOptions): 
     transition(
       '0 => 1',
       [
+        style({ visibility: 'hidden' }),
         ...(options && options.animateChildren === 'before' ? [query('@*', animateChild(), { optional: true })] : []),
         group([
           useAnimation(lightSpeedIn()),
