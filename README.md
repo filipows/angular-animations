@@ -3,6 +3,7 @@
 [![npm version](https://badge.fury.io/js/angular-animations.svg)](https://www.npmjs.com/package/angular-animations)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![Gitter chat](https://badges.gitter.im/angular-animations.png)](https://gitter.im/angular-animations/Lobby)
+[![Code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Easy, Reusable Animation Utility library for Angular Apps.
 
@@ -11,7 +12,8 @@ Angular Animations utility library is a collection of reusable and parametrized 
 ### Quick links
 
 [Demo](https://filipows.github.io/angular-animations/) |
-[StackBlitz Template](https://stackblitz.com/edit/angular-animations-lib-demo)
+[StackBlitz Demo](https://stackblitz.com/edit/angular-animations-lib-demo) |
+[StackBlitz Base Template](https://stackblitz.com/edit/angular-animations-lib-base-template)
 
 ## Getting Started
 
@@ -154,11 +156,65 @@ In a template (providing option for dynamic changes):
 <div *ngIf="CONDITION" [@enter]="{ value: '', params: { duration: 300, delay: 100, translate: '40px } }" [@leave]></div>
 ```
 
-With parameters in a template, we can for ex achieve staggering animations:
+With parameters in a template, we can for example achieve staggering animations:
 
 ```html
 <div *ngFor="let i of [1,2,3]" [@enter]="{ value: '', params: { delay: i * 100 } }"></div>
 ```
+
+### Animation Callbacks
+
+Each animation supports `start` and `done` callbacks to setup hook methods that get called at the start or end of animations.
+We can add callbacks with the syntax `(@trigger.start)` or `(@trigger.done)`, where `trigger` is the name of the animation trigger/anchor being used.
+
+```html
+<div [@fadeIn]="animationState" (@fadeIn.start)="animStart($event)" (@fadeIn.done)="animDone($event)"></div>
+```
+
+The callbacks receive an `AnimationEvent` that contains the following properties: `fromState` `phaseName`("start" or "done"), `toState` and `totalTime`
+
+```ts
+import { AnimationEvent } from '@angular/animations';
+
+//...
+
+animStart(event: AnimationEvent) {
+  console.log('Animation Started', event);
+}
+
+animDone(event: AnimationEvent) {
+  console.log('Animation Ended', event);
+}
+```
+
+You can find more information about Animation callbacks in the [Angular docs](https://angular.io/guide/transition-and-triggers#animation-callbacks)
+
+#### Loop animation
+
+You can achieve looped animation by using `done` callback. Define a variable that triggers animation and toggle it when animation done callback is called:
+
+```html
+<div [@bounce]="animState" (@bounce.done)="animDone()"></div>
+```
+
+and in the component:
+
+```ts
+  animState = false;
+
+  animDone() {
+    this.animState = !this.animState
+  }
+```
+
+[Example: simple infinite loop animation](https://stackblitz.com/edit/angular-animations-lib-simple-loop?file=src/app/demo-main/demo-main.component.html) <br />
+[Example: repeat animation N times after clicking the button](https://stackblitz.com/edit/angular-animations-lib-simple-loop-repeat-n-times?file=src/app/demo-main/demo-main.component.html)<br />
+[Example: repeat animation until certain event occurs](https://stackblitz.com/edit/angular-animations-lib-simple-loop-repeat-until-btn-click?file=src/app/demo-main/demo-main.component.html)
+
+#### Chain animations
+
+You can chain animations (e.g. wait for the first animation to finish before the second one starts) by using the `done` callback.
+[Example: OnEnter/OnLeave chained animations](https://stackblitz.com/edit/angular-animations-lib-chained-on-enter?file=src/app/demo-main/demo-main.component.html)
 
 ## Available Animations and Parameters
 
