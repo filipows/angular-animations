@@ -15,6 +15,23 @@ Angular Animations utility library is a collection of reusable and parametrized 
 [StackBlitz Demo](https://stackblitz.com/edit/angular-animations-lib-demo) |
 [StackBlitz Base Template](https://stackblitz.com/edit/angular-animations-lib-base-template)
 
+### Table of Contents
+
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Animations `on enter` / `on leave`](#animations-on-enter--on-leave)
+  - [Animations with state or triggered by state changes](#animations-with-state-or-triggered-by-state-changes)
+  - [Parametrized animations](#parametrized-animations)
+  - [Animation Callbacks](#animation-callbacks)
+    - [Loop animation](#loop-animation)
+    - [Chain animations](#chain-animations)
+- [Available Animations and Parameters](#available-animations-and-parameters)
+- [Running Demo App](#running-demo-app)
+- [Authors](#authors)
+- [License](#license)
+
 ## Getting Started
 
 ### Prerequisites
