@@ -36,3 +36,5 @@ export interface IAttentionSeekerAnimationOptions extends IAnimationOptions {
    */
   direction?: '<=>' | '=>';
 }
+
+export type Easing = 'ease' | 'linear' | 'ease-in' | 'ease-out' | 'ease-in-out';

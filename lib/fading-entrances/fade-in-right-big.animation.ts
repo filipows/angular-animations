@@ -1,7 +1,10 @@
 import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger } from '@angular/animations';
 
-import { IAnimationOptions } from '../common/interfaces';
+import { IAnimationOptions, Easing } from '../common/interfaces';
 import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
+
+const DEFAULT_DURATION = 1000;
+const DEFAULT_EASING = 'ease';
 
 export interface IFadeInRightBigAnimationOptions extends IAnimationOptions {
   /**
@@ -10,24 +13,29 @@ export interface IFadeInRightBigAnimationOptions extends IAnimationOptions {
    * Default: 2000px
    */
   translate?: string;
+
+  /**
+   * Easing
+   *
+   * Default: 'ease'
+   */
+  easing?: Easing;
 }
 
-const fadeInRightBig = () =>
+const fadeInRightBig = (easing: Easing = DEFAULT_EASING) =>
   animation([
     animate(
       '{{duration}}ms {{delay}}ms',
       keyframes([
-        style({ visibility: 'visible', opacity: 0, transform: 'translate3d({{translate}}, 0, 0)', easing: 'ease', offset: 0 }),
-        style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
+        style({ visibility: 'visible', opacity: 0, transform: 'translate3d({{translate}}, 0, 0)', easing, offset: 0 }),
+        style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing, offset: 1 })
       ])
     )
   ]);
 
-const DEFAULT_DURATION = 1000;
-
 export function fadeInRightBigAnimation(options?: IFadeInRightBigAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInRightBig', [
-    transition('0 => 1', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(fadeInRightBig(), options)], {
+    transition('0 => 1', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(fadeInRightBig(options?.easing), options)], {
       params: {
         delay: (options && options.delay) || 0,
         duration: (options && options.duration) || DEFAULT_DURATION,
@@ -39,7 +47,7 @@ export function fadeInRightBigAnimation(options?: IFadeInRightBigAnimationOption
 
 export function fadeInRightBigOnEnterAnimation(options?: IFadeInRightBigAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'fadeInRightBigOnEnter', [
-    transition(':enter', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(fadeInRightBig(), options)], {
+    transition(':enter', [style({ visibility: 'hidden' }), ...useAnimationIncludingChildren(fadeInRightBig(options?.easing), options)], {
       params: {
         delay: (options && options.delay) || 0,
         duration: (options && options.duration) || DEFAULT_DURATION,
