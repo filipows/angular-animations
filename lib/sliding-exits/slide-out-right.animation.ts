@@ -1,7 +1,10 @@
 import { animate, animation, AnimationTriggerMetadata, keyframes, style, transition, trigger } from '@angular/animations';
 
-import { IAnimationOptions } from '../common/interfaces';
+import { IAnimationOptions, Easing } from '../common/interfaces';
 import { useAnimationIncludingChildren } from '../common/use-animation-including-children';
+
+const DEFAULT_DURATION = 1000;
+const DEFAULT_EASING: Easing = 'ease';
 
 export interface ISlideOutRightAnimationOptions extends IAnimationOptions {
   /**
@@ -10,24 +13,29 @@ export interface ISlideOutRightAnimationOptions extends IAnimationOptions {
    * Default: 100%
    */
   translate?: string;
+
+  /**
+   * Easing
+   *
+   * Default: 'ease'
+   */
+  easing?: Easing;
 }
 
-const slideOutRight = () =>
+const slideOutRight = (easing: Easing = DEFAULT_EASING) =>
   animation([
     animate(
       '{{duration}}ms {{delay}}ms',
       keyframes([
-        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
-        style({ transform: 'translate3d({{translate}}, 0, 0)', visibility: 'hidden', easing: 'ease', offset: 1 })
+        style({ transform: 'translate3d(0, 0, 0)', easing, offset: 0 }),
+        style({ transform: 'translate3d({{translate}}, 0, 0)', visibility: 'hidden', easing, offset: 1 })
       ])
     )
   ]);
 
-const DEFAULT_DURATION = 1000;
-
 export function slideOutRightAnimation(options?: ISlideOutRightAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideOutRight', [
-    transition('0 => 1', [...useAnimationIncludingChildren(slideOutRight(), options)], {
+    transition('0 => 1', [...useAnimationIncludingChildren(slideOutRight(options?.easing), options)], {
       params: {
         delay: (options && options.delay) || 0,
         duration: (options && options.duration) || DEFAULT_DURATION,
@@ -39,7 +47,7 @@ export function slideOutRightAnimation(options?: ISlideOutRightAnimationOptions)
 
 export function slideOutRightOnLeaveAnimation(options?: ISlideOutRightAnimationOptions): AnimationTriggerMetadata {
   return trigger((options && options.anchor) || 'slideOutRightOnLeave', [
-    transition(':leave', [...useAnimationIncludingChildren(slideOutRight(), options)], {
+    transition(':leave', [...useAnimationIncludingChildren(slideOutRight(options?.easing), options)], {
       params: {
         delay: (options && options.delay) || 0,
         duration: (options && options.duration) || DEFAULT_DURATION,
