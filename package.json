@@ -55,7 +55,7 @@
     "@angular/animations": "^10.1.0",
     "@angular/compiler": "^10.1.0",
     "@angular/compiler-cli": "^10.1.0",
-    "@angular/core": "^10.1.0",
+    "@angular/core": "^11.0.5",
     "angular-cli-ghpages": "^0.6.2",
     "husky": "^2.4.1",
     "ng-packagr": "^10.1.0",
