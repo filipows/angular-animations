@@ -31,5 +31,5 @@ export const routes: Routes = [
 ];
 
 export const AppRoutingModule = RouterModule.forRoot(routes, {
-  useHash: false
+    useHash: false
 });
