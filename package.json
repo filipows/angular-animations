@@ -1,6 +1,6 @@
 {
   "name": "angular-animations",
-  "version": "0.15.0",
+  "version": "0.11.0",
   "description": "Angular Animations Utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
     "start": "npm run demo-app",
     "demo-app": "cd demo-app && ng serve",
     "postinstall": "cd demo-app && npm install",
-    "build": "ng-packagr -p package.json",
+    "build": "ng-packagr -p ng-package.json",
     "prerelease": "npm run lint",
     "release": "np --no-publish",
     "postrelease": "npm run build && npm publish dist",
